@@ -35,6 +35,7 @@ class PostForm extends Component {
         <input 
           type="text" 
           className="form-control"
+          name="post"
           onChange={this.handleChange}
           value={this.state.post}
         />

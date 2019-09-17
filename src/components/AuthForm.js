@@ -21,7 +21,7 @@ export default class AuthForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    const authType = this.props.signup ? 'signup' : 'signin';
+    const authType = this.props.signUp ? 'signup' : 'signin';
     this.props.onAuth(authType, this.state)
       .then(() => this.props.history.push('/'))
       .catch(() => {
@@ -36,6 +36,8 @@ export default class AuthForm extends Component {
     history.listen(() => {
       removeError();
     });
+
+    // console.log('AuthForm:', this.state, this.props);
 
     return (
       <div>

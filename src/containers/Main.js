@@ -15,7 +15,41 @@ const Main = props => {
 
   return (
     <div className="container">
-      
+      <Switch>
+        <Route exact path='/' render={props => <Homepage currentUser={currentUser} {...props} />} />
+        <Route 
+          exact path='/signin'
+          render={props => {
+            return (
+              <AuthForm
+                removeError={removeError}
+                errors={errors}
+                onAuth={authUser}
+                buttonText='Log In'
+                heading='Welcome back!'
+                {...props}
+              />
+            );
+          }}
+        />
+        <Route
+          exact path='/signup'
+          render={props => {
+            return (
+              <AuthForm
+                removeError={removeError}
+                errors={errors}
+                onAuth={authUser}
+                signUp
+                buttonText='Sign Me Up'
+                heading='Join Headscroll!'
+                {...props}
+              />
+            );
+          }}
+        />
+        <Route path='/users/:id/posts/new' component={withAuth(PostForm)} />
+      </Switch>
     </div>
   );
 };
