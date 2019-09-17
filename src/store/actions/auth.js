@@ -14,6 +14,7 @@ export function setAuthorizationToken(token){
 }
 
 export function logout() {
+  console.log('logging out!');
   return dispatch => {
     localStorage.clear();
     setAuthorizationToken(false);
