@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import Scroll from './Scroll';
+import Scroll from './Scroll';
 
 const Homepage = ({currentUser}) => {
 
@@ -15,9 +15,10 @@ const Homepage = ({currentUser}) => {
   }
 
   return (
-    <div>
-      Scroll will go here
-    </div>
+    <Scroll
+      profileImageUrl={currentUser.user.profileImageUrl}
+      username={currentUser.user.username}
+    />
   );
 };
 
