@@ -5,7 +5,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 
 import Navbar from './Navbar';
-// import Main from './Main';
+import Main from './Main';
 import { setAuthorizationToken, setCurrentUser } from '../store/actions/auth';
 
 const store = configureStore();
@@ -24,7 +24,7 @@ const App = () => (
     <Router>
       <div className="App">
         <Navbar />
-        yo
+        <Main />
       </div>
     </Router>
   </Provider>
