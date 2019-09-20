@@ -15,6 +15,7 @@ class PostList extends Component {
         key={p._id}
         date={p.createdAt}
         text={p.text}
+        comments={p.comments}
         username={p.user.username}
         profileImageUrl={p.user.profileImageUrl}
         removePost={removePost.bind(this, p.user._id, p._id)}

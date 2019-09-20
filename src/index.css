@@ -40,6 +40,10 @@ code {
   border-radius: 5px 5px 0 0;
 }
 
+.btn {
+  cursor: pointer;
+}
+
 .btn-danger {
   width: 75px;
 }
@@ -60,4 +64,9 @@ code {
 .message-area {
   min-height: 100px;
   padding: 20px;
+}
+
+.post-footer {
+  background-color: gray;
+  padding: 10px 20px;
 }

@@ -3,7 +3,7 @@ import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 import DefaultProfileImage from '../images/default-profile-image.png';
 
-const PostItem = ({ date, profileImageUrl, text, username, removePost, isCorrectUser }) => (
+const PostItem = ({ date, profileImageUrl, text, username, comments, removePost, isCorrectUser }) => (
   <div>
     <li className="list-group-item">
       <div className="post-heading">
@@ -25,6 +25,9 @@ const PostItem = ({ date, profileImageUrl, text, username, removePost, isCorrect
       <div className="message-area">
         <p>{text}</p>
         
+      </div>
+      <div className="post-footer">
+        Comments: {comments.length}
       </div>
     </li>
   </div>
