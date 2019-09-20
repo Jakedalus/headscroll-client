@@ -55,6 +55,7 @@ const Main = props => {
 };
 
 function mapStateToProps(state) {
+  console.log('Main, state:', state);
   return {
     currentUser: state.currentUser,
     errors: state.errors

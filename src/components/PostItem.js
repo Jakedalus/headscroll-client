@@ -9,21 +9,20 @@ const PostItem = ({ date, profileImageUrl, text, username, removePost, isCorrect
       <img 
         src={profileImageUrl || DefaultProfileImage}
         alt={username}
-        width="100"
-        height="100"
         className="timeline-image"
       />
+    
+      <div className="message-area">
+        <Link to='/'>{username} &nbsp;</Link>
+        <span className="text-muted">
+          <Moment className="text-muted" format="Do MMM YYYY">
+            {date}
+          </Moment>
+        </span>
+        <p>{text}</p>
+        {isCorrectUser && <a onClick={removePost} className="btn btn-danger">Delete</a>}
+      </div>
     </li>
-    <div className="message-area">
-      <Link to='/'>{username} &nbsp;</Link>
-      <span className="text-muted">
-        <Moment className="text-muted" format="Do MMM YYYY">
-          {date}
-        </Moment>
-      </span>
-      <p>{text}</p>
-      {isCorrectUser && <a onClick={removePost} className="btn btn-danger">Delete</a>}
-    </div>
   </div>
 );
 
