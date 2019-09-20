@@ -1,3 +1,11 @@
+:root {
+  --dark-red: #4A0900;
+  --deep-red: #8F0009;
+  --off-white-orange: #EEEBE9;
+}
+
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -12,17 +20,13 @@ code {
     monospace;
 }
 
-/* #posts {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-} */
+/* POST ITEM STYLES */
 
 .list-group-item {
   display: flex;
   flex-direction: column;
   border: none;
-  background: lightgray;
+  background: var(--off-white-orange);
   box-shadow: 0 0 2px gray;
   padding: 0;
 }
@@ -35,7 +39,7 @@ code {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background: blue;
+  background: var(--dark-red);
   padding: 10px 5px;
   border-radius: 5px 5px 0 0;
 }
@@ -46,10 +50,14 @@ code {
 
 .btn-danger {
   width: 75px;
+  background-color: var(--deep-red);
+  border: 1px solid var(--deep-red);
+  filter: brightness(135%);
+  color: white;
 }
 
 .btn-blank {
-  background: blue;
+  background: var(--dark-red);
   width: 75px;
 }
 
@@ -69,4 +77,18 @@ code {
 .post-footer {
   background-color: gray;
   padding: 10px 20px;
+}
+
+
+/* USER ASIDE STYLES */
+
+.panel {
+  background-color: var(--dark-red);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.img-thumbnail {
+  margin-bottom: 10px;
 }
