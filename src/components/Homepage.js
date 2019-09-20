@@ -14,13 +14,14 @@ const Homepage = ({currentUser}) => {
     );
   }
 
-  console.log(currentUser);
+  console.log('Homepage, currentUser:', currentUser);
 
   return (
     <Scroll
       profileImageUrl={currentUser.user.profileImageUrl}
       username={currentUser.user.username}
       friends={currentUser.user.friends}
+      id={currentUser.user.id}
     />
   );
 };

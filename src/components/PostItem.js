@@ -12,7 +12,7 @@ const PostItem = ({ date, profileImageUrl, text, username, comments, removePost,
           alt={username}
           className="timeline-image"
         />
-        <Link to='/'>{username} &nbsp;</Link>
+        <Link to='/'>{username}</Link>
         <span className="text-muted">
           <Moment className="text-muted" format="Do MMM YYYY">
             {date}

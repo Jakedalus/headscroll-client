@@ -3,6 +3,7 @@ import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Homepage from '../components/Homepage';
+import ProfilePage from './ProfilePage';
 import AuthForm from '../components/AuthForm';
 import { authUser } from '../store/actions/auth';
 import { removeError } from '../store/actions/errors';
@@ -13,10 +14,13 @@ import { link } from 'fs';
 const Main = props => {
   const { authUser, errors, removeError, currentUser } = props;
 
+  console.log('Main, currentUser:', currentUser);
+
   return (
     <div className="container">
       <Switch>
         <Route exact path='/' render={props => <Homepage currentUser={currentUser} {...props} />} />
+        <Route exact path='/users/:id' render={props => <ProfilePage currentUser={currentUser} {...props} />} />
         <Route 
           exact path='/signin'
           render={props => {
