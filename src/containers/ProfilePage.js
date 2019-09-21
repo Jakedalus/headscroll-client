@@ -28,7 +28,7 @@ class ProfilePage extends Component {
 
     if (this.props.friend) {
 
-      let { username, profileImageUrl, friends, posts } = this.props.friend;
+      let { username, profileImageUrl, friends, posts, email } = this.props.friend;
 
       // if (!currentUser.isAuthenticated) {
       //   return (
@@ -63,16 +63,32 @@ class ProfilePage extends Component {
       }
 
       return (
-        <div>
-          <h2>{username}</h2>
-          <img 
-            src={profileImageUrl || DefaultProfileImage} 
-            alt={username}
-            className="img-thumbnail"
-          />
+        <div className="container-fluid" id="profile-page">
+          <div className="row justify-content-md-center">
+            <div className="row profile-header">
+              <img 
+                src={profileImageUrl || DefaultProfileImage} 
+                alt={username}
+                className="profile-img"
+              />
+              <div className="profile-info">
+                <h2>{username}</h2>
+                {posts && <div className="">
+                  <p className="">{friends.length} {friends.length == 1 ? 'Friend' : 'Friends'}</p>
+                  <p>{posts.length} {posts.length == 1 ? 'Post' : 'Posts'}</p>
+                </div>}
+                <p>{email}</p>
+              </div>
+              <button 
+                className={posts ? "btn btn-danger" : "btn btn-primary"}
+              >
+                {posts ? 'Remove Friend' : 'Add Friend'}
+              </button>
+            </div>
+          </div>
           
-          <div className="row col-sm-8">
-            <div className="offset-1 col sm 10">
+          <div className="row justify-content-md-center">
+            <div className="col-7">
               <ul className="list-group" id="posts">
                 {postList}
               </ul>
@@ -85,7 +101,7 @@ class ProfilePage extends Component {
     } else {
       return (
         <div>
-          loading profile
+          loading profile...
         </div>
       )
     }

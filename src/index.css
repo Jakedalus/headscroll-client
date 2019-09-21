@@ -48,7 +48,7 @@ code {
   cursor: pointer;
 }
 
-.btn-danger {
+.post-heading .btn-danger {
   width: 75px;
   background-color: var(--deep-red);
   border: 1px solid var(--deep-red);
@@ -92,4 +92,35 @@ code {
 
 .img-thumbnail {
   margin-bottom: 10px;
+}
+
+/* PROFILE PAGE */
+#profile-page {
+
+}
+
+.profile-header {
+  align-items: flex-start; 
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.profile-header .profile-img {
+  margin-right: 30px;
+  height: 100px;
+  width: 100px;
+}
+
+.profile-header .profile-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  font-size: 12px;
+}
+
+.profile-header .btn {
+  /* align-self: center; */
+  margin-top: 20px;
+  margin-left: 20px;
 }
