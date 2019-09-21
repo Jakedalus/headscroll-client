@@ -20,7 +20,7 @@ const Main = props => {
     <div className="container">
       <Switch>
         <Route exact path='/' render={props => <Homepage currentUser={currentUser} {...props} />} />
-        <Route exact path='/users/:id' render={props => <ProfilePage currentUser={currentUser} {...props} />} />
+        <Route exact path='/users/:id/profile' render={props => <ProfilePage currentUser={currentUser} {...props} />} />
         <Route 
           exact path='/signin'
           render={props => {
