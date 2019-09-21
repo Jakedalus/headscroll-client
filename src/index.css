@@ -59,6 +59,7 @@ code {
 .btn-blank {
   background: var(--dark-red);
   width: 75px;
+  cursor: auto;
 }
 
 .list-group-item .timeline-image {
