@@ -20,6 +20,9 @@ class ProfilePage extends Component {
     
   }
 
+  handleFriendButton = (isFriend) => {
+    console.log('clicked Friend button!', isFriend);
+  }
   
 
   render() {
@@ -28,7 +31,7 @@ class ProfilePage extends Component {
 
     if (this.props.friend) {
 
-      let { username, profileImageUrl, friends, posts, email, _id } = this.props.friend;
+      let { username, profileImageUrl, friends, requests, posts, email, _id, isFriend } = this.props.friend;
 
       // if (!currentUser.isAuthenticated) {
       //   return (
@@ -42,7 +45,7 @@ class ProfilePage extends Component {
 
       let postList = null;
 
-      if (posts) {
+      if (isFriend) {
         let userPosts = this.props.allPosts.filter(post => post.user._id === this.props.friend._id);
 
         console.log('userPosts:', userPosts);
@@ -73,7 +76,7 @@ class ProfilePage extends Component {
               />
               <div className="profile-info justify-content-md-start">
                 <h2>{username}</h2>
-                {posts && <div className="">
+                {isFriend && <div className="">
                   <p className="">{friends.length} {friends.length == 1 ? 'Friend' : 'Friends'}</p>
                   <p>{posts.length} {posts.length == 1 ? 'Post' : 'Posts'}</p>
                 </div>}
@@ -81,9 +84,10 @@ class ProfilePage extends Component {
               </div>
               { _id !== this.props.currentUser.id 
                 ? <button 
-                  className={posts ? "btn btn-danger" : "btn btn-primary"}
+                  className={isFriend ? "btn btn-danger" : "btn btn-primary"}
+                  onClick={() => this.handleFriendButton(isFriend)}
                 >
-                  {posts ? 'Remove Friend' : 'Add Friend'}
+                  {isFriend ? 'Remove Friend' : 'Add Friend'}
                 </button>
 
                 : <div></div>
