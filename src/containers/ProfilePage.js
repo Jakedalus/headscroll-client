@@ -28,7 +28,7 @@ class ProfilePage extends Component {
 
     if (this.props.friend) {
 
-      let { username, profileImageUrl, friends, posts, email } = this.props.friend;
+      let { username, profileImageUrl, friends, posts, email, _id } = this.props.friend;
 
       // if (!currentUser.isAuthenticated) {
       //   return (
@@ -65,13 +65,13 @@ class ProfilePage extends Component {
       return (
         <div className="container-fluid" id="profile-page">
           <div className="row justify-content-md-center">
-            <div className="row profile-header">
+            <div className="row col-7 profile-header">
               <img 
                 src={profileImageUrl || DefaultProfileImage} 
                 alt={username}
                 className="profile-img"
               />
-              <div className="profile-info">
+              <div className="profile-info justify-content-md-start">
                 <h2>{username}</h2>
                 {posts && <div className="">
                   <p className="">{friends.length} {friends.length == 1 ? 'Friend' : 'Friends'}</p>
@@ -79,11 +79,15 @@ class ProfilePage extends Component {
                 </div>}
                 <p>{email}</p>
               </div>
-              <button 
-                className={posts ? "btn btn-danger" : "btn btn-primary"}
-              >
-                {posts ? 'Remove Friend' : 'Add Friend'}
-              </button>
+              { _id !== this.props.currentUser.id 
+                ? <button 
+                  className={posts ? "btn btn-danger" : "btn btn-primary"}
+                >
+                  {posts ? 'Remove Friend' : 'Add Friend'}
+                </button>
+
+                : <div></div>
+              }
             </div>
           </div>
           

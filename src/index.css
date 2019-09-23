@@ -92,6 +92,13 @@ code {
 
 .img-thumbnail {
   margin-bottom: 10px;
+  height: 100%;
+  width: 100%;
+}
+
+.panel-body {
+  display: flex;
+  flex-direction: column;
 }
 
 /* PROFILE PAGE */
@@ -101,7 +108,7 @@ code {
 
 .profile-header {
   align-items: flex-start; 
-  justify-content: space-between;
+  /* justify-content: space-between; */
   margin-bottom: 30px;
 }
 
@@ -124,3 +131,4 @@ code {
   margin-top: 20px;
   margin-left: 20px;
 }
+
