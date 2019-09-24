@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect} from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchPosts, removePost } from '../store/actions/posts';
-import { fetchFriend } from '../store/actions/friends';
+import { fetchFriend, startAddFriend } from '../store/actions/friends';
 import PostItem from '../components/PostItem';
 import DefaultProfileImage from '../images/default-profile-image.png';
 
@@ -22,6 +22,13 @@ class ProfilePage extends Component {
 
   handleFriendButton = (isFriend) => {
     console.log('clicked Friend button!', isFriend);
+    console.log(this.props);
+    if (isFriend) {
+      
+    } else {
+      console.log('Requesting friend!', this.props.friend._id);
+      this.props.startAddFriend(this.props.friend._id);
+    }
   }
   
 
@@ -31,7 +38,31 @@ class ProfilePage extends Component {
 
     if (this.props.friend) {
 
-      let { username, profileImageUrl, friends, requests, posts, email, _id, isFriend } = this.props.friend;
+      let { 
+        username, 
+        profileImageUrl, 
+        friends, 
+        youRequestedAlready, 
+        posts, 
+        email, 
+        _id, 
+        isFriend } = this.props.friend;
+
+      let theyRequestedAlready = this.props.currentUser.requests.includes(_id);
+
+      console.log('You sent them a friend request:', youRequestedAlready);
+      console.log('They sent you a friend request:', theyRequestedAlready);
+
+      let friendButtonText = '';
+      if (isFriend) {
+        friendButtonText = 'Remove Friend';
+      } else if (youRequestedAlready) {
+        friendButtonText = 'Cancel Friend Request';
+      } else if (theyRequestedAlready) {
+        friendButtonText = 'Accept Friend Request';
+      } else {
+        friendButtonText = 'Add Friend';
+      }
 
       // if (!currentUser.isAuthenticated) {
       //   return (
@@ -84,10 +115,10 @@ class ProfilePage extends Component {
               </div>
               { _id !== this.props.currentUser.id 
                 ? <button 
-                  className={isFriend ? "btn btn-danger" : "btn btn-primary"}
+                  className={(isFriend || youRequestedAlready)? "btn btn-danger" : "btn btn-primary"}
                   onClick={() => this.handleFriendButton(isFriend)}
                 >
-                  {isFriend ? 'Remove Friend' : 'Add Friend'}
+                  {friendButtonText}
                 </button>
 
                 : <div></div>
@@ -125,4 +156,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { fetchPosts, removePost, fetchFriend })(ProfilePage);
+export default connect(mapStateToProps, { fetchPosts, removePost, fetchFriend, startAddFriend })(ProfilePage);

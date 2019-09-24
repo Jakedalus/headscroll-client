@@ -5,4 +5,5 @@ export const LOAD_POSTS = 'LOAD_POSTS';
 export const UPDATE_POST = 'UPDATE_POST';
 export const REMOVE_POST = 'REMOVE_POST';
 export const GET_FRIEND = 'GET_FRIEND';
-export const DELETE_FRIEND_FROM_STATE = 'DELETE_FRIEND_FROM_STATE';
+export const ADD_FRIEND = 'ADD_FRIEND';
+export const DELETE_FRIEND = 'DELETE_FRIEND';

@@ -25,6 +25,7 @@ class PostForm extends Component {
   }
 
   render() {
+    console.log('PostForm, props', this.props);
     return (
       <form onSubmit={this.handleNewPost}>
         {this.props.errors.message && (
