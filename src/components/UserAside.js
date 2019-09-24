@@ -12,7 +12,7 @@ const UserAside = ({ id, profileImageUrl, username, friends }) => (
           className="img-thumbnail"
         />
         <Link to={`/users/${id}/profile`}>{username}</Link>
-        <p>Friends: {friends.length}</p>
+        <p>Friends: {friends ? friends.length : 0}</p>
       </div>
     </div>
   </aside>

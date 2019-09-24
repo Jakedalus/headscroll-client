@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect} from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchPosts, removePost } from '../store/actions/posts';
-import { fetchFriend, startAddFriend } from '../store/actions/friends';
+import { fetchFriend, startAddFriend, startRemoveFriend } from '../store/actions/friends';
 import PostItem from '../components/PostItem';
 import DefaultProfileImage from '../images/default-profile-image.png';
 
@@ -20,14 +20,22 @@ class ProfilePage extends Component {
     
   }
 
-  handleFriendButton = (isFriend) => {
+  componentWillUpdate() {
+    const {id} = this.props.match.params;
+    this.props.fetchFriend(id);
+  }
+
+  handleFriendButton = (isFriend, youRequestedAlready, theyRequestedAlready) => {
     console.log('clicked Friend button!', isFriend);
     console.log(this.props);
-    if (isFriend) {
-      
-    } else {
+
+    if (isFriend || youRequestedAlready) {
+      console.log('Removing friend :(((', this.props.friend._id);
+      this.props.startRemoveFriend(this.props.friend._id);
+    } else if (!isFriend || theyRequestedAlready) { 
       console.log('Requesting friend!', this.props.friend._id);
       this.props.startAddFriend(this.props.friend._id);
+      // this.forceUpdate();
     }
   }
   
@@ -116,7 +124,7 @@ class ProfilePage extends Component {
               { _id !== this.props.currentUser.id 
                 ? <button 
                   className={(isFriend || youRequestedAlready)? "btn btn-danger" : "btn btn-primary"}
-                  onClick={() => this.handleFriendButton(isFriend)}
+                  onClick={() => this.handleFriendButton(isFriend, youRequestedAlready, theyRequestedAlready)}
                 >
                   {friendButtonText}
                 </button>
@@ -156,4 +164,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { fetchPosts, removePost, fetchFriend, startAddFriend })(ProfilePage);
+export default connect(mapStateToProps, { fetchPosts, removePost, fetchFriend, startAddFriend, startRemoveFriend })(ProfilePage);

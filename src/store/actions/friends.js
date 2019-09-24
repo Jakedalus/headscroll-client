@@ -17,10 +17,13 @@ export const fetchFriend = (friend) => {
   };
 };
 
-export const addFriend = friend => ({
+export const addFriend = friend => {
+  console.log('addFriend:', friend);
+  return {
   type: ADD_FRIEND,
   friend
-});
+  }
+};
 
 export const startAddFriend = friend => {
   return (dispatch, getState) => {
@@ -29,7 +32,26 @@ export const startAddFriend = friend => {
     console.log('actions/friends/ startAddFriend:', friend);
 
     return apiCall('post', `/api/users/${friend}/profile`)
-      .then(res => dispatch(addFriend(friend)))
+      .then(res => {
+        console.log('startAddFriend apiCall success:', res);
+        return dispatch(addFriend(friend))})
+      .catch(err => dispatch(addError(err)));
+  };
+};
+
+export const removeFriend = friend => ({
+  type: DELETE_FRIEND,
+  friend
+});
+
+export const startRemoveFriend = friend => {
+  return (dispatch, getState) => {
+    // let { currentUser } = getState();
+    // const id = currentUser.user.id;
+    console.log('actions/friends/ startDeleteFriend:', friend);
+
+    return apiCall('delete', `/api/users/${friend}/profile`)
+      .then(res => dispatch(removeFriend(friend)))
       .catch(err => dispatch(addError(err)));
   };
 }
