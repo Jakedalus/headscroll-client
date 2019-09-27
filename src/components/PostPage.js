@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect} from 'react-redux';
 import { fetchPosts, getPost } from '../store/actions/posts';
+import { fetchFriend } from '../store/actions/friend';
 import { fetchComments } from '../store/actions/comments';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
@@ -15,7 +16,7 @@ class PostPage extends Component {
     console.log('PostPage, this.props.match.params:', this.props.match.params);
     let { id: user_id, post_id } = this.props.match.params;
     this.props.getPost(user_id, post_id);
-
+    this.props.fetchFriend(user_id);
   }
 
   render() {
@@ -33,7 +34,7 @@ class PostPage extends Component {
 
 
       let { date, profileImageUrl, text, user, comments, removePost, isCorrectUser, _id: post_id } = this.props.posts[0];
-      let { username, _id: user_id, } = user;
+      let { username, _id: user_id } = this.props.friend.friend;
 
 
 
@@ -88,8 +89,9 @@ function mapStateToProps(state) {
   return {
     posts: state.posts,
     comments: state.comments,
-    currentUser: state.currentUser.user.id
+    currentUser: state.currentUser.user.id,
+    friend: state.friend
   }
 }
 
-export default connect(mapStateToProps, { getPost, fetchComments })(PostPage);
+export default connect(mapStateToProps, { getPost, fetchComments, fetchFriend })(PostPage);
