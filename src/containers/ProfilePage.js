@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect} from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchPosts, removePost } from '../store/actions/posts';
-import { fetchFriend, startAddFriend, startRemoveFriend } from '../store/actions/friends';
+import { fetchFriend, startAddFriend, startRemoveFriend } from '../store/actions/friend';
 import PostItem from '../components/PostItem';
 import DefaultProfileImage from '../images/default-profile-image.png';
 
@@ -160,7 +160,7 @@ function mapStateToProps(state) {
   return {
     allPosts: state.posts,
     currentUser: state.currentUser.user,
-    friend: state.friends.friend
+    friend: state.friend.friend
   }
 }
 

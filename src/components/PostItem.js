@@ -27,7 +27,7 @@ const PostItem = ({ date, profileImageUrl, text, username, comments, removePost,
         
       </div>
       <div className="post-footer">
-        Comments: {comments.length}
+      {comments.length} Comments
       </div>
     </li>
   </div>
