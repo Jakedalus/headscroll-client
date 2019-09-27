@@ -14,6 +14,7 @@ class PostList extends Component {
       <PostItem
         key={p._id}
         user_id={p.user._id}
+        post_id={p._id}
         date={p.createdAt}
         text={p.text}
         comments={p.comments}

@@ -3,7 +3,7 @@ import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 import DefaultProfileImage from '../images/default-profile-image.png';
 
-const PostItem = ({ date, profileImageUrl, text, username, comments, removePost, isCorrectUser, user_id }) => (
+const PostItem = ({ date, profileImageUrl, text, username, comments, removePost, isCorrectUser, user_id, post_id }) => (
   <div>
     <li className="list-group-item">
       <div className="post-heading">
@@ -14,9 +14,11 @@ const PostItem = ({ date, profileImageUrl, text, username, comments, removePost,
         />
         <Link to={`/users/${user_id}/profile`}>{username}</Link>
         <span className="text-muted">
+        <Link to={`/users/${user_id}/posts/${post_id}`}>
           <Moment className="text-muted" format="Do MMM YYYY">
             {date}
           </Moment>
+        </Link>
         </span>
         {isCorrectUser && <a onClick={removePost} className="btn btn-danger">Delete</a>}
         {!isCorrectUser && <a onClick={removePost} className="btn btn-blank">      </a>}

@@ -7,11 +7,15 @@ import ProfilePage from './ProfilePage';
 import AuthForm from '../components/AuthForm';
 import { authUser } from '../store/actions/auth';
 import { removeError } from '../store/actions/errors';
+import { fetchPosts } from '../store/actions/posts';
 import withAuth from '../hocs/withAuth';
 import PostForm from './PostForm';
+import PostPage from '../components/PostPage';
 import { link } from 'fs';
 
 const Main = props => {
+
+
 
   console.log('Main, props:', props);
 
@@ -36,6 +40,15 @@ const Main = props => {
           render={props => 
             <ProfilePage currentUser={currentUser} {...props} />
           } 
+        />
+        <Route
+          exact path='/users/:id/posts/:post_id'
+          render={props => {
+            console.log('Post route, props', props);
+            return (
+              <PostPage {...props} />
+            );
+          }}
         />
         <Route 
           exact path='/signin'
@@ -82,4 +95,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default withRouter(connect(mapStateToProps, { authUser, removeError })(Main));
+export default withRouter(connect(mapStateToProps, { authUser, removeError, fetchPosts })(Main));
