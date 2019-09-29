@@ -25,7 +25,7 @@ class PostPage extends Component {
     console.log('PostPage, props', this.props);
 
     // if the posts are loaded from fetchPosts
-    if (this.props.posts.length > 0) {
+    if (this.props.posts.length === 1) {
 
       
 

@@ -4,37 +4,59 @@ import { fetchPosts, removePost } from '../store/actions/posts';
 import PostItem from '../components/PostItem';
 
 class PostList extends Component {
-  componentDidMount() {
-    this.props.fetchPosts();
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      postsLoaded: false
+    }
+  }
+
+  async componentDidMount() {
+    await this.props.fetchPosts();
+    this.setState({ postsLoaded: true });
   }
 
   render() {
-    const { posts, removePost, currentUser } = this.props;
-    let postList = posts.map(p => (
-      <PostItem
-        key={p._id}
-        post_id={p._id}
-        user_id={p.user._id}
-        post_id={p._id}
-        date={p.createdAt}
-        text={p.text}
-        comments={p.comments}
-        username={p.user.username}
-        profileImageUrl={p.user.profileImageUrl}
-        removePost={removePost.bind(this, p.user._id, p._id)}
-        isCorrectUser={currentUser === p.user._id}
-      />
-    ));
 
-    return (
-      <div className="row col-sm-8">
-        <div className="offset-1 col sm 10">
-          <ul className="list-group" id="posts">
-            {postList}
-          </ul>
+    if (this.state.postsLoaded) {
+      const { posts, removePost, currentUser } = this.props;
+
+      console.log('PostList, props', this.props);
+
+      let postList = posts.map(p => (
+        <PostItem
+          key={p._id}
+          post_id={p._id}
+          user_id={p.user._id}
+          post_id={p._id}
+          date={p.createdAt}
+          text={p.text}
+          comments={p.comments}
+          username={p.user.username}
+          profileImageUrl={p.user.profileImageUrl}
+          removePost={removePost.bind(this, p.user._id, p._id)}
+          isCorrectUser={currentUser === p.user._id}
+        />
+      ));
+
+      return (
+        <div className="row col-sm-8">
+          <div className="offset-1 col sm 10">
+            <ul className="list-group" id="posts">
+              {postList}
+            </ul>
+          </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div>
+          loading scroll...
+        </div>
+      )
+    } 
   }
 }
 
