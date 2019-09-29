@@ -20,10 +20,10 @@ class ProfilePage extends Component {
     
   }
 
-  componentWillUpdate() {
-    const {id} = this.props.match.params;
-    this.props.fetchFriend(id);
-  }
+  // componentWillUpdate() {
+  //   const {id} = this.props.match.params;
+  //   this.props.fetchFriend(id);
+  // }
 
   handleFriendButton = (isFriend, youRequestedAlready, theyRequestedAlready) => {
     console.log('clicked Friend button!', isFriend);
@@ -92,6 +92,7 @@ class ProfilePage extends Component {
         postList = userPosts.map(p => (
           <PostItem
             key={p._id}
+            post_id={p._id}
             user_id={p.user._id}
             date={p.createdAt}
             text={p.text}

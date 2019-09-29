@@ -13,6 +13,7 @@ class PostList extends Component {
     let postList = posts.map(p => (
       <PostItem
         key={p._id}
+        post_id={p._id}
         user_id={p.user._id}
         post_id={p._id}
         date={p.createdAt}

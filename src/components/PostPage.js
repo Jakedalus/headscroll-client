@@ -15,8 +15,9 @@ class PostPage extends Component {
   componentDidMount() {
     console.log('PostPage, this.props.match.params:', this.props.match.params);
     let { id: user_id, post_id } = this.props.match.params;
-    this.props.getPost(user_id, post_id);
     this.props.fetchFriend(user_id);
+    this.props.getPost(user_id, post_id);
+    
   }
 
   render() {
