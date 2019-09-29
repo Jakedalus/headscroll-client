@@ -17,7 +17,7 @@ class PostPage extends Component {
     let { id: user_id, post_id } = this.props.match.params;
     this.props.fetchFriend(user_id);
     this.props.getPost(user_id, post_id);
-    
+    this.props.fetchComments(user_id, post_id);
   }
 
   render() {
@@ -31,19 +31,24 @@ class PostPage extends Component {
 
       // let post = this.props.posts.filter(post => post._id === this.props.match.params.post_id)[0];
 
-      console.log('PostPage, post', this.props.posts);
+      console.log('PostPage, postData', this.props.posts);
 
+      let { post, comments } = this.props.posts[0];
 
-      let { date, profileImageUrl, text, user, comments, removePost, isCorrectUser, _id: post_id } = this.props.posts[0];
+      console.log('PostPage, post', post);
+      console.log('PostPage, comments', comments);
+
+      let { date, profileImageUrl, text, user, removePost, isCorrectUser, _id: post_id } = post;
       let { username, _id: user_id } = this.props.friend.friend;
 
 
 
       let commentList = comments.map(c => (
         <li>
-          {c}
+          {c.user.username}:  
+          {c.text}
         </li>
-      ));
+      )); 
 
       return (
         <div>
