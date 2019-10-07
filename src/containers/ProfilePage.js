@@ -4,26 +4,31 @@ import { Link } from 'react-router-dom';
 import { fetchPosts, removePost } from '../store/actions/posts';
 import { fetchFriend, startAddFriend, startRemoveFriend } from '../store/actions/friend';
 import PostItem from '../components/PostItem';
+import UserAside from '../components/UserAside';
 import DefaultProfileImage from '../images/default-profile-image.png';
 
 class ProfilePage extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      postsLoaded: false  
+    }
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     console.log('ProfilePage params:', this.props.match.params);
     const {id} = this.props.match.params;
-    this.props.fetchPosts();
-    this.props.fetchFriend(id);
-    
+    await this.props.fetchPosts();
+    await this.props.fetchFriend(id);
+    this.setState({ postsLoaded: true });
   }
 
-  // componentWillUpdate() {
-  //   const {id} = this.props.match.params;
-  //   this.props.fetchFriend(id);
-  // }
+  componentDidpdate(prevProps) {
+    console.log('!ProfilePage has updated!', prevProps);
+    // this.setState({ postsLoaded: true });
+  }
 
   handleFriendButton = (isFriend, youRequestedAlready, theyRequestedAlready) => {
     console.log('clicked Friend button!', isFriend);
@@ -44,7 +49,7 @@ class ProfilePage extends Component {
 
     console.log('ProfilePage, props', this.props);
 
-    if (this.props.friend) {
+    if (this.state.postsLoaded) {
 
       let { 
         username, 
@@ -83,6 +88,7 @@ class ProfilePage extends Component {
       // }
 
       let postList = null;
+      let friendList = null;
 
       if (isFriend) {
         let userPosts = this.props.allPosts.filter(post => post.user._id === this.props.friend._id);
@@ -103,6 +109,16 @@ class ProfilePage extends Component {
             isCorrectUser={this.props.currentUser === p.user._id}
           />
         ));
+        
+        friendList = friends.map(friend => (
+          <UserAside
+            // profileImageUrl={props.profileImageUrl}
+            username={friend.username}
+            friends={friend.friends}
+            id={friend._id}
+          />
+        ));
+        
       }
 
       return (
@@ -135,6 +151,7 @@ class ProfilePage extends Component {
             </div>
           </div>
           
+          <h4>Posts</h4>
           <div className="row justify-content-md-center">
             <div className="col-7">
               <ul className="list-group" id="posts">
@@ -142,8 +159,17 @@ class ProfilePage extends Component {
               </ul>
             </div>
           </div>
+          
+          <h4>Friends</h4>
+          <div className="row justify-content-md-center">
+            <div className="col-7">
+              <ul className="list-group row" id="friends">
+                {friendList}
+              </ul>
+            </div>
+          </div>
 
-          {friends}
+          
         </div>
       );
     } else {

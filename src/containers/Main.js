@@ -37,9 +37,13 @@ const Main = props => {
         />
         <Route 
           exact path='/users/:id/profile' 
-          render={props => 
-            <ProfilePage currentUser={currentUser} {...props} />
-          } 
+          render={props => {
+            console.log('ProfilePage route, props', props);
+            return (
+              <ProfilePage currentUser={currentUser} {...props} key={props.match.params.id} />
+            );
+
+          }}
         />
         <Route
           exact path='/users/:id/posts/:post_id'

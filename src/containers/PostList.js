@@ -8,8 +8,10 @@ class PostList extends Component {
   constructor(props) {
     super(props);
 
+    // going from PostPage back to Scroll fails since "posts" contains the PostPage's post
+    // must wait for all posts to load instead
     this.state = {
-      postsLoaded: false
+      postsLoaded: false  
     }
   }
 

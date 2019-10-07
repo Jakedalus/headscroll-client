@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import DefaultProfileImage from '../images/default-profile-image.png';
 
 const UserAside = ({ id, profileImageUrl, username, friends }) => (
-  <aside className="col-sm-2">
+  <aside className="col-sm-5">
     <div className="panel panel-default">
       <div className="panel-body">
         <img 
@@ -11,7 +11,7 @@ const UserAside = ({ id, profileImageUrl, username, friends }) => (
           alt={username}
           className="img-thumbnail"
         />
-        <Link to={`/users/${id}/profile`}>{username}</Link>
+        <Link to={{pathname: `/users/${id}/profile`, state: 'someState'}}>{username}</Link>
         <p>Friends: {friends ? friends.length : 0}</p>
       </div>
     </div>
