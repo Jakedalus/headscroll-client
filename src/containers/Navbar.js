@@ -29,6 +29,9 @@ class Navbar extends Component {
             ? (
               <ul className="nav navbar-nav navbar-right">  
                 <li>
+                  <Link to={`/api/search`}>Search</Link>
+                </li>
+                <li>
                   <Link to={`/users/${this.props.currentUser.user.id}/posts/new`}>New Post</Link>
                 </li>
                 <li>

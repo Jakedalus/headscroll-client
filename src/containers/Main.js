@@ -12,6 +12,7 @@ import withAuth from '../hocs/withAuth';
 import PostForm from './PostForm';
 import PostPage from '../components/PostPage';
 import { link } from 'fs';
+import SearchPage from './SearchPage';
 
 const Main = props => {
 
@@ -35,6 +36,12 @@ const Main = props => {
             />
           } 
         />
+        <Route
+          exact path='/api/search'
+          render={props =>
+            <SearchPage {...props}/>
+          }
+        />
         <Route 
           exact path='/users/:id/profile' 
           render={props => {
@@ -45,6 +52,7 @@ const Main = props => {
 
           }}
         />
+        <Route exact path='/users/:id/posts/new' component={withAuth(PostForm)} />
         <Route
           exact path='/users/:id/posts/:post_id'
           render={props => {
@@ -85,7 +93,6 @@ const Main = props => {
             );
           }}
         />
-        <Route path='/users/:id/posts/new' component={withAuth(PostForm)} />
       </Switch>
     </div>
   );
