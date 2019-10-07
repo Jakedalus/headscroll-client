@@ -1,6 +1,6 @@
 import { apiCall } from '../../services/api';
 import { addError } from './errors';
-import { GET_FRIEND, ADD_FRIEND, DELETE_FRIEND } from '../actionTypes';
+import { GET_FRIEND, ADD_FRIEND, DELETE_FRIEND, SEARCH_FOR_FRIEND } from '../actionTypes';
 
 export const getFriend = friend => ({
   type: GET_FRIEND,
@@ -54,4 +54,19 @@ export const startRemoveFriend = friend => {
       .then(res => dispatch(removeFriend(friend)))
       .catch(err => dispatch(addError(err)));
   };
+}
+
+export const findFriend = friend => ({
+  type: SEARCH_FOR_FRIEND,
+  friend
+});
+
+export const searchForFriend = query => {
+  return dispatch => {
+    console.log('actions/friends/ searchForFriend:', query);
+
+    return apiCall('post', '/api/search', {query})
+      .then(res => dispatch(findFriend(res)))
+      .catch(err => dispatch(addError(err)));
+  }
 }

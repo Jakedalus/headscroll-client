@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { searchForFriend } from '../store/actions/friend';
 
 class SearchPage extends Component {
   constructor(props) {
@@ -19,12 +20,13 @@ class SearchPage extends Component {
   handleSearch = (e) => {
     e.preventDefault();
     console.log('Searching for user:', this.state.query);
+    this.props.searchForFriend(this.state.query);
     this.setState({ query: '' });
   }
 
   render() {
 
-    // console.log('SearchPage, props', this.props);
+    console.log('SearchPage, props', this.props);
 
     return (
       <form onSubmit={this.handleSearch}>
@@ -37,9 +39,16 @@ class SearchPage extends Component {
           onChange={this.handleChange}
         />
         <button type="submit">Search</button>
+        {this.props.errors && this.props.errors.message}
       </form>
     );
   }
 }
 
-export default connect()(SearchPage);
+function mapStateToProps(state) {
+  return {
+    errors: state.errors
+  };
+}
+
+export default connect(mapStateToProps, { searchForFriend })(SearchPage);

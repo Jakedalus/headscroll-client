@@ -11,3 +11,4 @@ export const REMOVE_COMMENT = 'REMOVE_COMMENT';
 export const GET_FRIEND = 'GET_FRIEND';
 export const ADD_FRIEND = 'ADD_FRIEND';
 export const DELETE_FRIEND = 'DELETE_FRIEND';
+export const SEARCH_FOR_FRIEND = 'SEARCH_FOR_FRIEND';
