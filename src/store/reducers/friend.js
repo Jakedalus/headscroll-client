@@ -1,4 +1,4 @@
-import { GET_FRIEND, ADD_FRIEND, DELETE_FRIEND } from '../actionTypes';
+import { GET_FRIEND, SEARCH_FOR_FRIEND } from '../actionTypes';
 
 export default (state = {friend: null}, action) => {
   console.log('reducers/friends:', state, action)
@@ -22,6 +22,8 @@ export default (state = {friend: null}, action) => {
     // case DELETE_FRIEND:
     //     console.log('reducers/friends, DELETE_FRIEND:', state, action);
     //     return state;
+    case SEARCH_FOR_FRIEND:
+      return {...state, friend: action.friend.pickedUser}
     default:
         return state;
   }
