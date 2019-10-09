@@ -35,14 +35,30 @@ class ProfilePage extends Component {
     console.log(this.props);
 
     if (isFriend || youRequestedAlready) {
+      console.log('-- Unloading posts!');
+      await this.setState({ postsLoaded: false });
+
       console.log('Removing friend :(((', this.props.friend._id);
       this.props.startRemoveFriend(this.props.friend._id);
+
+      console.log('-- Refetching all posts!');
+      await this.props.fetchPosts();
+
+      console.log('-- Refetching friend!');
+      await this.props.fetchFriend(this.props.friend._id);
+
+      console.log('-- Redloading posts!');
+      await this.setState({ postsLoaded: true });
+
     } else if (!isFriend || theyRequestedAlready) { 
       console.log('-- Unloading posts!');
       await this.setState({ postsLoaded: false });
 
       console.log('-- Requesting friend!', this.props.friend._id);
       await this.props.startAddFriend(this.props.friend._id);
+
+      console.log('-- Refetching all posts!');
+      await this.props.fetchPosts();
       
       console.log('-- Refetching friend!');
       await this.props.fetchFriend(this.props.friend._id);
