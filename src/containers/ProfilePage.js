@@ -30,7 +30,7 @@ class ProfilePage extends Component {
     // this.setState({ postsLoaded: true });
   }
 
-  handleFriendButton = (isFriend, youRequestedAlready, theyRequestedAlready) => {
+  handleFriendButton = async (isFriend, youRequestedAlready, theyRequestedAlready) => {
     console.log('clicked Friend button!', isFriend);
     console.log(this.props);
 
@@ -38,16 +38,24 @@ class ProfilePage extends Component {
       console.log('Removing friend :(((', this.props.friend._id);
       this.props.startRemoveFriend(this.props.friend._id);
     } else if (!isFriend || theyRequestedAlready) { 
-      console.log('Requesting friend!', this.props.friend._id);
-      this.props.startAddFriend(this.props.friend._id);
-      // this.forceUpdate();
+      console.log('-- Unloading posts!');
+      await this.setState({ postsLoaded: false });
+
+      console.log('-- Requesting friend!', this.props.friend._id);
+      await this.props.startAddFriend(this.props.friend._id);
+      
+      console.log('-- Refetching friend!');
+      await this.props.fetchFriend(this.props.friend._id);
+
+      console.log('-- Redloading posts!');
+      await this.setState({ postsLoaded: true });
     }
   }
   
 
   render() {
 
-    console.log('ProfilePage, props', this.props);
+    console.log('ProfilePage, props, state', this.props, this.state);
 
     if (this.state.postsLoaded) {
 
@@ -56,12 +64,13 @@ class ProfilePage extends Component {
         profileImageUrl, 
         friends, 
         youRequestedAlready, 
+        theyRequestedAlready,
         posts, 
         email, 
         _id, 
         isFriend } = this.props.friend;
 
-      let theyRequestedAlready = this.props.currentUser.requests.includes(_id);
+      // let theyRequestedAlready = this.props.currentUser.requests.includes(_id);
 
       console.log('You sent them a friend request:', youRequestedAlready);
       console.log('They sent you a friend request:', theyRequestedAlready);

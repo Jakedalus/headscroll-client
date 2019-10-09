@@ -23,14 +23,13 @@ export default (state = DEFAULT_STATE, action) => {
     case ADD_FRIEND:
       console.log('reducers/currentUser, ADD_FRIEND:', state, action);
       const newFriends = state.user.friends.slice();
+      const user = Object.assign({}, state.user);
       newFriends.push(action.friend);
-      return {
-        user: {
-          friends: newFriends,
-          ...state.user
-        },
-        ...state
-      };
+      console.log('reducers/currentUser, newFriends:', newFriends);
+      user.friends = newFriends;
+      console.log('reducers/currentUser, new user obj:', user);
+      
+      return { ...state, user };
     // Reject a request
     // case DELETE_FRIEND:
     //   console.log('reducers/currentUser, DELETE_FRIEND:', state, action);
