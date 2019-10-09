@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { fetchPosts, removePost } from '../store/actions/posts';
 import { fetchFriend, startAddFriend, startRemoveFriend } from '../store/actions/friend';
 import PostItem from '../components/PostItem';
-import UserAside from '../components/UserAside';
+import FriendCard from '../components/FriendCard';
 import DefaultProfileImage from '../images/default-profile-image.png';
 
 class ProfilePage extends Component {
@@ -111,11 +111,12 @@ class ProfilePage extends Component {
         ));
         
         friendList = friends.map(friend => (
-          <UserAside
+          <FriendCard
             // profileImageUrl={props.profileImageUrl}
             username={friend.username}
-            friends={friend.friends}
+            email={friend.email}
             id={friend._id}
+            key={friend._id}
           />
         ));
         
@@ -161,7 +162,7 @@ class ProfilePage extends Component {
           </div>
           
           <h4>Friends</h4>
-          <div className="row justify-content-md-center">
+          <div className="row justify-content-md-center" id="friend-list">
             <div className="col-7">
               <ul className="list-group row" id="friends">
                 {friendList}

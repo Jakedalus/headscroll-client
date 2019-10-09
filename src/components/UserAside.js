@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import DefaultProfileImage from '../images/default-profile-image.png';
 
 const UserAside = ({ id, profileImageUrl, username, friends }) => (
-  <aside className="col-sm-5">
+  <aside className="col-sm-2">
     <div className="panel panel-default">
       <div className="panel-body">
         <img 

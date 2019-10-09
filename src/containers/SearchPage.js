@@ -37,29 +37,31 @@ class SearchPage extends Component {
 
     if (this.state.friendLoaded) {
       return (
-        <div>
-          <form onSubmit={this.handleSearch}>
-            <label htmlFor="query">Find friend:</label>
-            <input 
-              type="text" 
-              name="query" 
-              id="query"
-              value={this.state.query}
-              onChange={this.handleChange}
-            />
-            <button type="submit">Search</button>
-            {this.props.errors && this.props.errors.message}
-          </form>
+        <div className="container-fluid" id="search-page">
 
-          {
-            !(Object.entries(this.props.friend).length === 0 && this.props.friend.constructor === Object)
-            && 
-            <FriendCard 
-              id={this.props.friend._id}
-              username={this.props.friend.username}
-              email={this.props.friend.email}
-            />
-          }
+            <form onSubmit={this.handleSearch}>
+              <label htmlFor="query">Find friend:</label>
+              <input 
+                type="text" 
+                name="query" 
+                id="query"
+                value={this.state.query}
+                onChange={this.handleChange}
+              />
+              <button type="submit">Search</button>
+              {this.props.errors && this.props.errors.message}
+            </form>
+
+            {
+              !(Object.entries(this.props.friend).length === 0 && this.props.friend.constructor === Object)
+              && 
+
+              <FriendCard 
+                id={this.props.friend._id}
+                username={this.props.friend.username}
+                email={this.props.friend.email}
+              />
+            }
 
         </div>
       );
