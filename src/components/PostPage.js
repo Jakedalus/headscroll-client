@@ -10,14 +10,19 @@ import DefaultProfileImage from '../images/default-profile-image.png';
 class PostPage extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      postLoaded: false  
+    }
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     console.log('PostPage, this.props.match.params:', this.props.match.params);
     let { id: user_id, post_id } = this.props.match.params;
-    this.props.fetchFriend(user_id);
-    this.props.getPost(user_id, post_id);
-    this.props.fetchComments(user_id, post_id);
+    await this.props.fetchFriend(user_id);
+    await this.props.getPost(user_id, post_id);
+    await this.props.fetchComments(user_id, post_id);
+    this.setState({ postLoaded: true });
   }
 
   render() {
@@ -25,7 +30,7 @@ class PostPage extends Component {
     console.log('PostPage, props', this.props);
 
     // if the posts are loaded from fetchPosts
-    if (this.props.posts.length === 1) {
+    if (this.props.posts.length === 1 && this.state.postLoaded) {
 
       
 

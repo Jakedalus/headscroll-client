@@ -13,8 +13,8 @@ class SearchPage extends Component {
     }
   }
 
-  componentDidMount() {
-    this.props.getFriend({});
+  async componentDidMount() {
+    await this.props.getFriend({});
     this.setState({ friendLoaded: true });
   }
 
