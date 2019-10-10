@@ -21,6 +21,7 @@ const Homepage = ({currentUser}) => {
       profileImageUrl={currentUser.user.profileImageUrl}
       username={currentUser.user.username}
       friends={currentUser.user.friends}
+      requests={currentUser.user.requests}
       id={currentUser.user.id}
     />
   );

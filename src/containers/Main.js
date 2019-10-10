@@ -1,11 +1,12 @@
 import React from 'react';
 import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import jwtDecode from 'jwt-decode';
 
 import Homepage from '../components/Homepage';
 import ProfilePage from './ProfilePage';
 import AuthForm from '../components/AuthForm';
-import { authUser } from '../store/actions/auth';
+import { authUser, getUserData } from '../store/actions/auth';
 import { removeError } from '../store/actions/errors';
 import { fetchPosts } from '../store/actions/posts';
 import withAuth from '../hocs/withAuth';
@@ -16,11 +17,21 @@ import SearchPage from './SearchPage';
 
 const Main = props => {
 
-
-
-  console.log('Main, props:', props);
-
   const { authUser, errors, removeError, currentUser } = props;
+  console.log('Main, props:', props);
+  
+  // console.log('localStorage:', localStorage, jwtDecode(localStorage.jwtToken));
+
+  const unlisten = props.history.listen((location, action) => {
+    console.log("!!!! on route change");
+    if (currentUser.isAuthenticated) {
+      props.getUserData(currentUser.user.id);
+    }
+  });
+
+  
+
+  
 
   console.log('Main, currentUser:', currentUser);
 
@@ -106,4 +117,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default withRouter(connect(mapStateToProps, { authUser, removeError, fetchPosts })(Main));
+export default withRouter(connect(mapStateToProps, { authUser, getUserData, removeError, fetchPosts })(Main));

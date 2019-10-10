@@ -10,6 +10,7 @@ const Scroll = props => {
         profileImageUrl={props.profileImageUrl}
         username={props.username}
         friends={props.friends}
+        requests={props.requests}
         id={props.id}
       />
       <PostList />

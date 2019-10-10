@@ -42,3 +42,24 @@ export function authUser(type, userData) {
     });
   };
 }
+
+export function getUserData(userData) {
+  return dispatch => {
+    return new Promise((resolve, reject) => {
+      console.log('/actions/auth, getUserData, userData:', userData);
+      return apiCall('get', `/user/${userData}`)
+        .then(({token, ...user}) => {
+          console.log('/actions/auth, getUserData, user:', user);
+          localStorage.setItem('jwtToken', token);
+          setAuthorizationToken(token);
+          dispatch(setCurrentUser(user));
+          dispatch(removeError());
+          resolve();
+        })
+        .catch(err => {
+          dispatch(addError(err));
+          reject();
+        });
+    });
+  };
+}
