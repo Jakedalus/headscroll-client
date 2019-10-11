@@ -11,9 +11,18 @@ const UserAside = ({ id, profileImageUrl, username, friends, requests }) => (
           alt={username}
           className="img-thumbnail"
         />
-        <Link to={{pathname: `/users/${id}/profile`, state: 'someState'}}>{username}</Link>
+        <Link to={{pathname: `/users/${id}/profile`}}>{username}</Link>
         <p>Friends: {friends ? friends.length : 0}</p>
-        {requests.length > 0 && 'Friend Request!'}
+        {
+          requests.length > 0 
+          &&
+          <div>
+            <p>Friend Requests:</p>
+            <ul>
+              {requests.map(r => <Link to={`/users/${r._id}/profile`}>{r.username}</Link>)}
+            </ul>
+          </div>
+        }
       </div>
     </div>
   </aside>
