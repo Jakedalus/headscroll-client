@@ -6,6 +6,7 @@ import { fetchComments } from '../store/actions/comments';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 import DefaultProfileImage from '../images/default-profile-image.png';
+import CommentForm from '../containers/CommentForm';
 
 class PostPage extends Component {
   constructor(props) {
@@ -19,9 +20,10 @@ class PostPage extends Component {
   async componentDidMount() {
     console.log('PostPage, this.props.match.params:', this.props.match.params);
     let { id: user_id, post_id } = this.props.match.params;
-    await this.props.fetchFriend(user_id);
     await this.props.getPost(user_id, post_id);
-    await this.props.fetchComments(user_id, post_id);
+    await this.props.fetchFriend(user_id);
+    
+    // await this.props.fetchComments(user_id, post_id);
     this.setState({ postLoaded: true });
   }
 
@@ -49,7 +51,7 @@ class PostPage extends Component {
 
 
       let commentList = comments.map(c => (
-        <li>
+        <li key={c._id}>
           {c.user.username}:  
           {c.text}
         </li>
@@ -80,8 +82,12 @@ class PostPage extends Component {
             
           </div>
           <div className="post-footer">
-            {/* {comments.length} Comments */}
-            {commentList}
+            <CommentForm 
+              post={post._id}
+            />
+            <ul>
+              {commentList}
+            </ul>
           </div>
         </div>
       );

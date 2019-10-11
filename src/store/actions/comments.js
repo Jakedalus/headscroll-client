@@ -1,6 +1,6 @@
 import { apiCall } from '../../services/api';
 import { addError } from './errors';
-import { LOAD_COMMENTS, UPDATE_COMMENT, REMOVE_COMMENT } from '../actionTypes';
+import { LOAD_COMMENTS, ADD_COMMENT, UPDATE_COMMENT, REMOVE_COMMENT } from '../actionTypes';
 
 export const loadComments = comments => ({
   type: LOAD_COMMENTS,
@@ -29,13 +29,20 @@ export const fetchComments = (user_id, post_id) => {
   };
 }
 
-export const commentNewComment = text => {
+export const addComment = (comment) => ({
+  type: ADD_COMMENT,
+  comment
+});
+
+export const commentNewComment = (post_id, comment) => {
   return (dispatch, getState) => {
+    // console.log('/actions/comments, commentNewComment, getState():', getState());
     let { currentUser } = getState();
     const id = currentUser.user.id;
+    console.log('/actions/comments, commentNewComment, id, post_id, comment:', id, post_id, comment);
 
-    return apiCall('comment', `/api/users/${id}/comments`, {text})
-      .then(res => {})
+    return apiCall('post', `/api/users/${id}/posts/${post_id}/comments`, {comment})
+      .then(res => dispatch(addComment(res)))
       .catch(err => dispatch(addError(err)));
   };
 }
