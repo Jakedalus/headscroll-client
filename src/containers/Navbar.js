@@ -19,7 +19,7 @@ class Navbar extends Component {
       <nav className="navbar navbar-expand">
         <div className="container-fluid">
           <div className="navbar-header">
-            <Link to="/" className="navbar-brand">
+            <Link to={{pathname: "/", state: { prevPath: this.props.history.location.pathname }}} className="navbar-brand">
               Home
             </Link>
           </div>

@@ -23,8 +23,9 @@ const Main = props => {
   // console.log('localStorage:', localStorage, jwtDecode(localStorage.jwtToken));
 
   const unlisten = props.history.listen((location, action) => {
-    console.log("!!!! on route change");
-    if (currentUser.isAuthenticated) {
+    console.log("!!!! on route change:", props.history, location, action);
+    if (currentUser.isAuthenticated && location.pathname === '/' && location.state.prevPath !== '/') {
+      console.log('!!! Refetching user data!');
       props.getUserData(currentUser.user.id);
     }
   });
