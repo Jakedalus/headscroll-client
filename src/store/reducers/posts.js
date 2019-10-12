@@ -6,7 +6,9 @@ const DEFAULT_STATE = [{
     comments: [],
     text: '',
     user: '',
-    _id: ''
+    _id: '',
+    createdAt: '',
+    updatedAt: ''
   }
 }];
 
