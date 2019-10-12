@@ -21,7 +21,10 @@ class PostForm extends Component {
     e.preventDefault();
     this.props.postNewPost(this.state.post);
     this.setState({ post: '' });
-    this.props.history.push('/');
+    this.props.history.push({
+      pathname: "/", 
+      state: { prevPath: this.props.history.location.pathname }
+    });
   }
 
   render() {

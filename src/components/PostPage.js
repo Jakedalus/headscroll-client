@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect} from 'react-redux';
-import { fetchPosts, getPost } from '../store/actions/posts';
+import { getPost } from '../store/actions/posts';
 import { fetchFriend } from '../store/actions/friend';
-import { fetchComments } from '../store/actions/comments';
+import { fetchComments, removeComment } from '../store/actions/comments';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 import DefaultProfileImage from '../images/default-profile-image.png';
@@ -27,6 +27,12 @@ class PostPage extends Component {
     this.setState({ postLoaded: true });
   }
 
+  handleRemoveComment = (comment_id) => {
+    console.log('handleRemoveComment:', this.props.match, comment_id);
+    let { id, post_id } = this.props.match.params;
+    this.props.removeComment(id, post_id, comment_id);
+  }
+
   render() {
 
     console.log('PostPage, props', this.props);
@@ -45,7 +51,7 @@ class PostPage extends Component {
       console.log('PostPage, post', post);
       console.log('PostPage, comments', comments);
 
-      let { date, profileImageUrl, text, user, removePost, isCorrectUser, _id: post_id } = post;
+      let { date, profileImageUrl, text, removePost, removeComment, isCorrectUser, _id: post_id } = post;
       let { username, _id: user_id } = this.props.friend.friend;
 
 
@@ -54,6 +60,16 @@ class PostPage extends Component {
         <li key={c._id}>
           {c.user.username}:  
           {c.text}
+          {
+            this.props.currentUser === c.user._id 
+            && 
+            <a 
+              onClick={() => this.handleRemoveComment(c._id)} 
+              className="btn btn-danger"
+            >
+              Delete
+            </a>
+          }
         </li>
       )); 
 
@@ -111,4 +127,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { getPost, fetchComments, fetchFriend })(PostPage);
+export default connect(mapStateToProps, { getPost, fetchComments, removeComment, fetchFriend })(PostPage);

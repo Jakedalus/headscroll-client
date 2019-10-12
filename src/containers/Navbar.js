@@ -9,7 +9,7 @@ class Navbar extends Component {
   logout = e => {
     e.preventDefault();
     this.props.logout();
-    this.props.history.push('/');
+    this.props.history.push({pathname: "/", state: { prevPath: this.props.history.location.pathname }});
   }
 
   render() {

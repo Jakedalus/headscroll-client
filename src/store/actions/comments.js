@@ -12,13 +12,14 @@ export const remove = id => ({
   id
 });
 
-// export const removeComment = (user_id, comment_id) => {
-//   return dispatch => {
-//     return apiCall('delete', `/api/users/${user_id}/comments/${comment_id}`)
-//       .then(() => dispatch(remove(comment_id)))
-//       .catch(err => dispatch(addError(err)));
-//   }
-// }
+export const removeComment = (user_id, post_id, comment_id) => {
+  console.log('/actions/comments, removeComment', user_id, post_id, comment_id);
+  return dispatch => {
+    return apiCall('delete', `/api/users/${user_id}/posts/${post_id}/comments/${comment_id}`, {comment_id})
+      .then(res => dispatch(remove(comment_id)))
+      .catch(err => dispatch(addError(err)));
+  }
+}
 
 export const fetchComments = (user_id, post_id) => {
   console.log('fetchComments', user_id, post_id);
