@@ -9,7 +9,7 @@ export function setCurrentUser(user) {
   };
 }
 
-export function setAuthorizationToken(token){
+export function setAuthorizationToken(token) {
   setTokenHeader(token);
 }
 
@@ -30,6 +30,7 @@ export function authUser(type, userData) {
         .then(({token, ...user}) => {
           console.log('authUser, user:', user);
           localStorage.setItem('jwtToken', token);
+          localStorage.setItem('timestamp', Date.now());
           setAuthorizationToken(token);
           dispatch(setCurrentUser(user));
           dispatch(removeError());
@@ -51,6 +52,7 @@ export function getUserData(userData) {
         .then(({token, ...user}) => {
           console.log('/actions/auth, getUserData, user:', user);
           localStorage.setItem('jwtToken', token);
+          localStorage.setItem('timestamp', Date.now());
           setAuthorizationToken(token);
           dispatch(setCurrentUser(user));
           dispatch(removeError());

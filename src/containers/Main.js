@@ -19,20 +19,26 @@ const Main = props => {
 
   const { authUser, errors, removeError, currentUser } = props;
   console.log('Main, props:', props);
+
   
   // console.log('localStorage:', localStorage, jwtDecode(localStorage.jwtToken));
 
   const unlisten = props.history.listen((location, action) => {
-    console.log("!!!! on route change:", props.history, location, action);
-    if (currentUser.isAuthenticated && location.pathname === '/' && location.state.prevPath !== '/') {
+    console.log("!!!! on route change:", props.history, location, action, localStorage.timestamp);
+    const timeChange = Date.now() - localStorage.timestamp;
+    const twoMinutesHasPassed = (timeChange / 120000) >= 2;
+    console.log('!!! Time Change!', localStorage.timestamp, Date.now(), timeChange, twoMinutesHasPassed);
+
+    if (
+      currentUser.isAuthenticated 
+      && twoMinutesHasPassed
+      // && location.pathname === '/' 
+      // && location.state.prevPath !== '/'
+    ) {
       console.log('!!! Refetching user data!');
       props.getUserData(currentUser.user.id);
     }
   });
-
-  
-
-  
 
   console.log('Main, currentUser:', currentUser);
 
