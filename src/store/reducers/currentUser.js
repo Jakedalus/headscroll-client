@@ -15,9 +15,10 @@ const DEFAULT_STATE = {
 export default (state = DEFAULT_STATE, action) => {
   switch(action.type) {
     case SET_CURRENT_USER:
+      console.log('reducers/currentUser, SET_CURRENT_USER:', state, action);
       return {
         isAuthenticated: !!Object.keys(action.user).length,
-        user: action.user
+        user: { ...state.user, ...action.user }
       };
     // Add friend if you are accepting a request
     case ADD_FRIEND:

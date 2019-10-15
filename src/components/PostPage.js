@@ -51,7 +51,7 @@ class PostPage extends Component {
       console.log('PostPage, post', post);
       console.log('PostPage, comments', comments);
 
-      let { date, profileImageUrl, text, removePost, removeComment, isCorrectUser, _id: post_id } = post;
+      let { createdAt, profileImageUrl, text, removePost, removeComment, isCorrectUser, _id: post_id } = post;
       let { username, _id: user_id } = this.props.friend.friend;
 
 
@@ -85,7 +85,7 @@ class PostPage extends Component {
             <span className="text-muted">
             <Link to={`/users/${user_id}/posts/${post_id}`}>
               <Moment className="text-muted" format="Do MMM YYYY">
-                {date}
+                {createdAt}
               </Moment>
             </Link>
             </span>

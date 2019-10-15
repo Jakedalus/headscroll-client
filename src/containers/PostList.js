@@ -33,7 +33,7 @@ class PostList extends Component {
           post_id={p._id}
           user_id={p.user._id}
           post_id={p._id}
-          date={p.createdAt}
+          createdAt={p.createdAt}
           text={p.text}
           comments={p.comments}
           username={p.user.username}
