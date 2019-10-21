@@ -20,8 +20,10 @@ const PostItem = ({ createdAt, profileImageUrl, text, username, comments, remove
           </Moment>
         </Link>
         </span>
+        {isCorrectUser && <a className="btn btn-primary">Edit</a>}
+        {!isCorrectUser && <a className="btn btn-blank">      </a>}
         {isCorrectUser && <a onClick={removePost} className="btn btn-danger">Delete</a>}
-        {!isCorrectUser && <a onClick={removePost} className="btn btn-blank">      </a>}
+        {!isCorrectUser && <a className="btn btn-blank">      </a>}
       </div>
       
       <div className="message-area">

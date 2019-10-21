@@ -130,8 +130,8 @@ class ProfilePage extends Component {
             comments={p.comments}
             username={p.user.username}
             profileImageUrl={p.user.profileImageUrl}
-            removePost={removePost.bind(this, p.user._id, p._id)}
-            isCorrectUser={this.props.currentUser === p.user._id}
+            removePost={this.props.removePost.bind(this, p.user._id, p._id)}
+            isCorrectUser={this.props.currentUser.id === p.user._id}
           />
         ));
         
