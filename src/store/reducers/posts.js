@@ -20,6 +20,17 @@ export default (state = DEFAULT_STATE, action) => {
       return [...action.posts];
     case GET_POST:
       return [action.post];
+    case UPDATE_POST:
+        return state.map((post) => {
+          if(post._id === action.id) {
+              return {
+                  ...post,
+                  ...action.updates
+              };
+          } else {
+              return post;
+          }
+      });
     case REMOVE_POST:
       return state.filter(post => post._id !== action.id);
     case ADD_COMMENT:

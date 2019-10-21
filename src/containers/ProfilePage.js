@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect} from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchPosts, removePost } from '../store/actions/posts';
+import { fetchPosts, editPost, removePost } from '../store/actions/posts';
 import { fetchFriend, startAddFriend, startRemoveFriend } from '../store/actions/friend';
 import PostItem from '../components/PostItem';
 import FriendCard from '../components/FriendCard';
@@ -131,6 +131,7 @@ class ProfilePage extends Component {
             username={p.user.username}
             profileImageUrl={p.user.profileImageUrl}
             removePost={this.props.removePost.bind(this, p.user._id, p._id)}
+            editPost={this.props.editPost.bind(this, p.user._id, p._id)}
             isCorrectUser={this.props.currentUser.id === p.user._id}
           />
         ));
@@ -217,4 +218,11 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { fetchPosts, removePost, fetchFriend, startAddFriend, startRemoveFriend })(ProfilePage);
+export default connect(mapStateToProps, { 
+  fetchPosts, 
+  editPost, 
+  removePost, 
+  fetchFriend, 
+  startAddFriend, 
+  startRemoveFriend 
+})(ProfilePage);

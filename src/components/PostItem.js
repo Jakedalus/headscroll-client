@@ -2,8 +2,9 @@ import React from 'react';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 import DefaultProfileImage from '../images/default-profile-image.png';
+import { editPost } from '../store/actions/posts';
 
-const PostItem = ({ createdAt, profileImageUrl, text, username, comments, removePost, isCorrectUser, user_id, post_id }) => (
+const PostItem = ({ createdAt, profileImageUrl, text, username, comments, editPost, removePost, isCorrectUser, user_id, post_id }) => (
   <div>
     <li className="list-group-item">
       <div className="post-heading">
@@ -20,7 +21,7 @@ const PostItem = ({ createdAt, profileImageUrl, text, username, comments, remove
           </Moment>
         </Link>
         </span>
-        {isCorrectUser && <a className="btn btn-primary">Edit</a>}
+        {isCorrectUser && <a onClick={() => editPost({text: 'updates'})} className="btn btn-primary">Edit</a>}
         {!isCorrectUser && <a className="btn btn-blank">      </a>}
         {isCorrectUser && <a onClick={removePost} className="btn btn-danger">Delete</a>}
         {!isCorrectUser && <a className="btn btn-blank">      </a>}
