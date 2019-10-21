@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect} from 'react-redux';
-import { fetchPosts, removePost } from '../store/actions/posts';
+import { fetchPosts, editPost, removePost } from '../store/actions/posts';
 import PostItem from '../components/PostItem';
 
 class PostList extends Component {
@@ -23,7 +23,7 @@ class PostList extends Component {
   render() {
 
     if (this.state.postsLoaded) {
-      const { posts, removePost, currentUser } = this.props;
+      const { posts, editPost, removePost, currentUser } = this.props;
 
       console.log('PostList, props', this.props);
 
@@ -39,6 +39,7 @@ class PostList extends Component {
           username={p.user.username}
           profileImageUrl={p.user.profileImageUrl}
           removePost={removePost.bind(this, p.user._id, p._id)}
+          editPost={editPost.bind(this, p.user._id, p._id)}
           isCorrectUser={currentUser === p.user._id}
         />
       ));
@@ -69,4 +70,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { fetchPosts, removePost })(PostList);
+export default connect(mapStateToProps, { fetchPosts, editPost, removePost })(PostList);
