@@ -25,7 +25,8 @@ class PostItem extends Component {
     });
   };
 
-  handgleEditPost = () => {
+  handgleEditPost = e => {
+    e.preventDefault();
     this.props.editPost({text: this.state.post});
     this.setState({ editingPost: false });
   };
@@ -65,7 +66,7 @@ class PostItem extends Component {
             {
               this.state.editingPost 
               && 
-              <div>
+              <form>
                 <input 
                   type="post" 
                   name="post" 
@@ -73,8 +74,8 @@ class PostItem extends Component {
                   value={this.state.post}
                   onChange={this.handleChange}
                 />
-                <a onClick={this.handgleEditPost} className="btn btn-primary">Save</a>
-              </div>
+                <button type="submit" onClick={this.handgleEditPost} className="btn btn-primary">Save</button>
+              </form>
             }
           </div>
 
