@@ -2,18 +2,19 @@ import React, { Component } from 'react';
 import { connect} from 'react-redux';
 import { getPost } from '../store/actions/posts';
 import { fetchFriend } from '../store/actions/friend';
-import { fetchComments, removeComment } from '../store/actions/comments';
+import { fetchComments } from '../store/actions/comments';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 import DefaultProfileImage from '../images/default-profile-image.png';
 import CommentForm from '../containers/CommentForm';
+import CommentItem from './CommentItem';
 
 class PostPage extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      postLoaded: false  
+      postLoaded: false
     }
   }
 
@@ -27,15 +28,23 @@ class PostPage extends Component {
     this.setState({ postLoaded: true });
   }
 
-  handleRemoveComment = (comment_id) => {
-    console.log('handleRemoveComment:', this.props.match, comment_id);
-    let { id, post_id } = this.props.match.params;
-    this.props.removeComment(id, post_id, comment_id);
-  }
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+
+  onClickEditButton = () => {
+    this.setState({ editingComment: true });
+  };
+
+  
+
+  
 
   render() {
 
-    console.log('PostPage, props', this.props);
+    console.log('PostPage, props, state', this.props, this.state);
 
     // if the posts are loaded from fetchPosts
     if (this.props.posts.length === 1 && this.state.postLoaded) {
@@ -54,24 +63,42 @@ class PostPage extends Component {
       let { createdAt, profileImageUrl, text, removePost, removeComment, isCorrectUser, _id: post_id } = post;
       let { username, _id: user_id } = this.props.friend.friend;
 
-
-
       let commentList = comments.map(c => (
-        <li key={c._id}>
-          {c.user.username}:  
-          {c.text}
-          {
-            this.props.currentUser === c.user._id 
-            && 
-            <a 
-              onClick={() => this.handleRemoveComment(c._id)} 
-              className="btn btn-danger"
-            >
-              Delete
-            </a>
-          }
-        </li>
-      )); 
+        <CommentItem 
+          comment={c} 
+          currentUser={this.props.currentUser}
+          {...this.props.match}
+        />
+      ));
+
+      // let commentList = comments.map(c => (
+        // <li key={c._id}>
+        //   {c.user.username}: 
+
+        //   {c.text}
+
+
+        //   {
+        //     this.props.currentUser === c.user._id 
+        //     && 
+        //     <div>
+        //       <a 
+        //         onClick={this.onClickEditButton} 
+        //         className="btn btn-success"
+        //       >
+        //         Edit
+        //       </a>
+        //       <a 
+        //         onClick={() => this.handleRemoveComment(c._id)} 
+        //         className="btn btn-danger"
+        //       >
+        //         Delete
+        //       </a>
+        //     </div>
+            
+        //   }
+        // </li>
+      // )); 
 
       return (
         <div>
@@ -95,8 +122,8 @@ class PostPage extends Component {
           
           <div className="message-area">
             <p>{text}</p>
-            
           </div>
+
           <div className="post-footer">
             <CommentForm 
               post={post._id}
@@ -127,4 +154,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { getPost, fetchComments, removeComment, fetchFriend })(PostPage);
+export default connect(mapStateToProps, { getPost, fetchComments, fetchFriend })(PostPage);

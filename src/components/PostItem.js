@@ -68,13 +68,19 @@ class PostItem extends Component {
               && 
               <form>
                 <input 
-                  type="post" 
+                  type="text" 
                   name="post" 
                   id="post" 
                   value={this.state.post}
                   onChange={this.handleChange}
                 />
-                <button type="submit" onClick={this.handgleEditPost} className="btn btn-primary">Save</button>
+                <button 
+                  type="submit" 
+                  onClick={this.handgleEditPost} 
+                  className="btn btn-primary"
+                >
+                  Save
+                </button>
               </form>
             }
           </div>
