@@ -7,6 +7,21 @@ export const loadComments = comments => ({
   comments
 });
 
+export const edit = (id, updates) => ({
+  type: UPDATE_COMMENT,
+  id,
+  updates
+});
+
+export const editComment = (user_id, post_id, comment_id, updates) => {
+  console.log('/actions/comments, editComment', user_id, post_id, comment_id);
+  return dispatch => {
+    return apiCall('put', `/api/users/${user_id}/posts/${post_id}/comments/${comment_id}`, updates)
+      .then(() => dispatch(edit(comment_id, updates)))
+      .catch(err => dispatch(addError(err)));
+  }
+}
+
 export const remove = id => ({
   type: REMOVE_COMMENT,
   id

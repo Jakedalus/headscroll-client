@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect} from 'react-redux';
-import { removeComment } from '../store/actions/comments';
+import { editComment, removeComment } from '../store/actions/comments';
 
 class CommentItem extends Component {
   constructor(props) {
@@ -16,16 +16,24 @@ class CommentItem extends Component {
     this.setState({ editingComment: true });
   };
 
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+
   handleEditComment = e => {
     e.preventDefault();
-    // this.props.editComment({text: this.state.comment});
+    console.log('handleEditComment:', this.props.params, this.props.comment._id);
+    let { id, post_id } = this.props.params;
+    this.props.editComment(id, post_id, this.props.comment._id, {text: this.state.comment});
     this.setState({ editingComment: false });
   };
 
-  handleRemoveComment = (comment_id) => {
-    console.log('handleRemoveComment:', this.props.params, comment_id);
+  handleRemoveComment = () => {
+    console.log('handleRemoveComment:', this.props.params, this.props.comment._id);
     let { id, post_id } = this.props.params;
-    this.props.removeComment(id, post_id, comment_id);
+    this.props.removeComment(id, post_id, this.props.comment._id);
   };
 
   render() {
@@ -36,7 +44,33 @@ class CommentItem extends Component {
 
     return (
       <li key={_id}>
-        {user.username}: {text}
+
+        {
+          !this.state.editingComment
+          && <p>{user.username}: {text}</p>
+        }
+
+        {
+          this.state.editingComment
+          &&
+          <form>
+            <input 
+              type="text" 
+              name="comment" 
+              id="comment" 
+              value={this.state.comment}
+              onChange={this.handleChange}
+            />
+            <button 
+              type="submit" 
+              onClick={this.handleEditComment} 
+              className="btn btn-primary"
+            >
+              Save
+            </button>
+          </form>
+        }
+        
 
         {
           this.props.currentUser === user._id 
@@ -49,7 +83,7 @@ class CommentItem extends Component {
               Edit
             </a>
             <a 
-              onClick={() => this.handleRemoveComment(_id)} 
+              onClick={this.handleRemoveComment} 
               className="btn btn-danger"
             >
               Delete
@@ -62,7 +96,7 @@ class CommentItem extends Component {
   }
 }
 
-export default connect(null, { removeComment })(CommentItem);
+export default connect(null, { editComment, removeComment })(CommentItem);
 
 
 
