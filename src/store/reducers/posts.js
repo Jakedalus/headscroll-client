@@ -1,4 +1,4 @@
-import { LOAD_POSTS, GET_POST, ADD_COMMENT, REMOVE_COMMENT, UPDATE_POST, REMOVE_POST } from '../actionTypes';
+import { LOAD_POSTS, GET_POST, ADD_COMMENT, REMOVE_COMMENT, UPDATE_POST, REMOVE_POST, UPDATE_COMMENT } from '../actionTypes';
 
 const DEFAULT_STATE = [{
   comments: [],
@@ -49,6 +49,35 @@ export default (state = DEFAULT_STATE, action) => {
       console.log('new newFullComments, newPostComments, newPost:', newFullComments, newPostComments, newPost);
       return [{
         comments: newFullComments, 
+        post: newPost
+      }];
+    case UPDATE_COMMENT:
+      newFullComments = JSON.parse(JSON.stringify(state[0].comments));
+      console.log('newFullComments:', newFullComments);
+    
+      newPost = JSON.parse(JSON.stringify(state[0].post));
+      console.log('newPost:', newPost);
+    
+      newPostComments = JSON.parse(JSON.stringify(state[0].post.comments));
+      console.log('newPostComments:', newPostComments);
+
+      let newNewFullComments = newFullComments.map(comment => {
+        // console.log('newFullComments loop:', comment, comment._id, action.id, comment._id === action.id);
+        if (comment._id === action.id) {
+          // console.log('updating comment!!', action.updates);
+          return {
+            ...comment,
+            ...action.updates
+          };
+        } else {
+          return comment;
+        }
+      });
+      
+      // newPost.comments = newPostComments;
+      console.log('newNewFullComments', newNewFullComments);
+      return [{
+        comments: newNewFullComments, 
         post: newPost
       }];
     case REMOVE_COMMENT:
