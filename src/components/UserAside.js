@@ -18,9 +18,9 @@ const UserAside = ({ id, profileImageUrl, username, friends, requests }) => (
           &&
           <div>
             <p>Friend Requests:</p>
-            <ul>
-              {requests.map(r => <Link to={`/users/${r._id}/profile`}>{r.username}</Link>)}
-            </ul>
+            <div>
+              {requests.map(r => <div><Link to={`/users/${r._id}/profile`}>{r.username}</Link></div>)}
+            </div>
           </div>
         }
       </div>
