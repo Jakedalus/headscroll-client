@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect} from 'react-redux';
 import { Link } from 'react-router-dom';
+import { getUserData } from '../store/actions/auth';
 import { fetchPosts, editPost, removePost } from '../store/actions/posts';
 import { fetchFriend, startAddFriend, startRemoveFriend } from '../store/actions/friend';
 import PostItem from '../components/PostItem';
@@ -47,6 +48,9 @@ class ProfilePage extends Component {
       console.log('-- Refetching friend!');
       await this.props.fetchFriend(this.props.friend._id);
 
+      console.log('-- Refetching user');
+      await this.props.getUserData(this.props.currentUser.id);
+
       console.log('-- Redloading posts!');
       await this.setState({ postsLoaded: true });
 
@@ -62,6 +66,9 @@ class ProfilePage extends Component {
       
       console.log('-- Refetching friend!');
       await this.props.fetchFriend(this.props.friend._id);
+
+      console.log('-- Refetching user');
+      await this.props.getUserData(this.props.currentUser.id);
 
       console.log('-- Redloading posts!');
       await this.setState({ postsLoaded: true });
@@ -224,5 +231,6 @@ export default connect(mapStateToProps, {
   removePost, 
   fetchFriend, 
   startAddFriend, 
-  startRemoveFriend 
+  startRemoveFriend,
+  getUserData 
 })(ProfilePage);
