@@ -14,6 +14,7 @@ class SearchPage extends Component {
   }
 
   async componentDidMount() {
+    this.props.removeError();
     await this.props.getFriend({});
     this.setState({ friendLoaded: true });
   }
@@ -24,8 +25,10 @@ class SearchPage extends Component {
     });
   };
 
-  handleSearch = (e) => {
+  handleSearch = async (e) => {
     e.preventDefault();
+    this.props.removeError();
+    await this.props.getFriend({});
     console.log('Searching for user:', this.state.query);
     this.props.searchForFriend(this.state.query);
     this.setState({ query: '' });
@@ -49,8 +52,10 @@ class SearchPage extends Component {
                 onChange={this.handleChange}
               />
               <button type="submit">Search</button>
-              {this.props.errors && this.props.errors.message}
+              
             </form>
+
+            {this.props.errors && this.props.errors.message}
 
             {
               !(Object.entries(this.props.friend).length === 0 && this.props.friend.constructor === Object)

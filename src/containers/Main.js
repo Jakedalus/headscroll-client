@@ -70,7 +70,10 @@ const Main = props => {
         <Route
           exact path='/api/search'
           render={props =>
-            <SearchPage {...props}/>
+            <SearchPage 
+              {...props}
+              removeError={removeError}
+            />
           }
         />
         <Route 
