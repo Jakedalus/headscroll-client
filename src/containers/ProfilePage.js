@@ -31,11 +31,11 @@ class ProfilePage extends Component {
     // this.setState({ postsLoaded: true });
   }
 
-  handleFriendButton = async (isFriend, youRequestedAlready, theyRequestedAlready) => {
+  handleFriendButton = async (friendAction, isFriend, youRequestedAlready, theyRequestedAlready) => {
     console.log('clicked Friend button!', isFriend);
     console.log(this.props);
 
-    if (isFriend || youRequestedAlready) {
+    if (friendAction === 'negative') {
       console.log('-- Unloading posts!');
       await this.setState({ postsLoaded: false });
 
@@ -54,7 +54,7 @@ class ProfilePage extends Component {
       console.log('-- Redloading posts!');
       await this.setState({ postsLoaded: true });
 
-    } else if (!isFriend || theyRequestedAlready) { 
+    } else if (friendAction === 'affirmative') { 
       console.log('-- Unloading posts!');
       await this.setState({ postsLoaded: false });
 
@@ -181,7 +181,7 @@ class ProfilePage extends Component {
                   { (!isFriend && !youRequestedAlready) && // show Add/Accept friend button unless you have requested them already or you are already friends
                     <button 
                       className="btn btn-primary"
-                      onClick={() => this.handleFriendButton(isFriend, youRequestedAlready, theyRequestedAlready)}
+                      onClick={() => this.handleFriendButton('affirmative', isFriend, youRequestedAlready, theyRequestedAlready)}
                     >
                       {positiveFriendButtonText}
                     </button>
@@ -190,7 +190,7 @@ class ProfilePage extends Component {
                   { (isFriend || youRequestedAlready || theyRequestedAlready) && // show Cancel/Remove friend button when friends or if you/they already requested
                     <button 
                     className="btn btn-danger"
-                      onClick={() => this.handleFriendButton(isFriend, youRequestedAlready, theyRequestedAlready)}
+                      onClick={() => this.handleFriendButton('negative', isFriend, youRequestedAlready, theyRequestedAlready)}
                     >
                       {negativeFriendButtonText}
                     </button>
