@@ -98,15 +98,17 @@ class ProfilePage extends Component {
       console.log('You sent them a friend request:', youRequestedAlready);
       console.log('They sent you a friend request:', theyRequestedAlready);
 
-      let friendButtonText = '';
+      let positiveFriendButtonText = '';
+      let negativeFriendButtonText = '';
       if (isFriend) {
-        friendButtonText = 'Remove Friend';
+        negativeFriendButtonText = 'Remove Friend';
       } else if (youRequestedAlready) {
-        friendButtonText = 'Cancel Friend Request';
+        negativeFriendButtonText = 'Cancel Friend Request';
       } else if (theyRequestedAlready) {
-        friendButtonText = 'Accept Friend Request';
+        positiveFriendButtonText = 'Accept Friend Request';
+        negativeFriendButtonText = 'Decline Friend Request';
       } else {
-        friendButtonText = 'Add Friend';
+        positiveFriendButtonText = 'Add Friend';
       }
 
       // if (!currentUser.isAuthenticated) {
@@ -172,13 +174,28 @@ class ProfilePage extends Component {
                 </div>}
                 <p>{email}</p>
               </div>
-              { _id !== this.props.currentUser.id 
-                ? <button 
-                  className={(isFriend || youRequestedAlready)? "btn btn-danger" : "btn btn-primary"}
-                  onClick={() => this.handleFriendButton(isFriend, youRequestedAlready, theyRequestedAlready)}
-                >
-                  {friendButtonText}
-                </button>
+
+              { _id !== this.props.currentUser.id  // if you aren't on your own ProfilePage
+                ? 
+                <div>
+                  { (!isFriend && !youRequestedAlready) && // show Add/Accept friend button unless you have requested them already or you are already friends
+                    <button 
+                      className="btn btn-primary"
+                      onClick={() => this.handleFriendButton(isFriend, youRequestedAlready, theyRequestedAlready)}
+                    >
+                      {positiveFriendButtonText}
+                    </button>
+                  }
+                  
+                  { (isFriend || youRequestedAlready || theyRequestedAlready) && // show Cancel/Remove friend button when friends or if you/they already requested
+                    <button 
+                    className="btn btn-danger"
+                      onClick={() => this.handleFriendButton(isFriend, youRequestedAlready, theyRequestedAlready)}
+                    >
+                      {negativeFriendButtonText}
+                    </button>
+                  }
+                </div>
 
                 : <div></div>
               }
