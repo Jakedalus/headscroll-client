@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+
 export default class AuthForm extends Component {
   constructor(props) {
     super(props);
@@ -8,8 +9,10 @@ export default class AuthForm extends Component {
       email: '',
       username: '',
       password: '',
-      profileImageUrl: ''
+      profileImage: ''
     };
+
+    this.fileInput = React.createRef();
   }
 
   componentDidMount() {
@@ -25,8 +28,29 @@ export default class AuthForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
+    console.log('handleSubmit, file uploaded:', this.fileInput.current.files[0].name);
+
+    var formData = new FormData();
+    formData.append(`profileImage`, this.fileInput.current.files[0]);
+    formData.append('email', this.state.email);
+    formData.append('password', this.state.password);
+    formData.append('username', this.state.username);
+    formData.append('test', 'test');
+
+    console.log('handleSubmit, formData:', formData, formData.entries());
+    for (var key of formData.entries()) {
+			console.log(key[0] + ', ' + key[1])
+		}
+
+    console.log('handleSubmit, this.state:', this.state);
+
     const authType = this.props.signUp ? 'signup' : 'signin';
-    this.props.onAuth(authType, this.state)
+    this.props.onAuth(authType, formData
+      // {
+      //   ...this.state,
+      //   profileImage: this.fileInput.current.files[0]
+      // }
+      )
       .then(() => this.props.history.push('/'))
       .catch(() => {
         return;
@@ -35,7 +59,7 @@ export default class AuthForm extends Component {
 
   render() {
     console.log('AuthForm, state, props:', this.state, this.props);
-    const { email, username, password, profileImageUrl } = this.state;
+    const { email, username, password, profileImage } = this.state;
     const { heading, buttonText, signUp, errors, history, removeError } = this.props;
 
     history.listen(() => {
@@ -48,7 +72,7 @@ export default class AuthForm extends Component {
       <div>
         <div className="row justify-content-md-center text-center">
           <div className="col-md-6">
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit} enctype="multipart/form-data">
               <h2>{heading}</h2>
 
               {errors.message && <div className="alert alert-danger">{errors.message}</div>}
@@ -86,15 +110,22 @@ export default class AuthForm extends Component {
                     value={username}
                   />
 
-                  <label htmlFor="profileImageUrl">Profile Image URL</label>
+                  <label htmlFor="profileImage">Profile Image URL</label>
                   <input 
+                    type="file" 
+                    className="form-control"
+                    name="profileImage" 
+                    id="profileImage" 
+                    ref={this.fileInput}
+                  />
+                  {/* <input 
                     type="text" 
                     className="form-control"
                     id="profileImageUrl"
                     name="profileImageUrl"
                     onChange={this.handleChange}
                     value={profileImageUrl}
-                  />
+                  /> */}
                 </div>
                 )
               }
