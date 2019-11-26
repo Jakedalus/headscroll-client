@@ -23,7 +23,7 @@ export function logout() {
 }
 
 export function authUser(type, userData) {
-  // console.log('authUser:', type, userData);
+  console.log('authUser, type, userData:', type, userData);
   return dispatch => {
     return new Promise((resolve, reject) => {
       return apiCall('post', `/api/auth/${type}`, userData)

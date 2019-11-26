@@ -2,11 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import DefaultProfileImage from '../images/default-profile-image.png';
 
-const FriendCard = ({ id, profileImageUrl, username, email, friends }) => (
+const FriendCard = ({ id, profileImage, username, email, friends }) => (
   <div className="panel panel-default friend-card">
     <div className="panel-body">
       <img 
-        src={profileImageUrl || DefaultProfileImage} 
+        src={profileImage || DefaultProfileImage} 
         alt={username}
         className="img-thumbnail"
       />

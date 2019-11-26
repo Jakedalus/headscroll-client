@@ -60,7 +60,7 @@ class PostPage extends Component {
       console.log('PostPage, post', post);
       console.log('PostPage, comments', comments);
 
-      let { createdAt, profileImageUrl, text, removePost, removeComment, isCorrectUser, _id: post_id } = post;
+      let { createdAt, profileImage, text, removePost, removeComment, isCorrectUser, _id: post_id } = post;
       let { username, _id: user_id } = this.props.friend.friend;
 
       let commentList = comments.map(c => (
@@ -104,7 +104,7 @@ class PostPage extends Component {
         <div>
           <div className="post-heading">
             <img 
-              src={profileImageUrl || DefaultProfileImage}
+              src={profileImage || DefaultProfileImage}
               alt={username}
               className="timeline-image"
             />

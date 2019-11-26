@@ -2,12 +2,24 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import DefaultProfileImage from '../images/default-profile-image.png';
 
-const UserAside = ({ id, profileImageUrl, username, friends, requests }) => (
+const UserAside = ({ id, profileImage, username, friends, requests }) => {
+  
+  // console.log('UserAside, profileImage:', profileImage);
+
+  const urlCreator = window.URL || window.webkitURL;
+  console.log('UserAside, URL:', urlCreator);
+
+  // const blob = new Blob(  profileImage.data , { type: "image/jpeg" } );
+  // const imgUrl = urlCreator.createObjectURL(blob);
+
+  // console.log('UserAside, imgUrl:', imgUrl);
+  
+  return (
   <aside className="col-sm-2">
     <div className="panel panel-default">
       <div className="panel-body">
         <img 
-          src={profileImageUrl || DefaultProfileImage} 
+          src={DefaultProfileImage} 
           alt={username}
           className="img-thumbnail"
         />
@@ -26,6 +38,6 @@ const UserAside = ({ id, profileImageUrl, username, friends, requests }) => (
       </div>
     </div>
   </aside>
-);
+)};
 
 export default UserAside;

@@ -27,30 +27,33 @@ export default class AuthForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-
-    console.log('handleSubmit, file uploaded:', this.fileInput.current.files[0].name);
-
-    var formData = new FormData();
-    formData.append(`profileImage`, this.fileInput.current.files[0]);
-    formData.append('email', this.state.email);
-    formData.append('password', this.state.password);
-    formData.append('username', this.state.username);
-    formData.append('test', 'test');
-
-    console.log('handleSubmit, formData:', formData, formData.entries());
-    for (var key of formData.entries()) {
-			console.log(key[0] + ', ' + key[1])
-		}
-
-    console.log('handleSubmit, this.state:', this.state);
-
     const authType = this.props.signUp ? 'signup' : 'signin';
-    this.props.onAuth(authType, formData
-      // {
-      //   ...this.state,
-      //   profileImage: this.fileInput.current.files[0]
-      // }
-      )
+
+    if (authType === 'signup') {
+      console.log('handleSubmit, file uploaded:', this.fileInput.current.files[0].name);
+
+      var formData = new FormData();
+      formData.append(`profileImage`, this.fileInput.current.files[0]);
+      formData.append('email', this.state.email);
+      formData.append('password', this.state.password);
+      formData.append('username', this.state.username);
+      // formData.append('test', 'test');
+
+      console.log('handleSubmit, formData:', formData, formData.entries());
+      for (var key of formData.entries()) {
+        console.log(key[0] + ', ' + key[1])
+      }
+
+      console.log('handleSubmit, this.state:', this.state);
+
+      this.props.onAuth(authType, formData)
+        .then(() => this.props.history.push('/'))
+        .catch(() => {
+          return;
+        });
+    }
+
+    this.props.onAuth(authType, this.state)
       .then(() => this.props.history.push('/'))
       .catch(() => {
         return;
@@ -121,10 +124,10 @@ export default class AuthForm extends Component {
                   {/* <input 
                     type="text" 
                     className="form-control"
-                    id="profileImageUrl"
-                    name="profileImageUrl"
+                    id="profileImage"
+                    name="profileImage"
                     onChange={this.handleChange}
-                    value={profileImageUrl}
+                    value={profileImage}
                   /> */}
                 </div>
                 )

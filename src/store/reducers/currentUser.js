@@ -18,7 +18,7 @@ export default (state = DEFAULT_STATE, action) => {
       console.log('reducers/currentUser, SET_CURRENT_USER:', state, action);
       return {
         isAuthenticated: !!Object.keys(action.user).length,
-        user: { ...state.user, ...action.user }
+        user: { ...state.user, ...action.user, profileImage: '' }
       };
     // Add friend if you are accepting a request
     case ADD_FRIEND:

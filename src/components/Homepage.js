@@ -18,7 +18,7 @@ const Homepage = ({currentUser}) => {
 
   return (
     <Scroll
-      profileImageUrl={currentUser.user.profileImageUrl}
+      profileImage={currentUser.user.profileImage}
       username={currentUser.user.username}
       friends={currentUser.user.friends}
       requests={currentUser.user.requests}

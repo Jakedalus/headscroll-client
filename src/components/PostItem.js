@@ -33,14 +33,14 @@ class PostItem extends Component {
 
   render () {
 
-    let { createdAt, profileImageUrl, text, username, comments, removePost, isCorrectUser, user_id, post_id } = this.props;
+    let { createdAt, profileImage, text, username, comments, removePost, isCorrectUser, user_id, post_id } = this.props;
 
     return (
       <div>
         <li className="list-group-item">
           <div className="post-heading">
             <img 
-              src={profileImageUrl || DefaultProfileImage}
+              src={profileImage || DefaultProfileImage}
               alt={username}
               className="timeline-image"
             />

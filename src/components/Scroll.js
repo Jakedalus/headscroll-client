@@ -7,7 +7,7 @@ const Scroll = props => {
   return (
     <div className="row">
       <UserAside
-        profileImageUrl={props.profileImageUrl}
+        profileImage={props.profileImage}
         username={props.username}
         friends={props.friends}
         requests={props.requests}

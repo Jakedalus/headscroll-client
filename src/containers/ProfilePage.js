@@ -84,7 +84,7 @@ class ProfilePage extends Component {
 
       let { 
         username, 
-        profileImageUrl, 
+        profileImage, 
         friends, 
         youRequestedAlready, 
         theyRequestedAlready,
@@ -138,7 +138,7 @@ class ProfilePage extends Component {
             text={p.text}
             comments={p.comments}
             username={p.user.username}
-            profileImageUrl={p.user.profileImageUrl}
+            profileImage={p.user.profileImage}
             removePost={this.props.removePost.bind(this, p.user._id, p._id)}
             editPost={this.props.editPost.bind(this, p.user._id, p._id)}
             isCorrectUser={this.props.currentUser.id === p.user._id}
@@ -147,7 +147,7 @@ class ProfilePage extends Component {
         
         friendList = friends.map(friend => (
           <FriendCard
-            // profileImageUrl={props.profileImageUrl}
+            // profileImage={props.profileImage}
             username={friend.username}
             email={friend.email}
             id={friend._id}
@@ -162,7 +162,7 @@ class ProfilePage extends Component {
           <div className="row justify-content-md-center">
             <div className="row col-7 profile-header">
               <img 
-                src={profileImageUrl || DefaultProfileImage} 
+                src={profileImage || DefaultProfileImage} 
                 alt={username}
                 className="profile-img"
               />

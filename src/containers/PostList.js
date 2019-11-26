@@ -37,7 +37,7 @@ class PostList extends Component {
           text={p.text}
           comments={p.comments}
           username={p.user.username}
-          profileImageUrl={p.user.profileImageUrl}
+          profileImage={p.user.profileImage}
           removePost={removePost.bind(this, p.user._id, p._id)}
           editPost={editPost.bind(this, p.user._id, p._id)}
           isCorrectUser={currentUser === p.user._id}
