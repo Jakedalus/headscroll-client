@@ -27,6 +27,7 @@ const Main = props => {
   const timeChange = Date.now() - localStorage.timestamp;
   const twoMinutesHasPassed = (timeChange / 120000) >= 2;  
   if (twoMinutesHasPassed && currentUser.isAuthenticated) {
+    console.log('---> REFRESH USER: twoMinutesHasPassed!! getUserData!!');
     props.getUserData(currentUser.user.id);
   }
 
