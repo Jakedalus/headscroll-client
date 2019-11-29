@@ -3,6 +3,7 @@ import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 import DefaultProfileImage from '../images/default-profile-image.png';
 import { editPost } from '../store/actions/posts';
+import { convertImageDataToUrl } from '../services/utilities';
 
 class PostItem extends Component {
 
@@ -35,12 +36,15 @@ class PostItem extends Component {
 
     let { createdAt, profileImage, text, username, comments, removePost, isCorrectUser, user_id, post_id } = this.props;
 
+    const avatar = convertImageDataToUrl(profileImage.data);
+
+
     return (
       <div>
         <li className="list-group-item">
           <div className="post-heading">
             <img 
-              src={profileImage || DefaultProfileImage}
+              src={avatar || DefaultProfileImage}
               alt={username}
               className="timeline-image"
             />

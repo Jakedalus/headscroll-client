@@ -1,25 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import DefaultProfileImage from '../images/default-profile-image.png';
+import { convertImageDataToUrl } from '../services/utilities';
 
 const UserAside = ({ id, profileImage, username, friends, requests }) => {
   
-  // console.log('UserAside, profileImage:', profileImage);
+  const avatar = convertImageDataToUrl(profileImage.data);
 
-  const urlCreator = window.URL || window.webkitURL;
-  console.log('UserAside, URL:', urlCreator);
-
-  // const blob = new Blob(  profileImage.data , { type: "image/jpeg" } );
-  // const imgUrl = urlCreator.createObjectURL(blob);
-
-  // console.log('UserAside, imgUrl:', imgUrl);
+  console.log('UserAside, avatar:', avatar);
   
   return (
   <aside className="col-sm-2">
     <div className="panel panel-default">
       <div className="panel-body">
         <img 
-          src={DefaultProfileImage} 
+          src={avatar || DefaultProfileImage} 
           alt={username}
           className="img-thumbnail"
         />

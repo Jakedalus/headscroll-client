@@ -3,6 +3,7 @@ import { SET_CURRENT_USER } from '../actionTypes';
 import { addError, removeError } from './errors';
 
 export function setCurrentUser(user) {
+  console.log('/actions/auth/ setCurrentUser, user:', user);
   return {
     type: SET_CURRENT_USER,
     user
@@ -31,6 +32,7 @@ export function authUser(type, userData) {
           console.log('authUser, user:', user);
           localStorage.setItem('jwtToken', token);
           localStorage.setItem('timestamp', Date.now());
+          localStorage.setItem('profileImage', JSON.stringify(user.profileImage));
           setAuthorizationToken(token);
           dispatch(setCurrentUser(user));
           dispatch(removeError());
@@ -53,6 +55,7 @@ export function getUserData(userData) {
           console.log('/actions/auth, getUserData, user:', user);
           localStorage.setItem('jwtToken', token);
           localStorage.setItem('timestamp', Date.now());
+          localStorage.setItem('profileImage', JSON.stringify(user.profileImage));
           setAuthorizationToken(token);
           dispatch(setCurrentUser(user));
           dispatch(removeError());
