@@ -65,9 +65,9 @@ code {
 .list-group-item .timeline-image {
   background: white;
   padding: 5px;
-  border-radius: 50px;
-  height: 40px;
-  width: 40px
+  border-radius: 5px;
+  max-height: 55px;
+  max-width: 55px
 }
 
 .message-area {
@@ -110,12 +110,18 @@ code {
   align-items: flex-start; 
   /* justify-content: space-between; */
   margin-bottom: 30px;
+  background-color: var(--dark-red);
+  color: white;
+  padding: 10px;
 }
 
 .profile-img {
   margin-right: 30px;
   max-height: 150px;
   max-width: 150px;
+  background: white;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 .profile-header .profile-info {
@@ -124,6 +130,7 @@ code {
   justify-content: flex-start;
   align-items: flex-start;
   font-size: 12px;
+  color: lightgray;
 }
 
 .profile-header .btn {
