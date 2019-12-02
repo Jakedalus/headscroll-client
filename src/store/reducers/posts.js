@@ -17,7 +17,7 @@ const DEFAULT_STATE = [{
 }];
 
 export default (state = DEFAULT_STATE, action) => {
-  console.log('$$$ /reducers/posts, state, action:', state, action);
+  console.log('/reducers/posts, state, action:', state, action);
   let newFullComments, newPost, newPostComments;
   switch(action.type) {
     case LOAD_POSTS:
@@ -25,12 +25,12 @@ export default (state = DEFAULT_STATE, action) => {
     case GET_POST:
       return [action.post];
     case UPDATE_POST:
-        console.log('$$$ /reducers/posts/ UPDATE_POST!');
+        console.log('/reducers/posts/ UPDATE_POST!');
         return state.map((post) => {
-          console.log('!!! CHECKING POST, post:', post, post._id, action.id);
-          console.log('!!! CHECKING POST, post._id === action.id:', post._id === action.id);
+          // console.log('!!! CHECKING POST, post:', post, post._id, action.id);
+          // console.log('!!! CHECKING POST, post._id === action.id:', post._id === action.id);
           if(post._id === action.id) {
-              console.log('!!UPDATING POST!!');
+              // console.log('!!UPDATING POST!!');
               return {
                   ...post,
                   ...action.updates
@@ -41,76 +41,90 @@ export default (state = DEFAULT_STATE, action) => {
       });
     case REMOVE_POST:
       return state.filter(post => post._id !== action.id);
-    case ADD_COMMENT:
-      newFullComments = JSON.parse(JSON.stringify(state[0].comments));
-      console.log('newFullComments:', newFullComments);
-    
-      newPost = JSON.parse(JSON.stringify(state[0].post));
-      console.log('newPost:', newPost);
-    
-      newPostComments = JSON.parse(JSON.stringify(state[0].post.comments));
-      console.log('newPostComments:', newPostComments);
+    // case ADD_COMMENT:
 
-      newFullComments.push(action.comment);
-      newPostComments.push(action.comment._id);
-      newPost.comments = newPostComments;
-      console.log('new newFullComments, newPostComments, newPost:', newFullComments, newPostComments, newPost);
-      return [{
-        comments: newFullComments, 
-        post: newPost
-      }];
-    case UPDATE_COMMENT:
-      newFullComments = JSON.parse(JSON.stringify(state[0].comments));
-      console.log('newFullComments:', newFullComments);
-    
-      newPost = JSON.parse(JSON.stringify(state[0].post));
-      console.log('newPost:', newPost);
-    
-      newPostComments = JSON.parse(JSON.stringify(state[0].post.comments));
-      console.log('newPostComments:', newPostComments);
+    //   return state.map(post => {
+    //     console.log('/reducers/posts, ADD_COMMENT, checking post:', post, action.comment._id);
+    //     if (post.id === action.comment.post) {
+    //       return {
+    //         ...post,
+    //         comments: [action.comment._id, ...post.comments]
+    //       }
+    //     } else {
+    //       return post;
+    //     }
+    //   });
 
-      let newNewFullComments = newFullComments.map(comment => {
-        // console.log('newFullComments loop:', comment, comment._id, action.id, comment._id === action.id);
-        if (comment._id === action.id) {
-          // console.log('updating comment!!', action.updates);
-          return {
-            ...comment,
-            ...action.updates
-          };
-        } else {
-          return comment;
-        }
-      });
-      
-      // newPost.comments = newPostComments;
-      console.log('newNewFullComments', newNewFullComments);
-      return [{
-        comments: newNewFullComments, 
-        post: newPost
-      }];
-    case REMOVE_COMMENT:
-        console.log('BEFORE new newFullComments, newPostComments, newPost:', newFullComments, newPostComments, newPost);
-      newFullComments = JSON.parse(JSON.stringify(state[0].comments));
-      console.log('newFullComments:', newFullComments);
-    
-      newPost = JSON.parse(JSON.stringify(state[0].post));
-      console.log('newPost:', newPost);
-    
-      newPostComments = JSON.parse(JSON.stringify(state[0].post.comments));
-      console.log('newPostComments:', newPostComments);
       // return state;
-      newFullComments = newFullComments.filter(comment => comment._id !== action.id);
-      newPostComments = newPostComments.filter(comment => comment !== action.id);
-      newPost.comments = newPostComments;
+      // newFullComments = JSON.parse(JSON.stringify(state[0].comments));
+      // console.log('newFullComments:', newFullComments);
+    
+      // newPost = JSON.parse(JSON.stringify(state[0].post));
+      // console.log('newPost:', newPost);
+    
+      // newPostComments = JSON.parse(JSON.stringify(state[0].post.comments));
+      // console.log('newPostComments:', newPostComments);
+
+      // newFullComments.push(action.comment);
+      // newPostComments.push(action.comment._id);
+      // newPost.comments = newPostComments;
+      // console.log('new newFullComments, newPostComments, newPost:', newFullComments, newPostComments, newPost);
+      // return [{
+      //   comments: newFullComments, 
+      //   post: newPost
+      // }];
+    // case UPDATE_COMMENT:
+    //   newFullComments = JSON.parse(JSON.stringify(state[0].comments));
+    //   console.log('newFullComments:', newFullComments);
+    
+    //   newPost = JSON.parse(JSON.stringify(state[0].post));
+    //   console.log('newPost:', newPost);
+    
+    //   newPostComments = JSON.parse(JSON.stringify(state[0].post.comments));
+    //   console.log('newPostComments:', newPostComments);
+
+    //   let newNewFullComments = newFullComments.map(comment => {
+    //     // console.log('newFullComments loop:', comment, comment._id, action.id, comment._id === action.id);
+    //     if (comment._id === action.id) {
+    //       // console.log('updating comment!!', action.updates);
+    //       return {
+    //         ...comment,
+    //         ...action.updates
+    //       };
+    //     } else {
+    //       return comment;
+    //     }
+    //   });
+      
+    //   // newPost.comments = newPostComments;
+    //   console.log('newNewFullComments', newNewFullComments);
+    //   return [{
+    //     comments: newNewFullComments, 
+    //     post: newPost
+    //   }];
+    // case REMOVE_COMMENT:
+    //     console.log('BEFORE new newFullComments, newPostComments, newPost:', newFullComments, newPostComments, newPost);
+    //   newFullComments = JSON.parse(JSON.stringify(state[0].comments));
+    //   console.log('newFullComments:', newFullComments);
+    
+    //   newPost = JSON.parse(JSON.stringify(state[0].post));
+    //   console.log('newPost:', newPost);
+    
+    //   newPostComments = JSON.parse(JSON.stringify(state[0].post.comments));
+    //   console.log('newPostComments:', newPostComments);
+    //   // return state;
+    //   newFullComments = newFullComments.filter(comment => comment._id !== action.id);
+    //   newPostComments = newPostComments.filter(comment => comment !== action.id);
+    //   newPost.comments = newPostComments;
 
 
-      console.log('NEW newFullComments, newPostComments, newPost:', newFullComments, newPostComments, newPost);
+    //   console.log('NEW newFullComments, newPostComments, newPost:', newFullComments, newPostComments, newPost);
       
 
-      return [{
-        comments: newFullComments, 
-        post: newPost
-      }];
+    //   return [{
+    //     comments: newFullComments, 
+    //     post: newPost
+    //   }];
     default:
       return state;
   }

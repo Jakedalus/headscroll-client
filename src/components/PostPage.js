@@ -80,7 +80,7 @@ class PostPage extends Component {
 
       console.log('PostPage, comments', comments);
 
-      let { createdAt, text, removeComment, isCorrectUser, _id: post_id } = post;
+      let { createdAt, text, _id: post_id } = post;
       let { username, _id: user_id, profileImage } = this.props.friend.friend;
 
       const avatar = convertImageDataToUrl(profileImage.data);
