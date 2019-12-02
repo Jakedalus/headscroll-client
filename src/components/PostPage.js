@@ -6,6 +6,7 @@ import { fetchComments } from '../store/actions/comments';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 import DefaultProfileImage from '../images/default-profile-image.png';
+import { convertImageDataToUrl } from '../services/utilities';
 import CommentForm from '../containers/CommentForm';
 import CommentItem from './CommentItem';
 
@@ -60,8 +61,10 @@ class PostPage extends Component {
       console.log('PostPage, post', post);
       console.log('PostPage, comments', comments);
 
-      let { createdAt, profileImage, text, removePost, removeComment, isCorrectUser, _id: post_id } = post;
-      let { username, _id: user_id } = this.props.friend.friend;
+      let { createdAt, text, removePost, removeComment, isCorrectUser, _id: post_id } = post;
+      let { username, _id: user_id, profileImage } = this.props.friend.friend;
+
+      const avatar = convertImageDataToUrl(profileImage.data);
 
       let commentList = comments.map(c => (
         <CommentItem 
@@ -104,9 +107,9 @@ class PostPage extends Component {
         <div>
           <div className="post-heading">
             <img 
-              src={profileImage || DefaultProfileImage}
+              src={avatar || DefaultProfileImage}
               alt={username}
-              className="timeline-image"
+              className="profile-img"
             />
             <Link to={`/users/${user_id}/profile`}>{username}</Link>
             <span className="text-muted">
