@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { connect} from 'react-redux';
 import { getPost } from '../store/actions/posts';
 import { fetchFriend } from '../store/actions/friend';
+import { fetchPosts, editPost, removePost } from '../store/actions/posts';
 import { fetchComments } from '../store/actions/comments';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 import DefaultProfileImage from '../images/default-profile-image.png';
 import { convertImageDataToUrl } from '../services/utilities';
+import PostItem from '../components/PostItem';
 import CommentForm from '../containers/CommentForm';
 import CommentItem from './CommentItem';
 
@@ -20,13 +22,27 @@ class PostPage extends Component {
   }
 
   async componentDidMount() {
-    console.log('PostPage, this.props.match.params:', this.props.match.params);
+    console.log('PostPage, componentDidMount, this.props.match.params:', this.props.match.params);
     let { id: user_id, post_id } = this.props.match.params;
-    await this.props.getPost(user_id, post_id);
+    // await this.props.getPost(user_id, post_id);
+    await this.props.fetchPosts();
+    await this.props.fetchComments(user_id, post_id);
     await this.props.fetchFriend(user_id);
     
     // await this.props.fetchComments(user_id, post_id);
     this.setState({ postLoaded: true });
+  }
+
+  async componentDidUpdate(prevProps, prevState) {
+    console.log('PostPage, componenetdidUpdate, prevProps, prevState:', prevProps, prevState);
+    if (false) {
+      let { id: user_id, post_id } = this.props.match.params;
+      await this.props.getPost(user_id, post_id);
+    }
+    
+    // this.setState({ postLoaded: false });
+    // await this.props.getPost(user_id, post_id);
+    // this.setState({ postLoaded: true });
   }
 
   handleChange = e => {
@@ -35,9 +51,9 @@ class PostPage extends Component {
     });
   };
 
-  onClickEditButton = () => {
-    this.setState({ editingComment: true });
-  };
+  // onClickEditCommentButton = () => {
+  //   this.setState({ editingComment: true });
+  // };
 
   
 
@@ -48,64 +64,54 @@ class PostPage extends Component {
     console.log('PostPage, props, state', this.props, this.state);
 
     // if the posts are loaded from fetchPosts
-    if (this.props.posts.length === 1 && this.state.postLoaded) {
+    if (this.props.posts.length >= 1 && this.state.postLoaded) {
 
       
 
       // let post = this.props.posts.filter(post => post._id === this.props.match.params.post_id)[0];
+      
+      const post = this.props.posts.filter(post => post._id === this.props.match.params.post_id)[0];
 
-      console.log('PostPage, postData', this.props.posts);
-
-      let { post, comments } = this.props.posts[0];
+      const {comments} = this.props;
 
       console.log('PostPage, post', post);
+
+      // let { post, comments } = this.props.posts[0];
+
       console.log('PostPage, comments', comments);
 
-      let { createdAt, text, removePost, removeComment, isCorrectUser, _id: post_id } = post;
+      let { createdAt, text, removeComment, isCorrectUser, _id: post_id } = post;
       let { username, _id: user_id, profileImage } = this.props.friend.friend;
 
       const avatar = convertImageDataToUrl(profileImage.data);
 
       let commentList = comments.map(c => (
         <CommentItem 
+          key={c._id}
           comment={c} 
           currentUser={this.props.currentUser}
           {...this.props.match}
         />
       ));
 
-      // let commentList = comments.map(c => (
-        // <li key={c._id}>
-        //   {c.user.username}: 
-
-        //   {c.text}
-
-
-        //   {
-        //     this.props.currentUser === c.user._id 
-        //     && 
-        //     <div>
-        //       <a 
-        //         onClick={this.onClickEditButton} 
-        //         className="btn btn-success"
-        //       >
-        //         Edit
-        //       </a>
-        //       <a 
-        //         onClick={() => this.handleRemoveComment(c._id)} 
-        //         className="btn btn-danger"
-        //       >
-        //         Delete
-        //       </a>
-        //     </div>
-            
-        //   }
-        // </li>
-      // )); 
+      console.log('PostPage, user_id, post_id:', user_id, post_id);
 
       return (
         <div>
-          <div className="post-heading">
+          <PostItem
+            key={post_id}
+            post_id={post_id}
+            user_id={user_id}
+            date={createdAt}
+            text={text}
+            comments={comments}
+            username={username}
+            profileImage={profileImage}
+            removePost={this.props.removePost.bind(this, user_id, post_id)}
+            editPost={this.props.editPost.bind(this, user_id, post_id)}
+            isCorrectUser={this.props.currentUser === user_id}
+          />
+          {/* <div className="post-heading">
             <img 
               src={avatar || DefaultProfileImage}
               alt={username}
@@ -125,7 +131,7 @@ class PostPage extends Component {
           
           <div className="message-area">
             <p>{text}</p>
-          </div>
+          </div> */}
 
           <div className="post-footer">
             <CommentForm 
@@ -148,7 +154,7 @@ class PostPage extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log('PostPage, state', state);
+  console.log('*** PostPage, state', state);
   return {
     posts: state.posts,
     comments: state.comments,
@@ -157,4 +163,11 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { getPost, fetchComments, fetchFriend })(PostPage);
+export default connect(mapStateToProps, { 
+  getPost, 
+  fetchPosts,
+  fetchComments, 
+  fetchFriend, 
+  editPost, 
+  removePost
+})(PostPage);

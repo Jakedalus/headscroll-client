@@ -28,6 +28,7 @@ class PostItem extends Component {
 
   handgleEditPost = e => {
     e.preventDefault();
+    console.log('handleEditPost', this.state.post);
     this.props.editPost({text: this.state.post});
     this.setState({ editingPost: false });
   };
@@ -38,6 +39,7 @@ class PostItem extends Component {
 
     const avatar = convertImageDataToUrl(profileImage.data);
 
+    console.log('PostItem, props, state:', this.props, this.state);
 
     return (
       <div>

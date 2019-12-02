@@ -130,7 +130,7 @@ class ProfilePage extends Component {
       if (isFriend) {
         let userPosts = this.props.allPosts.filter(post => post.user._id === this.props.friend._id);
 
-        console.log('userPosts:', userPosts);
+        console.log('ProfilePage, userPosts:', userPosts);
 
         postList = userPosts.map(p => (
           <PostItem
@@ -237,7 +237,7 @@ class ProfilePage extends Component {
 };
 
 function mapStateToProps(state) {
-  console.log('ProfilePage, state', state);
+  console.log('*** ProfilePage, state', state);
   return {
     allPosts: state.posts,
     currentUser: state.currentUser.user,

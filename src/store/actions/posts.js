@@ -36,6 +36,7 @@ export const edit = (id, updates) => ({
 });
 
 export const editPost = (user_id, post_id, updates) => {
+  console.log('/actions/posts/, editPost:', user_id, post_id, updates);
   return dispatch => {
     return apiCall('put', `/api/users/${user_id}/posts/${post_id}`, updates)
       .then(() => dispatch(edit(post_id, updates)))

@@ -1,7 +1,11 @@
 import { LOAD_POSTS, GET_POST, ADD_COMMENT, REMOVE_COMMENT, UPDATE_POST, REMOVE_POST, UPDATE_COMMENT } from '../actionTypes';
 
 const DEFAULT_STATE = [{
-  comments: [],
+  comments: [{
+    _id: '',
+    post: '',
+    text: ''
+  }],
   post: {
     comments: [],
     text: '',
@@ -13,7 +17,7 @@ const DEFAULT_STATE = [{
 }];
 
 export default (state = DEFAULT_STATE, action) => {
-  console.log('/reducers/posts:', state, state[0], action);
+  console.log('$$$ /reducers/posts, state, action:', state, action);
   let newFullComments, newPost, newPostComments;
   switch(action.type) {
     case LOAD_POSTS:
@@ -21,8 +25,12 @@ export default (state = DEFAULT_STATE, action) => {
     case GET_POST:
       return [action.post];
     case UPDATE_POST:
+        console.log('$$$ /reducers/posts/ UPDATE_POST!');
         return state.map((post) => {
+          console.log('!!! CHECKING POST, post:', post, post._id, action.id);
+          console.log('!!! CHECKING POST, post._id === action.id:', post._id === action.id);
           if(post._id === action.id) {
+              console.log('!!UPDATING POST!!');
               return {
                   ...post,
                   ...action.updates

@@ -37,7 +37,7 @@ export const removeComment = (user_id, post_id, comment_id) => {
 }
 
 export const fetchComments = (user_id, post_id) => {
-  console.log('fetchComments', user_id, post_id);
+  console.log('/actions/comments, fetchComments', user_id, post_id);
   return dispatch => {
     return apiCall('get', `/api/users/${user_id}/posts/${post_id}/comments/`)
       .then(res => dispatch(loadComments(res)))
