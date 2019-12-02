@@ -7,6 +7,7 @@ import { fetchFriend, startAddFriend, startRemoveFriend } from '../store/actions
 import PostItem from '../components/PostItem';
 import FriendCard from '../components/FriendCard';
 import DefaultProfileImage from '../images/default-profile-image.png';
+import { convertImageDataToUrl } from '../services/utilities';
 
 class ProfilePage extends Component {
 
@@ -93,6 +94,8 @@ class ProfilePage extends Component {
         _id, 
         isFriend } = this.props.friend;
 
+      const avatar = convertImageDataToUrl(profileImage.data);
+
       // let theyRequestedAlready = this.props.currentUser.requests.includes(_id);
 
       console.log('You sent them a friend request:', youRequestedAlready);
@@ -162,7 +165,7 @@ class ProfilePage extends Component {
           <div className="row justify-content-md-center">
             <div className="row col-7 profile-header">
               <img 
-                src={profileImage || DefaultProfileImage} 
+                src={avatar || DefaultProfileImage} 
                 alt={username}
                 className="profile-img"
               />
