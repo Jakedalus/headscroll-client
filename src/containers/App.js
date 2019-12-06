@@ -13,12 +13,14 @@ const store = configureStore();
 if (localStorage.jwtToken) {
   setAuthorizationToken(localStorage.jwtToken);
   try {
+    console.log('App.js, localStorage:', localStorage);
     const decodedToken = jwtDecode(localStorage.jwtToken);
     console.log('App.js, decodedToken:', decodedToken);
-    console.log('App.js, localStorage.profileImage:', localStorage.profileImage);
+    const profileImage = JSON.parse(localStorage.profileImage);
+    console.log('App.js, profileImage:', profileImage);
     store.dispatch(setCurrentUser({
       ...decodedToken, 
-      profileImage: JSON.parse(localStorage.profileImage)
+      profileImage
     }));
   } catch (err) {
     console.log('localStorage error!!', err);

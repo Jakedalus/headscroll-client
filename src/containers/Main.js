@@ -91,7 +91,7 @@ const Main = props => {
         <Route
           exact path='/users/:id/posts/:post_id'
           render={props => {
-            console.log('Post route, props', props);
+            console.log('^^^ PostPage route, props', props);
             return (
               <PostPage {...props} />
             );

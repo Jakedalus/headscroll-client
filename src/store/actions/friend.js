@@ -8,7 +8,7 @@ export const getFriend = friend => ({
 });
 
 export const fetchFriend = (friend) => {
-  console.log('actions/friends/ fetchFriend:', friend);
+  console.log('-- actions/friends/ fetchFriend:', friend);
   return (dispatch, getState) => {
     console.log('fetchFriend, getState:', getState());
     return apiCall('get', `/api/users/${friend}/profile`)

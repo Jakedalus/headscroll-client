@@ -9,7 +9,11 @@ const DEFAULT_STATE = [{
   post: {
     comments: [],
     text: '',
-    user: '',
+    user: {
+      _id: '',
+      username: '',
+      profileImage: {}
+    },
     _id: '',
     createdAt: '',
     updatedAt: ''

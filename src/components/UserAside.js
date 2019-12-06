@@ -3,10 +3,17 @@ import { Link } from 'react-router-dom';
 import DefaultProfileImage from '../images/default-profile-image.png';
 import { convertImageDataToUrl } from '../services/utilities';
 
-const UserAside = ({ id, profileImage, username, friends, requests }) => {
-  
-  const avatar = profileImage ? convertImageDataToUrl(profileImage.data) : DefaultProfileImage;
+const UserAside = props => {
 
+  console.log('UserAside, props:', props);
+
+  let { id, profileImage, username, friends, requests } = props;
+  
+  const avatar = profileImage && profileImage.data 
+        ? convertImageDataToUrl(profileImage.data) 
+        : DefaultProfileImage;
+
+  console.log('UserAside, profileImage:', profileImage);
   console.log('UserAside, avatar:', avatar);
   
   return (

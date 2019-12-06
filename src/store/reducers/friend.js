@@ -1,7 +1,17 @@
 import { GET_FRIEND, ADD_FRIEND, DELETE_FRIEND, SEARCH_FOR_FRIEND } from '../actionTypes';
 
-export default (state = {friend: null}, action) => {
-  console.log('reducers/friends:', state, action)
+const DEFAULT_STATE = {
+    username: '',
+    email: '',
+    id: '',
+    friends: [],
+    requests: [],
+    posts: [],
+    profileImage: {}
+};
+
+export default (state = {friend: DEFAULT_STATE}, action) => {
+  console.log('-- reducers/friends:', state, action)
   let friend =  Object.assign({}, state.friend);
   switch(action.type) {
     case GET_FRIEND:

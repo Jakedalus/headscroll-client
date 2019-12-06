@@ -30,11 +30,13 @@ export function authUser(type, userData) {
       return apiCall('post', `/api/auth/${type}`, userData)
         .then(({token, ...user}) => {
           console.log('authUser, user:', user);
+          const profileImage = user.profileImage || {};
+          console.log('authUser, profileImage:', profileImage);
           localStorage.setItem('jwtToken', token);
           localStorage.setItem('timestamp', Date.now());
-          localStorage.setItem('profileImage', JSON.stringify(user.profileImage));
+          localStorage.setItem('profileImage', JSON.stringify(profileImage));
           setAuthorizationToken(token);
-          dispatch(setCurrentUser(user));
+          dispatch(setCurrentUser({profileImage, ...user}));
           dispatch(removeError());
           resolve();
         })
@@ -52,12 +54,14 @@ export function getUserData(userData) {
       console.log('/actions/auth, getUserData, userData:', userData);
       return apiCall('get', `/user/${userData}`)
         .then(({token, ...user}) => {
-          console.log('/actions/auth, getUserData, user:', user);
+          console.log('getUserData, user:', user);
+          const profileImage = user.profileImage || {};
+          console.log('getUserData, profileImage:', profileImage);
           localStorage.setItem('jwtToken', token);
           localStorage.setItem('timestamp', Date.now());
-          localStorage.setItem('profileImage', JSON.stringify(user.profileImage));
+          localStorage.setItem('profileImage', JSON.stringify(profileImage));
           setAuthorizationToken(token);
-          dispatch(setCurrentUser(user));
+          dispatch(setCurrentUser({profileImage, ...user}));
           dispatch(removeError());
           resolve();
         })

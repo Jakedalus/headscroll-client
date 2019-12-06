@@ -20,15 +20,16 @@ class ProfilePage extends Component {
   }
 
   async componentDidMount() {
-    console.log('ProfilePage params:', this.props.match.params);
+    console.log('-- ProfilePage, componentDidMount, params:', this.props.match.params);
     const {id} = this.props.match.params;
-    await this.props.fetchPosts();
     await this.props.fetchFriend(id);
+    await this.props.fetchPosts();
     this.setState({ postsLoaded: true });
   }
 
-  componentDidpdate(prevProps) {
+  componentDidUpdate(prevProps) {
     console.log('!ProfilePage has updated!', prevProps);
+
     // this.setState({ postsLoaded: true });
   }
 
@@ -79,7 +80,7 @@ class ProfilePage extends Component {
 
   render() {
 
-    console.log('ProfilePage, props, state', this.props, this.state);
+    console.log('-- ProfilePage, props, state', this.props, this.state);
 
     if (this.state.postsLoaded) {
 
@@ -94,7 +95,11 @@ class ProfilePage extends Component {
         _id, 
         isFriend } = this.props.friend;
 
-      const avatar = profileImage ? convertImageDataToUrl(profileImage.data) : DefaultProfileImage;
+      const avatar = profileImage && profileImage.data 
+        ? convertImageDataToUrl(profileImage.data) 
+        : DefaultProfileImage;
+
+      const isYou = _id == this.props.currentUser.id;
 
       // let theyRequestedAlready = this.props.currentUser.requests.includes(_id);
 
@@ -155,6 +160,7 @@ class ProfilePage extends Component {
             email={friend.email}
             id={friend._id}
             key={friend._id}
+            profileImage={friend.profileImage}
           />
         ));
         
@@ -169,16 +175,25 @@ class ProfilePage extends Component {
                 alt={username}
                 className="profile-img"
               />
+              {
+                isYou &&
+                <button>
+                  Upload Profile Image
+                </button>
+              }
               <div className="profile-info justify-content-md-start">
                 <h2>{username}</h2>
-                {isFriend && <div className="">
-                  <p className="">{friends.length} {friends.length == 1 ? 'Friend' : 'Friends'}</p>
-                  <p>{posts.length} {posts.length == 1 ? 'Post' : 'Posts'}</p>
-                </div>}
+                {
+                  isFriend && 
+                  <div className="">
+                    <p className="">{friends.length} {friends.length == 1 ? 'Friend' : 'Friends'}</p>
+                    <p>{posts.length} {posts.length == 1 ? 'Post' : 'Posts'}</p>
+                  </div>
+                }
                 <p>{email}</p>
               </div>
 
-              { _id !== this.props.currentUser.id  // if you aren't on your own ProfilePage
+              { !isYou // if you aren't on your own ProfilePage
                 ? 
                 <div>
                   { (!isFriend && !youRequestedAlready) && // show Add/Accept friend button unless you have requested them already or you are already friends
@@ -237,7 +252,7 @@ class ProfilePage extends Component {
 };
 
 function mapStateToProps(state) {
-  console.log('*** ProfilePage, state', state);
+  console.log('-- ProfilePage, state', state);
   return {
     allPosts: state.posts,
     currentUser: state.currentUser.user,

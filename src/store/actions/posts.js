@@ -10,7 +10,29 @@ export const loadPosts = posts => ({
 export const fetchPosts = () => {
   return dispatch => {
     return apiCall('get', '/api/scroll')
-      .then(res => dispatch(loadPosts(res)))
+      .then(res => {
+        // console.log('/actions/posts, fetchPosts, res', res);
+
+        // Add a default empty object {} to the user.profileImage if there is none
+        const cleanedRes = res.map(post => {
+          console.log('/actions/posts, fetchPosts, post', post);
+          if (post.user.profileImage === undefined) {
+            return {
+              ...post,
+              user: {
+                profileImage: {},
+                ...post.user
+              }
+            }
+          } else {
+            return post;
+          }
+        });
+
+        console.log('/actions/posts, fetchPosts, cleanedRes', cleanedRes);
+        
+        return dispatch(loadPosts(cleanedRes))
+      })
       .catch(err => dispatch(addError(err)));
   };
 }

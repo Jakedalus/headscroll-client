@@ -35,11 +35,15 @@ class PostItem extends Component {
 
   render () {
 
+    console.log('PostItem, props, state:', this.props, this.state);
+
     let { createdAt, profileImage, text, username, comments, removePost, isCorrectUser, user_id, post_id } = this.props;
 
-    const avatar = profileImage ? convertImageDataToUrl(profileImage.data) : DefaultProfileImage;
+    const avatar = profileImage && profileImage.data 
+        ? convertImageDataToUrl(profileImage.data) 
+        : DefaultProfileImage;
 
-    console.log('PostItem, props, state:', this.props, this.state);
+    console.log('PostItem, profileImage, avatar:', profileImage, avatar);
 
     return (
       <div>

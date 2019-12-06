@@ -34,11 +34,11 @@ class PostPage extends Component {
   }
 
   async componentDidUpdate(prevProps, prevState) {
-    console.log('PostPage, componenetdidUpdate, prevProps, prevState:', prevProps, prevState);
-    if (false) {
-      let { id: user_id, post_id } = this.props.match.params;
-      await this.props.getPost(user_id, post_id);
-    }
+    // console.log('PostPage, componenetdidUpdate, prevProps, prevState:', prevProps, prevState);
+    // if (false) {
+    //   let { id: user_id, post_id } = this.props.match.params;
+    //   await this.props.getPost(user_id, post_id);
+    // }
     
     // this.setState({ postLoaded: false });
     // await this.props.getPost(user_id, post_id);
@@ -83,7 +83,7 @@ class PostPage extends Component {
       let { createdAt, text, _id: post_id } = post;
       let { username, _id: user_id, profileImage } = this.props.friend.friend;
 
-      const avatar = profileImage ? convertImageDataToUrl(profileImage.data) : DefaultProfileImage;
+
 
       let commentList = comments.map(c => (
         <CommentItem 
@@ -106,7 +106,7 @@ class PostPage extends Component {
             text={text}
             comments={comments}
             username={username}
-            profileImage={avatar}
+            profileImage={profileImage}
             removePost={this.props.removePost.bind(this, user_id, post_id)}
             editPost={this.props.editPost.bind(this, user_id, post_id)}
             isCorrectUser={this.props.currentUser === user_id}
