@@ -94,7 +94,7 @@ class ProfilePage extends Component {
         _id, 
         isFriend } = this.props.friend;
 
-      const avatar = convertImageDataToUrl(profileImage.data);
+      const avatar = profileImage ? convertImageDataToUrl(profileImage.data) : DefaultProfileImage;
 
       // let theyRequestedAlready = this.props.currentUser.requests.includes(_id);
 
@@ -165,7 +165,7 @@ class ProfilePage extends Component {
           <div className="row justify-content-md-center">
             <div className="row col-7 profile-header">
               <img 
-                src={avatar || DefaultProfileImage} 
+                src={avatar} 
                 alt={username}
                 className="profile-img"
               />

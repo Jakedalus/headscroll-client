@@ -83,7 +83,7 @@ class PostPage extends Component {
       let { createdAt, text, _id: post_id } = post;
       let { username, _id: user_id, profileImage } = this.props.friend.friend;
 
-      const avatar = convertImageDataToUrl(profileImage.data);
+      const avatar = profileImage ? convertImageDataToUrl(profileImage.data) : DefaultProfileImage;
 
       let commentList = comments.map(c => (
         <CommentItem 
@@ -106,7 +106,7 @@ class PostPage extends Component {
             text={text}
             comments={comments}
             username={username}
-            profileImage={profileImage}
+            profileImage={avatar}
             removePost={this.props.removePost.bind(this, user_id, post_id)}
             editPost={this.props.editPost.bind(this, user_id, post_id)}
             isCorrectUser={this.props.currentUser === user_id}

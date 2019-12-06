@@ -37,7 +37,7 @@ class PostItem extends Component {
 
     let { createdAt, profileImage, text, username, comments, removePost, isCorrectUser, user_id, post_id } = this.props;
 
-    const avatar = convertImageDataToUrl(profileImage.data);
+    const avatar = profileImage ? convertImageDataToUrl(profileImage.data) : DefaultProfileImage;
 
     console.log('PostItem, props, state:', this.props, this.state);
 
@@ -46,7 +46,7 @@ class PostItem extends Component {
         <li className="list-group-item">
           <div className="post-heading">
             <img 
-              src={avatar || DefaultProfileImage}
+              src={avatar}
               alt={username}
               className="timeline-image"
             />

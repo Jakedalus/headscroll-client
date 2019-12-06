@@ -5,7 +5,7 @@ import { convertImageDataToUrl } from '../services/utilities';
 
 const UserAside = ({ id, profileImage, username, friends, requests }) => {
   
-  const avatar = convertImageDataToUrl(profileImage.data);
+  const avatar = profileImage ? convertImageDataToUrl(profileImage.data) : DefaultProfileImage;
 
   console.log('UserAside, avatar:', avatar);
   
@@ -14,7 +14,7 @@ const UserAside = ({ id, profileImage, username, friends, requests }) => {
     <div className="panel panel-default">
       <div className="panel-body">
         <img 
-          src={avatar || DefaultProfileImage} 
+          src={avatar} 
           alt={username}
           className="img-thumbnail"
         />
