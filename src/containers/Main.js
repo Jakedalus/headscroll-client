@@ -93,7 +93,9 @@ const Main = props => {
           render={props => {
             console.log('^^^ PostPage route, props', props);
             return (
-              <PostPage {...props} />
+              <PostPage 
+                {...props} 
+              />
             );
           }}
         />

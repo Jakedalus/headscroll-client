@@ -63,14 +63,10 @@ class PostPage extends Component {
 
     console.log('PostPage, props, state', this.props, this.state);
 
+    const post = this.props.posts.filter(post => post._id === this.props.match.params.post_id)[0];
+
     // if the posts are loaded from fetchPosts
-    if (this.props.posts.length >= 1 && this.state.postLoaded) {
-
-      
-
-      // let post = this.props.posts.filter(post => post._id === this.props.match.params.post_id)[0];
-      
-      const post = this.props.posts.filter(post => post._id === this.props.match.params.post_id)[0];
+    if (post && this.state.postLoaded) {
 
       const {comments} = this.props;
 
