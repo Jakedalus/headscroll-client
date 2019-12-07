@@ -119,6 +119,7 @@ export default class AuthForm extends Component {
                     className="form-control"
                     name="profileImage" 
                     id="profileImage" 
+                    accept="image/*"
                     ref={this.fileInput}
                   />
                   {/* <input 

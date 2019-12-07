@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Modal from 'react-modal';
 import { connect} from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getUserData } from '../store/actions/auth';
@@ -9,13 +10,16 @@ import FriendCard from '../components/FriendCard';
 import DefaultProfileImage from '../images/default-profile-image.png';
 import { convertImageDataToUrl } from '../services/utilities';
 
+Modal.setAppElement('#root');
+
 class ProfilePage extends Component {
 
   constructor(props) {
     super(props);
 
     this.state = {   
-      postsLoaded: false  
+      postsLoaded: false,
+      modalIsOpen: false
     }
   }
 
@@ -77,8 +81,27 @@ class ProfilePage extends Component {
     }
   }
   
+  handleClickUploadPhoto = () => {
+    console.log('Starting photo upload!');
+    this.setState({ modalIsOpen: true });
+  };
+
+  handleCloseModal = () => {
+    this.setState({ modalIsOpen: false });
+  }
 
   render() {
+
+    const customStyles = {
+      content : {
+        top                   : '50%',
+        left                  : '50%',
+        right                 : 'auto',
+        bottom                : 'auto',
+        marginRight           : '-50%',
+        transform             : 'translate(-50%, -50%)'
+      }
+    };
 
     console.log('-- ProfilePage, props, state', this.props, this.state);
 
@@ -177,7 +200,10 @@ class ProfilePage extends Component {
               />
               {
                 isYou &&
-                <button>
+                <button
+                  type="button"
+                  onClick={this.handleClickUploadPhoto}
+                >
                   Upload Profile Image
                 </button>
               }
@@ -238,6 +264,24 @@ class ProfilePage extends Component {
             </div>
           </div>
 
+          <Modal
+            isOpen={this.state.modalIsOpen}
+            // onAfterOpen={afterOpenModal}
+            onRequestClose={this.handleCloseModal}
+            style={customStyles}
+            contentLabel="Choose Profile Image Modal"
+          >
+            <label htmlFor="profileImage">Profile Image URL</label>
+            <input 
+              type="file" 
+              className="form-control"
+              name="profileImage" 
+              id="profileImage" 
+              accept="image/*"
+              ref={this.fileInput}
+            />
+            <button onClick={this.handleCloseModal}>Close</button>
+          </Modal>
           
         </div>
       );
