@@ -92,12 +92,16 @@ class ProfilePage extends Component {
     this.setState({ modalIsOpen: false });
   }
 
-  handleImageUpload = () => {
+  handleImageUpload = async () => {
     const file = this.fileInput.current.files[0];
     console.log('Sending image to backend! file name:', file.name);
     var formData = new FormData();
     formData.append(`profileImage`, file);
-    this.props.uploadProfileImage(this.props.friend._id, formData);
+    await this.props.uploadProfileImage(this.props.friend._id, formData);
+    await this.props.getUserData(this.props.friend._id);
+    await this.props.fetchPosts();
+    await this.props.fetchFriend(this.props.friend._id);
+    this.setState({ modalIsOpen: false });
   }
 
   render() {

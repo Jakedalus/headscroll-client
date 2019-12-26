@@ -16,15 +16,6 @@ export default (state = DEFAULT_STATE, action) => {
   switch(action.type) {
     case SET_CURRENT_USER:
       console.log('reducers/currentUser, SET_CURRENT_USER, state, action:', state, action);
-
-      // const urlCreator = window.URL || window.webkitURL;
-      // console.log('reducers/currentUser, URL:', urlCreator);
-
-      // const blob = new Blob(  action.type.profileImage.data , { type: "image/jpeg" } );
-      // const imgUrl = urlCreator.createObjectURL(blob);
-
-      // console.log('reducers/currentUser, imgUrl:', imgUrl);
-
       return {
         isAuthenticated: !!Object.keys(action.user).length,
         user: { ...state.user, ...action.user }
