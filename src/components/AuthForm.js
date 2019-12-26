@@ -32,7 +32,7 @@ export default class AuthForm extends Component {
     if (authType === 'signup') {
       console.log('handleSubmit, file uploaded:', this.fileInput.current.files[0].name);
 
-      var formData = new FormData();
+      var formData = new FormData();  // multer on server expecting FormData
       formData.append(`profileImage`, this.fileInput.current.files[0]);
       formData.append('email', this.state.email);
       formData.append('password', this.state.password);

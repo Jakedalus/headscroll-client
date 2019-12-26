@@ -1,5 +1,5 @@
 import { apiCall, setTokenHeader } from '../../services/api';
-import { SET_CURRENT_USER } from '../actionTypes';
+import { SET_CURRENT_USER, UPLOAD_PROFILE_IMAGE } from '../actionTypes';
 import { addError, removeError } from './errors';
 
 export function setCurrentUser(user) {
@@ -72,3 +72,19 @@ export function getUserData(userData) {
     });
   };
 }
+
+export function addAvatar(profileImage) {
+  return {
+    type: UPLOAD_PROFILE_IMAGE,
+    profileImage
+  };
+};
+
+export function uploadProfileImage(user, profileImage) {
+  return (dispatch) => {
+    console.log('uploadProfileImage, profileImage:', profileImage);
+    return apiCall('post', `/api/users/${user}/profile/avi`, profileImage)
+      .then(res => dispatch(addAvatar(res)))
+      .catch(err => dispatch(addError(err)));
+  };
+};

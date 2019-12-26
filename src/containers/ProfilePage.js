@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Modal from 'react-modal';
 import { connect} from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getUserData } from '../store/actions/auth';
+import { getUserData, uploadProfileImage } from '../store/actions/auth';
 import { fetchPosts, editPost, removePost } from '../store/actions/posts';
 import { fetchFriend, startAddFriend, startRemoveFriend } from '../store/actions/friend';
 import PostItem from '../components/PostItem';
@@ -20,7 +20,9 @@ class ProfilePage extends Component {
     this.state = {   
       postsLoaded: false,
       modalIsOpen: false
-    }
+    };
+
+    this.fileInput = React.createRef();
   }
 
   async componentDidMount() {
@@ -88,6 +90,14 @@ class ProfilePage extends Component {
 
   handleCloseModal = () => {
     this.setState({ modalIsOpen: false });
+  }
+
+  handleImageUpload = () => {
+    const file = this.fileInput.current.files[0];
+    console.log('Sending image to backend! file name:', file.name);
+    var formData = new FormData();
+    formData.append(`profileImage`, file);
+    this.props.uploadProfileImage(this.props.friend._id, formData);
   }
 
   render() {
@@ -280,6 +290,7 @@ class ProfilePage extends Component {
               accept="image/*"
               ref={this.fileInput}
             />
+            <button onClick={this.handleImageUpload}>Upload Picture</button>
             <button onClick={this.handleCloseModal}>Close</button>
           </Modal>
           
@@ -311,5 +322,6 @@ export default connect(mapStateToProps, {
   fetchFriend, 
   startAddFriend, 
   startRemoveFriend,
-  getUserData 
+  getUserData,
+  uploadProfileImage 
 })(ProfilePage);
