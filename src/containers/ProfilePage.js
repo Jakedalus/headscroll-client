@@ -19,7 +19,8 @@ class ProfilePage extends Component {
 
     this.state = {   
       postsLoaded: false,
-      modalIsOpen: false
+      modalIsOpen: false,
+      uploadImageError: false
     };
 
     this.fileInput = React.createRef();
@@ -90,18 +91,28 @@ class ProfilePage extends Component {
 
   handleCloseModal = () => {
     this.setState({ modalIsOpen: false });
-  }
+  };
+
+  handleFileSelect = () => {
+    console.log('selecting file!!');
+    this.setState({ uploadImageError: false });
+  };
 
   handleImageUpload = async () => {
     const file = this.fileInput.current.files[0];
-    console.log('Sending image to backend! file name:', file.name);
-    var formData = new FormData();
-    formData.append(`profileImage`, file);
-    await this.props.uploadProfileImage(this.props.friend._id, formData);
-    await this.props.getUserData(this.props.friend._id);
-    await this.props.fetchPosts();
-    await this.props.fetchFriend(this.props.friend._id);
-    this.setState({ modalIsOpen: false });
+    if (file) {
+      console.log('Sending image to backend! file name:', file.name);
+      var formData = new FormData();
+      formData.append(`profileImage`, file);
+      await this.props.uploadProfileImage(this.props.friend._id, formData);
+      await this.props.getUserData(this.props.friend._id);
+      await this.props.fetchPosts();
+      await this.props.fetchFriend(this.props.friend._id);
+      this.setState({ modalIsOpen: false });
+    } else {
+      console.log('Select a file first!!!');
+      this.setState({ uploadImageError: true });
+    }
   }
 
   render() {
@@ -118,6 +129,7 @@ class ProfilePage extends Component {
     };
 
     console.log('-- ProfilePage, props, state', this.props, this.state);
+    console.log('-- ProfilePage, fileInput', this.fileInput.current);
 
     if (this.state.postsLoaded) {
 
@@ -293,9 +305,18 @@ class ProfilePage extends Component {
               id="profileImage" 
               accept="image/*"
               ref={this.fileInput}
+              onChange={this.handleFileSelect}
             />
-            <button onClick={this.handleImageUpload}>Upload Picture</button>
+            <button 
+              onClick={this.handleImageUpload}
+            >
+              Upload Picture
+            </button>
             <button onClick={this.handleCloseModal}>Close</button>
+            {
+              this.state.uploadImageError
+              && <p>Please select an image to upload</p>
+            }
           </Modal>
           
         </div>
