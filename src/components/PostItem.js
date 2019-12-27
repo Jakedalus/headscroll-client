@@ -47,7 +47,7 @@ class PostItem extends Component {
 
     return (
       <div>
-        <li className="list-group-item">
+        <li className="post-item list-group-item">
           <div className="post-heading">
             <img 
               src={avatar}

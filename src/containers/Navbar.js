@@ -20,7 +20,7 @@ class Navbar extends Component {
         <div className="container-fluid">
           <div className="navbar-header">
             <Link to={{pathname: "/", state: { prevPath: this.props.history.location.pathname }}} className="navbar-brand">
-              Home
+              Headscroll
             </Link>
           </div>
 

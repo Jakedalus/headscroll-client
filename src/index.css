@@ -1,7 +1,13 @@
 :root {
   --dark-red: #4A0900;
   --deep-red: #8F0009;
-  --off-white-orange: #EEEBE9;
+  --slate-blue: #005B96;
+
+  --off-white: #FAF6E6;
+  --off-white: #FFFFFD;
+  --light-grey: #D1D2CC;
+  --grey: #858680;
+  --dark-grey: #52534D;
 }
 
 
@@ -13,11 +19,35 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--off-white);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+
+a {
+  font-weight: bold;
+}
+
+
+
+/* NAVBAR STYLES */
+.navbar {
+  background-color: var(--dark-red);
+  margin-bottom: 20px;
+  padding: 15px 35px;
+}
+
+.navbar a, .navbar li {
+  color: var(--off-white);;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.navbar li:hover {
+  text-decoration: underline;
+}
+
+.navbar-header a {
+  font-size: 36px;
 }
 
 /* POST ITEM STYLES */
@@ -42,18 +72,30 @@ code {
   background: var(--dark-red);
   padding: 10px 5px;
   border-radius: 5px 5px 0 0;
+  color: var(--off-white);
+}
+
+.post-heading a {
+  color: var(--off-white);
 }
 
 .btn {
   cursor: pointer;
 }
 
+.post-heading .btn-primary {
+  background-color: var(--slate-blue);
+  border: 1px solid var(--slate-blue);
+}
+
+
+
 .post-heading .btn-danger {
   width: 75px;
   background-color: var(--deep-red);
   border: 1px solid var(--deep-red);
   filter: brightness(135%);
-  color: white;
+  color: var(--off-white);
 }
 
 .btn-blank {
@@ -63,7 +105,7 @@ code {
 }
 
 .list-group-item .timeline-image {
-  background: white;
+  background: var(--off-white);
   padding: 5px;
   border-radius: 5px;
   max-height: 55px;
@@ -73,10 +115,11 @@ code {
 .message-area {
   min-height: 100px;
   padding: 20px;
+  background-color: var(--light-grey);
 }
 
 .post-footer {
-  background-color: gray;
+  background-color: var(--grey);
   padding: 10px 20px;
 }
 
@@ -85,13 +128,18 @@ code {
 
 .panel {
   background-color: var(--dark-red);
-  color: white;
+  color: var(--off-white);
   padding: 10px;
   border-radius: 5px;
 }
 
+.panel a {
+  color: var(--off-white);
+}
+
 .img-thumbnail {
   margin-bottom: 10px;
+  background-color: var(--off-white);
   height: 100%;
   width: 100%;
 }
@@ -111,7 +159,7 @@ code {
   /* justify-content: space-between; */
   margin-bottom: 30px;
   background-color: var(--dark-red);
-  color: white;
+  color: var(--off-white);;
   padding: 10px;
 }
 
@@ -119,7 +167,7 @@ code {
   margin-right: 30px;
   max-height: 150px;
   max-width: 150px;
-  background: white;
+  background: var(--off-white);;
   padding: 5px;
   border-radius: 5px;
 }
