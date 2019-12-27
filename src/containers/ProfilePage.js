@@ -20,7 +20,7 @@ class ProfilePage extends Component {
     this.state = {   
       postsLoaded: false,
       modalIsOpen: false,
-      uploadImageError: false
+      uploadImageError: null
     };
 
     this.fileInput = React.createRef();
@@ -95,23 +95,29 @@ class ProfilePage extends Component {
 
   handleFileSelect = () => {
     console.log('selecting file!!');
-    this.setState({ uploadImageError: false });
+    this.setState({ uploadImageError: null });
   };
 
   handleImageUpload = async () => {
     const file = this.fileInput.current.files[0];
     if (file) {
-      console.log('Sending image to backend! file name:', file.name);
-      var formData = new FormData();
-      formData.append(`profileImage`, file);
-      await this.props.uploadProfileImage(this.props.friend._id, formData);
-      await this.props.getUserData(this.props.friend._id);
-      await this.props.fetchPosts();
-      await this.props.fetchFriend(this.props.friend._id);
-      this.setState({ modalIsOpen: false });
+      if (file.type === 'image/png' || file.type === 'image/jpeg') {
+        console.log('Sending image to backend! file:', file);
+        var formData = new FormData();
+        formData.append(`profileImage`, file);
+        await this.props.uploadProfileImage(this.props.friend._id, formData);
+        await this.props.getUserData(this.props.friend._id);
+        await this.props.fetchPosts();
+        await this.props.fetchFriend(this.props.friend._id);
+        this.setState({ modalIsOpen: false });
+      } else {
+        console.log('Select a file first!!!');
+        this.setState({ uploadImageError: 'Please select a valid image file' });
+      }
+      
     } else {
       console.log('Select a file first!!!');
-      this.setState({ uploadImageError: true });
+      this.setState({ uploadImageError: 'Select a file first' });
     }
   }
 
@@ -315,7 +321,7 @@ class ProfilePage extends Component {
             <button onClick={this.handleCloseModal}>Close</button>
             {
               this.state.uploadImageError
-              && <p>Please select an image to upload</p>
+              && <p>{this.state.uploadImageError}</p>
             }
           </Modal>
           
