@@ -27,6 +27,22 @@ a {
   font-weight: bold;
 }
 
+.btn {
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: var(--slate-blue);
+  border: 1px solid var(--slate-blue);
+}
+
+.btn-danger {
+  /* width: 1px; */
+  background-color: var(--deep-red);
+  border: 1px solid var(--deep-red);
+  filter: brightness(135%);
+  color: var(--off-white);
+}
 
 
 /* NAVBAR STYLES */
@@ -76,25 +92,6 @@ a {
 }
 
 .post-heading a {
-  color: var(--off-white);
-}
-
-.btn {
-  cursor: pointer;
-}
-
-.post-heading .btn-primary {
-  background-color: var(--slate-blue);
-  border: 1px solid var(--slate-blue);
-}
-
-
-
-.post-heading .btn-danger {
-  width: 75px;
-  background-color: var(--deep-red);
-  border: 1px solid var(--deep-red);
-  filter: brightness(135%);
   color: var(--off-white);
 }
 
