@@ -49,23 +49,33 @@ class PostItem extends Component {
       <div>
         <li className="post-item list-group-item">
           <div className="post-heading">
-            <img 
-              src={avatar}
-              alt={username}
-              className="timeline-image"
-            />
-            <Link to={`/users/${user_id}/profile`}>{username}</Link>
-            <span className="text-muted">
-            <Link to={`/users/${user_id}/posts/${post_id}`}>
-              <Moment className="text-muted" format="Do MMM YYYY">
-                {createdAt}
-              </Moment>
-            </Link>
-            </span>
-            {isCorrectUser && <a onClick={this.onClickEditButton} className="btn btn-primary">Edit</a>}
-            {!isCorrectUser && <a className="btn btn-blank">      </a>}
-            {isCorrectUser && <a onClick={removePost} className="btn btn-danger">Delete</a>}
-            {!isCorrectUser && <a className="btn btn-blank">      </a>}
+            <div className="post-heading__label">
+              <img 
+                src={avatar}
+                alt={username}
+                className="timeline-image"
+              />
+              <div className="label__info">
+                <Link to={`/users/${user_id}/profile`}>{username}</Link>
+                <Link to={`/users/${user_id}/posts/${post_id}`}>
+                  <Moment className="date" format="Do MMM YYYY">
+                    {createdAt}
+                  </Moment>
+                </Link>
+              </div>
+            </div>
+            
+            
+
+            <div className="post-item__button-container">
+              {isCorrectUser && <a onClick={this.onClickEditButton} className="btn btn-primary">Edit</a>}
+              {!isCorrectUser && <a className="btn btn-blank">      </a>}
+              {isCorrectUser && <a onClick={removePost} className="btn btn-danger">Delete</a>}
+              {!isCorrectUser && <a className="btn btn-blank">      </a>}
+            </div>
+            
+
+
           </div>
           
           <div className="message-area">

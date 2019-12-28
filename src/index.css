@@ -4,7 +4,7 @@
   --slate-blue: #005B96;
 
   --off-white: #FAF6E6;
-  --off-white: #FFFFFD;
+  --off-white: #FFFFFA;
   --light-grey: #D1D2CC;
   --grey: #858680;
   --dark-grey: #52534D;
@@ -45,6 +45,7 @@ a {
 }
 
 
+
 /* NAVBAR STYLES */
 .navbar {
   background-color: var(--dark-red);
@@ -68,6 +69,10 @@ a {
 
 /* POST ITEM STYLES */
 
+.post-item {
+  max-width: 500px;
+}
+
 .list-group-item {
   display: flex;
   flex-direction: column;
@@ -83,16 +88,38 @@ a {
 
 .post-heading {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   background: var(--dark-red);
-  padding: 10px 5px;
+  padding: 10px 20px;
   border-radius: 5px 5px 0 0;
   color: var(--off-white);
 }
 
+.post-heading__label {
+  display: flex;
+  flex-direction: row;
+  width: 30%;
+}
+
+.label__info {
+  display: flex;
+  flex-direction: column;
+}
+
 .post-heading a {
   color: var(--off-white);
+}
+
+.post-heading .date {
+  color: var(--light-grey);
+  font-size: 12px;
+}
+
+.post-item__button-container {
+  display: flex;
+  justify-content: space-between;
+  width: 140px; 
 }
 
 .btn-blank {
@@ -104,6 +131,7 @@ a {
 .list-group-item .timeline-image {
   background: var(--off-white);
   padding: 5px;
+  margin-right: 7px;
   border-radius: 5px;
   max-height: 55px;
   max-width: 55px
