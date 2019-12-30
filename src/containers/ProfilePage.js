@@ -222,78 +222,77 @@ class ProfilePage extends Component {
       }
 
       return (
-        <div className="container-fluid" id="profile-page">
-          <div className="row justify-content-md-center">
-            <div className="row col-7 profile-header">
+        <div className="profile-page">
+          <div className="profile-header">
+            <div className="profile-header__avatar">
               <img 
                 src={avatar} 
                 alt={username}
-                className="profile-img"
+                className="avatar__profile-img"
               />
               {
                 isYou &&
                 <button
+                  className="btn btn-secondary"
                   type="button"
                   onClick={this.handleClickUploadPhoto}
                 >
                   Upload Profile Image
                 </button>
               }
-              <div className="profile-info justify-content-md-start">
-                <h2>{username}</h2>
-                {
-                  isFriend && 
-                  <div className="">
-                    <p className="">{friends.length} {friends.length == 1 ? 'Friend' : 'Friends'}</p>
-                    <p>{posts.length} {posts.length == 1 ? 'Post' : 'Posts'}</p>
-                  </div>
+            </div>
+            
+            <div className="profile-info justify-content-md-start">
+              <h2>{username}</h2>
+              {
+                isFriend && 
+                <div className="">
+                  <p className="">{friends.length} {friends.length == 1 ? 'Friend' : 'Friends'}</p>
+                  <p>{posts.length} {posts.length == 1 ? 'Post' : 'Posts'}</p>
+                </div>
+              }
+              <p>{email}</p>
+            </div>
+
+            { !isYou // if you aren't on your own ProfilePage
+              ? 
+              <div>
+                { (!isFriend && !youRequestedAlready) && // show Add/Accept friend button unless you have requested them already or you are already friends
+                  <button 
+                    className="btn btn-primary"
+                    onClick={() => this.handleFriendButton('affirmative', isFriend, youRequestedAlready, theyRequestedAlready)}
+                  >
+                    {positiveFriendButtonText}
+                  </button>
                 }
-                <p>{email}</p>
+                
+                { (isFriend || youRequestedAlready || theyRequestedAlready) && // show Cancel/Remove friend button when friends or if you/they already requested
+                  <button 
+                  className="btn btn-danger"
+                    onClick={() => this.handleFriendButton('negative', isFriend, youRequestedAlready, theyRequestedAlready)}
+                  >
+                    {negativeFriendButtonText}
+                  </button>
+                }
               </div>
 
-              { !isYou // if you aren't on your own ProfilePage
-                ? 
-                <div>
-                  { (!isFriend && !youRequestedAlready) && // show Add/Accept friend button unless you have requested them already or you are already friends
-                    <button 
-                      className="btn btn-primary"
-                      onClick={() => this.handleFriendButton('affirmative', isFriend, youRequestedAlready, theyRequestedAlready)}
-                    >
-                      {positiveFriendButtonText}
-                    </button>
-                  }
-                  
-                  { (isFriend || youRequestedAlready || theyRequestedAlready) && // show Cancel/Remove friend button when friends or if you/they already requested
-                    <button 
-                    className="btn btn-danger"
-                      onClick={() => this.handleFriendButton('negative', isFriend, youRequestedAlready, theyRequestedAlready)}
-                    >
-                      {negativeFriendButtonText}
-                    </button>
-                  }
-                </div>
-
-                : <div></div>
-              }
-            </div>
+              : <div></div>
+            }
           </div>
+
           
           <h4>Posts</h4>
-          <div className="row justify-content-md-center">
-            <div className="col-7">
-              <ul className="list-group" id="posts">
-                {postList}
-              </ul>
-            </div>
+          <div className="profile-page__post-list">
+            <ul className="list-group" id="posts">
+              {postList}
+            </ul>
           </div>
           
           <h4>Friends</h4>
-          <div className="row justify-content-md-center" id="friend-list">
-            <div className="col-7">
-              <ul className="list-group row" id="friends">
-                {friendList}
-              </ul>
-            </div>
+          <div className="profile-page__friend_list">
+            <ul className="list-group row" id="friends">
+              {friendList}
+            </ul>
           </div>
 
           <Modal
