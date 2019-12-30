@@ -1,6 +1,6 @@
 :root {
   --dark-red: #4A0900;
-  --deep-red: #8F0009;
+  --deep-red: #C20009;
   --slate-blue: #005B96;
 
   --off-white: #FAF6E6;
@@ -25,10 +25,17 @@ body {
 
 a {
   font-weight: bold;
+  text-decoration: none;
 }
 
 .btn {
   cursor: pointer;
+  padding: 10px;
+  border-radius: 3px;
+}
+
+.btn:hover {
+  filter: brightness(135%);
 }
 
 .btn-primary {
@@ -40,9 +47,9 @@ a {
   /* width: 1px; */
   background-color: var(--deep-red);
   border: 1px solid var(--deep-red);
-  filter: brightness(135%);
   color: var(--off-white);
 }
+
 
 
 
@@ -78,24 +85,66 @@ a {
   font-size: 36px;
 }
 
+/* SCROLL STYLES */
+.scroll {
+  display: flex;
+  padding: 20px;
+}
+
+/* USER ASIDE STYLES */
+
+.user-aside {
+  display: flex;
+  flex-direction: column;
+  /* width: 15%; */
+  flex-basis: 1;
+  height: 300px;
+  background-color: var(--dark-red);
+  color: var(--off-white);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.user-aside a {
+  color: var(--off-white);
+}
+
+.user-aside .img-thumbnail {
+  margin-bottom: 10px;
+  background-color: var(--off-white);
+  border: 5px solid var(--off-white);
+  border-radius: 5px;
+  max-height: 200px;
+  max-width: 200px;
+}
+
+.user-aside__body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* POST LIST STYLES */
+
+.post-list {
+  margin-left: 12%;
+}
+
 /* POST ITEM STYLES */
 
 .post-item {
-  max-width: 500px;
+  width: 500px;
 }
 
-.list-group-item {
+.post-item {
   display: flex;
   flex-direction: column;
   border: none;
   background: var(--off-white-orange);
   box-shadow: 0 0 2px gray;
   padding: 0;
-}
-
-.list-group-item:last-child {
   margin-bottom: 10px;
 }
+
 
 .post-heading {
   display: flex;
@@ -139,7 +188,7 @@ a {
   cursor: auto;
 }
 
-.list-group-item .timeline-image {
+.post-item .timeline-image {
   background: var(--off-white);
   padding: 5px;
   margin-right: 7px;
@@ -157,32 +206,6 @@ a {
 .post-footer {
   background-color: var(--grey);
   padding: 10px 20px;
-}
-
-
-/* USER ASIDE STYLES */
-
-.panel {
-  background-color: var(--dark-red);
-  color: var(--off-white);
-  padding: 10px;
-  border-radius: 5px;
-}
-
-.panel a {
-  color: var(--off-white);
-}
-
-.img-thumbnail {
-  margin-bottom: 10px;
-  background-color: var(--off-white);
-  height: 100%;
-  width: 100%;
-}
-
-.panel-body {
-  display: flex;
-  flex-direction: column;
 }
 
 /* PROFILE PAGE */

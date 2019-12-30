@@ -47,7 +47,7 @@ class PostItem extends Component {
 
     return (
       <div>
-        <li className="post-item list-group-item">
+        <li className="post-item">
           <div className="post-heading">
             <div className="post-heading__label">
               <img 

@@ -5,7 +5,7 @@ import UserAside from './UserAside';
 const Scroll = props => {
   console.log('Scroll, props', props);
   return (
-    <div className="row">
+    <div className="scroll">
       <UserAside
         profileImage={props.profileImage}
         username={props.username}

@@ -17,9 +17,8 @@ const UserAside = props => {
   console.log('UserAside, avatar:', avatar);
   
   return (
-  <aside className="col-sm-2">
-    <div className="panel panel-default">
-      <div className="panel-body">
+  <aside className="user-aside">
+      <div className="user-aside__body">
         <img 
           src={avatar} 
           alt={username}
@@ -38,7 +37,6 @@ const UserAside = props => {
           </div>
         }
       </div>
-    </div>
   </aside>
 )};
 
