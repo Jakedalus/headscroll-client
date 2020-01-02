@@ -3,6 +3,7 @@ import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import jwtDecode from 'jwt-decode';
 
+import UserAside from '../components/UserAside';
 import Homepage from '../components/Homepage';
 import ProfilePage from './ProfilePage';
 import AuthForm from '../components/AuthForm';
@@ -58,7 +59,14 @@ const Main = props => {
   console.log('Main, currentUser:', currentUser);
 
   return (
-    <div className="container">
+    <div className="main-page">
+      <UserAside
+        profileImage={currentUser.user.profileImage}
+        username={currentUser.user.username}
+        friends={currentUser.user.friends}
+        requests={currentUser.user.requests}
+        id={currentUser.user.id}
+      />
       <Switch>
         <Route 
           exact path='/' 

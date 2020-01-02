@@ -10,17 +10,15 @@ const FriendCard = ({ id, profileImage, username, email, friends }) => {
   const avatar = profileImage && profileImage.data ? convertImageDataToUrl(profileImage.data) : DefaultProfileImage;
 
   return (
-    <div className="panel panel-default friend-card">
-      <div className="panel-body">
-        <img 
-          src={avatar} 
-          alt={username}
-          className="img-thumbnail"
-        />
-        <div className="sub-panel-body">
-          <Link to={{pathname: `/users/${id}/profile`, state: 'someState'}}>{username}</Link>
-          <p>{email}</p>
-        </div>
+    <div className="friend-card">
+      <img 
+        src={avatar} 
+        alt={username}
+        className="img-thumbnail"
+      />
+      <div className="sub-panel-body">
+        <Link to={{pathname: `/users/${id}/profile`, state: 'someState'}}>{username}</Link>
+        <p>{email}</p>
       </div>
     </div>
   );

@@ -6,13 +6,13 @@ const Scroll = props => {
   console.log('Scroll, props', props);
   return (
     <div className="scroll">
-      <UserAside
+      {/* <UserAside
         profileImage={props.profileImage}
         username={props.username}
         friends={props.friends}
         requests={props.requests}
         id={props.id}
-      />
+      /> */}
       <PostList />
     </div>
   );

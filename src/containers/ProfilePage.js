@@ -210,7 +210,6 @@ class ProfilePage extends Component {
         
         friendList = friends.map(friend => (
           <FriendCard
-            // profileImage={props.profileImage}
             username={friend.username}
             email={friend.email}
             id={friend._id}
@@ -242,12 +241,12 @@ class ProfilePage extends Component {
               }
             </div>
             
-            <div className="profile-info justify-content-md-start">
+            <div className="profile-info">
               <h2>{username}</h2>
               {
                 isFriend && 
-                <div className="">
-                  <p className="">{friends.length} {friends.length == 1 ? 'Friend' : 'Friends'}</p>
+                <div className="profile-info__data">
+                  <p>{friends.length} {friends.length == 1 ? 'Friend' : 'Friends'}</p>
                   <p>{posts.length} {posts.length == 1 ? 'Post' : 'Posts'}</p>
                 </div>
               }
@@ -283,16 +282,12 @@ class ProfilePage extends Component {
           
           <h4>Posts</h4>
           <div className="profile-page__post-list">
-            <ul className="list-group" id="posts">
-              {postList}
-            </ul>
+            {postList}
           </div>
           
           <h4>Friends</h4>
           <div className="profile-page__friend_list">
-            <ul className="list-group row" id="friends">
-              {friendList}
-            </ul>
+            {friendList}
           </div>
 
           <Modal
