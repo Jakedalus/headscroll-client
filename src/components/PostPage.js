@@ -6,7 +6,6 @@ import { fetchPosts, editPost, removePost } from '../store/actions/posts';
 import { fetchComments } from '../store/actions/comments';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
-import DefaultProfileImage from '../images/default-profile-image.png';
 import { convertImageDataToUrl } from '../services/utilities';
 import PostItem from '../components/PostItem';
 import CommentForm from '../containers/CommentForm';
@@ -93,7 +92,7 @@ class PostPage extends Component {
       console.log('PostPage, user_id, post_id:', user_id, post_id);
 
       return (
-        <div>
+        <div className="post-page">
           <PostItem
             key={post_id}
             post_id={post_id}
@@ -107,35 +106,14 @@ class PostPage extends Component {
             editPost={this.props.editPost.bind(this, user_id, post_id)}
             isCorrectUser={this.props.currentUser === user_id}
           />
-          {/* <div className="post-heading">
-            <img 
-              src={avatar || DefaultProfileImage}
-              alt={username}
-              className="profile-img"
-            />
-            <Link to={`/users/${user_id}/profile`}>{username}</Link>
-            <span className="text-muted">
-            <Link to={`/users/${user_id}/posts/${post_id}`}>
-              <Moment className="text-muted" format="Do MMM YYYY">
-                {createdAt}
-              </Moment>
-            </Link>
-            </span>
-            {isCorrectUser && <a onClick={removePost} className="btn btn-danger">Delete</a>}
-            {!isCorrectUser && <a onClick={removePost} className="btn btn-blank">      </a>}
-          </div>
-          
-          <div className="message-area">
-            <p>{text}</p>
-          </div> */}
 
-          <div className="post-footer">
+          <div className="post-page__footer post-footer">
             <CommentForm 
               post={post._id}
             />
-            <ul>
+            <div className="comment-list">
               {commentList}
-            </ul>
+            </div>
           </div>
         </div>
       );

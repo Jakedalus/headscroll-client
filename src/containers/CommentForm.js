@@ -28,7 +28,7 @@ class CommentForm extends Component {
   render() {
     console.log('CommentForm, props', this.props);
     return (
-      <form onSubmit={this.handleNewComment}>
+      <form className="comment-form" onSubmit={this.handleNewComment}>
         {this.props.errors.message && (
           <div className="alert alert-danger">
             {this.props.errors.message}
@@ -36,12 +36,12 @@ class CommentForm extends Component {
         )}
         <input 
           type="text" 
-          className="form-control"
+          className="comment-form__input"
           name="comment"
           onChange={this.handleChange}
           value={this.state.comment}
         />
-        <button className="btn btn-success pull-right" type="submit">
+        <button className="btn btn-primary" type="submit">
           Submit Comment
         </button>
       </form>

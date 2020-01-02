@@ -40,6 +40,8 @@ a:hover {
   cursor: pointer;
   padding: 10px;
   border-radius: 3px;
+  font-size: 14px;
+  color: var(--off-white);
 }
 
 .btn:hover {
@@ -50,6 +52,12 @@ a:hover {
 .btn-primary {
   background-color: var(--slate-blue);
   border: 1px solid var(--slate-blue);
+  color: var(--off-white);
+}
+
+.btn-secondary {
+  background-color: var(--dark-grey);
+  border: 1px solid var(--dark-grey);
 }
 
 .btn-danger {
@@ -59,7 +67,20 @@ a:hover {
   color: var(--off-white);
 }
 
+input {
+  border-radius: 5px;
+  border: none;
+  padding: 5px;
+}
 
+.timeline-image {
+  background: var(--off-white);
+  padding: 5px;
+  margin-right: 7px;
+  border-radius: 5px;
+  max-height: 55px;
+  max-width: 55px
+}
 
 
 /* NAVBAR STYLES */
@@ -141,9 +162,9 @@ a:hover {
 
 /* POST LIST STYLES */
 
-.post-list {
-  /* margin-left: 22%; */
-}
+/* .post-list {
+  margin-left: 22%;
+} */
 
 /* POST ITEM STYLES */
 
@@ -302,7 +323,6 @@ a:hover {
 }
 
 /* FRIEND CARD STYLES */
-
 .friend-card {
   display: flex;
   flex-direction: row;
@@ -314,15 +334,13 @@ a:hover {
   border-radius: 5px;
 }
 
-
-
 .friend-card .sub-panel-body {
   margin-left: 20px;
 }
 
-.friend-card .sub-panel-body a {
-  /* color: var(--light-grey); */
-}
+/* .friend-card .sub-panel-body a {
+  color: var(--light-grey);
+} */
 
 .friend-card .img-thumbnail {
   max-width: 100px;
@@ -332,9 +350,76 @@ a:hover {
 }
 
 
+/* POST PAGE STYLES */
+.post-page {
+  display: flex;
+  flex-direction: column;
+  margin-left: 15%;
+}
+
+.post-page .post-item {
+  margin-bottom: 0;
+}
+
+.post-page__footer {
+  width: 500px;
+}
+
+.comment-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.comment-form__input {
+  width: 66%;
+  height: 30px;
+  margin-right: 10px;
+}
+
+
+
+/* COMMENT ITEM STYLES */
+.comment-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--light-grey);
+  padding: 7px 10px;
+  margin: 7px 0;
+  border-radius: 5px;
+}
+
+.comment-item .timeline-image {
+  align-self: flex-start;
+}
+
+.comment-item__body {
+  display: flex;
+  align-items: center;
+  width: 70%;
+}
+
+.comment-item__username {
+  color: var(--dark-red);
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.comment-item__text {
+  align-self: flex-start;
+  
+}
+
+.comment-item__buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 30%;
+}
 
 /* SEARCH PAGE STYLES */
-
 #search-page {
   display: flex;
   flex-direction: column;

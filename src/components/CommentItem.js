@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect} from 'react-redux';
 import { editComment, removeComment } from '../store/actions/comments';
+import DefaultProfileImage from '../images/default-profile-image.png';
+import { convertImageDataToUrl } from '../services/utilities';
 
 class CommentItem extends Component {
   constructor(props) {
@@ -42,13 +44,34 @@ class CommentItem extends Component {
 
     let { createdAt, text, updatedAt, user, _id } = this.props.comment;
 
+    let { profileImage, username } = user;
+
+    const avatar = profileImage && profileImage.data 
+        ? convertImageDataToUrl(profileImage.data) 
+        : DefaultProfileImage;
+
     return (
-      <li key={_id}>
+      <div className="comment-item" key={_id}>
 
         {
           !this.state.editingComment
-          && <p>{user.username}: {text}</p>
+          && 
+          <div className="comment-item__body">
+            <img 
+              src={avatar}
+              alt={username}
+              className="timeline-image"
+            />
+              
+            <div className="comment-item__text">
+              <span className="comment-item__username">{username}</span>
+              {text}
+            </div>
+            
+          </div>
         }
+
+
 
         {
           this.state.editingComment
@@ -75,10 +98,10 @@ class CommentItem extends Component {
         {
           this.props.currentUser === user._id 
           && 
-          <div>
+          <div className="comment-item__buttons">
             <a 
               onClick={this.onClickEditButton} 
-              className="btn btn-success"
+              className="btn btn-primary"
             >
               Edit
             </a>
@@ -91,7 +114,7 @@ class CommentItem extends Component {
           </div>
           
         }
-      </li>
+      </div>
     )
   }
 }
