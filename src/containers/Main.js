@@ -60,13 +60,15 @@ const Main = props => {
 
   return (
     <div className="main-page">
-      <UserAside
-        profileImage={currentUser.user.profileImage}
-        username={currentUser.user.username}
-        friends={currentUser.user.friends}
-        requests={currentUser.user.requests}
-        id={currentUser.user.id}
-      />
+      { currentUser.isAuthenticated &&
+        <UserAside
+          profileImage={currentUser.user.profileImage}
+          username={currentUser.user.username}
+          friends={currentUser.user.friends}
+          requests={currentUser.user.requests}
+          id={currentUser.user.id}
+        />
+      }
       <Switch>
         <Route 
           exact path='/' 

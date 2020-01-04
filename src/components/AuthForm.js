@@ -72,75 +72,75 @@ export default class AuthForm extends Component {
     // console.log('AuthForm:', this.state, this.props);
 
     return (
-      <div>
-        <div className="row justify-content-md-center text-center">
-          <div className="col-md-6">
-            <form onSubmit={this.handleSubmit} enctype="multipart/form-data">
-              <h2>{heading}</h2>
+      <div className="container">
+        <form className="auth-form" onSubmit={this.handleSubmit} enctype="multipart/form-data">
+          <h2>{heading}</h2>
 
-              {errors.message && <div className="alert alert-danger">{errors.message}</div>}
+          {errors.message && <div className="alert alert-danger">{errors.message}</div>}
 
-              <label htmlFor="email">Email</label>
-              <input 
-                type="text" 
-                className="form-control"
-                id="email"
-                name="email"
-                onChange={this.handleChange}
-                value={email}
-              />
-
-              <label htmlFor="password">Password</label>
-              <input 
-                type="password" 
-                className="form-control"
-                id="password"
-                name="password"
-                onChange={this.handleChange}
-                value={password}
-              />
-
-              {
-                signUp && (
-                <div>
-                  <label htmlFor="username">Username</label>
-                  <input 
-                    type="text" 
-                    className="form-control"
-                    id="username"
-                    name="username"
-                    onChange={this.handleChange}
-                    value={username}
-                  />
-
-                  <label htmlFor="profileImage">Profile Image URL</label>
-                  <input 
-                    type="file" 
-                    className="form-control"
-                    name="profileImage" 
-                    id="profileImage" 
-                    accept="image/*"
-                    ref={this.fileInput}
-                  />
-                  {/* <input 
-                    type="text" 
-                    className="form-control"
-                    id="profileImage"
-                    name="profileImage"
-                    onChange={this.handleChange}
-                    value={profileImage}
-                  /> */}
-                </div>
-                )
-              }
-
-              <button type="submit" className="btn btn-primary btn-block btn-lg">
-                {buttonText}
-              </button>
-
-            </form>
+          <div className="auth-form__input">
+            <label htmlFor="email">Email</label>
+            <input 
+              type="text" 
+              className="form-control"
+              id="email"
+              name="email"
+              onChange={this.handleChange}
+              value={email}
+            />
           </div>
-        </div>
+
+          <div className="auth-form__input">
+            <label htmlFor="password">Password</label>
+            <input 
+              type="password" 
+              className="form-control"
+              id="password"
+              name="password"
+              onChange={this.handleChange}
+              value={password}
+            />
+          </div>
+
+          {
+            signUp && (
+              <div className="auth-form__input">
+                <label htmlFor="username">Username</label>
+                <input 
+                  type="text" 
+                  className="form-control"
+                  id="username"
+                  name="username"
+                  onChange={this.handleChange}
+                  value={username}
+                />
+              </div>
+            )
+          } 
+          {
+            signUp && (
+              <div className="auth-form__input">
+                <label htmlFor="profileImage">Upload a Profile Image</label>
+                <input 
+                  type="file" 
+                  className="form-control"
+                  name="profileImage" 
+                  id="profileImage" 
+                  accept="image/*"
+                  ref={this.fileInput}
+                />
+              </div>
+            )
+          }
+
+          
+ 
+
+          <button type="submit" className="btn btn-primary btn-lg">
+            {buttonText}
+          </button>
+
+        </form>
       </div>
     );
   }

@@ -9,7 +9,7 @@ const Homepage = ({currentUser}) => {
       <div className="home-hero">
         <h1>Welcome to Headscroll!</h1>
         <h4>Get scrolling</h4>
-        <Link to='/signup' className='btn btn-primary'>Sing Up Here</Link>
+        <Link to='/signup' className='btn btn-primary'>Sign Up Here</Link>
       </div>
     );
   }
