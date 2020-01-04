@@ -294,10 +294,11 @@ class ProfilePage extends Component {
             isOpen={this.state.modalIsOpen}
             // onAfterOpen={afterOpenModal}
             onRequestClose={this.handleCloseModal}
-            style={customStyles}
+            // style={customStyles}
             contentLabel="Choose Profile Image Modal"
+            className="upload-image-modal"
           >
-            <label htmlFor="profileImage">Profile Image URL</label>
+            <label htmlFor="profileImage">Choose an Image to Upload</label>
             <input 
               type="file" 
               className="form-control"
@@ -306,13 +307,20 @@ class ProfilePage extends Component {
               accept="image/*"
               ref={this.fileInput}
               onChange={this.handleFileSelect}
+              // className="btn btn-secondary"
             />
             <button 
+              className="btn btn-primary"
               onClick={this.handleImageUpload}
             >
               Upload Picture
             </button>
-            <button onClick={this.handleCloseModal}>Close</button>
+            <button 
+              className="btn btn-danger"
+              onClick={this.handleCloseModal}
+            >
+              Close
+            </button>
             {
               this.state.uploadImageError
               && <p>{this.state.uploadImageError}</p>
