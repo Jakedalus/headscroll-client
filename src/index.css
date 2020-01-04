@@ -67,11 +67,12 @@ a:hover {
   color: var(--off-white);
 }
 
-input {
+input, textarea {
   border-radius: 5px;
   border: none;
   padding: 7px;
 }
+
 
 .timeline-image {
   background: var(--off-white);
@@ -437,21 +438,41 @@ input {
   padding: 10px;
   margin-bottom: 25px;
   border-radius: 5px;
-  background-color: var(--grey);
+  background-color: var(--dark-grey);
+}
+
+.search-form label {
+  color: var(--off-white);
 }
 
 .search-form input {
   width: 50%;
 }
 
-#search-page .panel {
-  width: 300px;
+/* NEW POST FORM */
+.new-post-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
 }
 
-#search-page form {
+.post-form {
   display: flex;
   justify-content: space-around;
-  width: 80%;
-  /* margin: 0 auto; */
-  margin-bottom: 30px;
+  align-items: center;
+  width: 500px;
+  height: 120px;
+  padding: 10px;
+  margin: 0 auto;
+  background-color: var(--dark-grey);
+}
+
+.post-form label {
+  color: var(--off-white);
+}
+
+.post-form textarea {
+  width: 50%;
+  font-size: 14px;
 }

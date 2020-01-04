@@ -30,23 +30,28 @@ class PostForm extends Component {
   render() {
     console.log('PostForm, props', this.props);
     return (
-      <form onSubmit={this.handleNewPost}>
-        {this.props.errors.message && (
-          <div className="alert alert-danger">
-            {this.props.errors.message}
-          </div>
-        )}
-        <input 
-          type="text" 
-          className="form-control"
-          name="post"
-          onChange={this.handleChange}
-          value={this.state.post}
-        />
-        <button className="btn btn-success pull-right" type="submit">
-          Submit Post
-        </button>
-      </form>
+      <div className="new-post-page">
+        <form className="post-form" onSubmit={this.handleNewPost}>
+          {this.props.errors.message && (
+            <div className="alert alert-danger">
+              {this.props.errors.message}
+            </div>
+          )}
+          <label htmlFor="post">Create new post:</label>
+          <textarea 
+            type="text" 
+            id="post"
+            name="post"
+            rows="5"
+            onChange={this.handleChange}
+            value={this.state.post}
+          />
+          <button className="btn btn-primary" type="submit">
+            Submit Post
+          </button>
+        </form>
+      </div>
+      
     );
   }
 }
