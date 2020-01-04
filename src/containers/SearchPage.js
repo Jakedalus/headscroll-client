@@ -40,9 +40,8 @@ class SearchPage extends Component {
 
     if (this.state.friendLoaded) {
       return (
-        <div className="container-fluid" id="search-page">
-
-            <form onSubmit={this.handleSearch}>
+        <div className="search-page">
+            <form className="search-form" onSubmit={this.handleSearch}>
               <label htmlFor="query">Find friend:</label>
               <input 
                 type="text" 
@@ -51,8 +50,7 @@ class SearchPage extends Component {
                 value={this.state.query}
                 onChange={this.handleChange}
               />
-              <button type="submit">Search</button>
-              
+              <button className="btn btn-primary" type="submit">Search</button>
             </form>
 
             {this.props.errors && this.props.errors.message}
