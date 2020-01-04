@@ -255,7 +255,7 @@ class ProfilePage extends Component {
 
             { !isYou // if you aren't on your own ProfilePage
               ? 
-              <div>
+              <div className="profile-header__friend-buttons">
                 { (!isFriend && !youRequestedAlready) && // show Add/Accept friend button unless you have requested them already or you are already friends
                   <button 
                     className="btn btn-primary"

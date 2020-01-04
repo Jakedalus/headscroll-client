@@ -104,7 +104,7 @@ class PostItem extends Component {
         </div>
 
         <div className="post-footer">
-          {comments.length} Comments
+          <p><span>{comments.length}</span> Comments</p>
         </div>
       </div>
     )

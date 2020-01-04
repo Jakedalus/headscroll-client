@@ -25,7 +25,6 @@ body {
   background-color: var(--off-white);
 }
 
-
 a {
   font-weight: bold;
   text-decoration: none;
@@ -34,6 +33,10 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+
+img {
+  object-fit: cover;
 }
 
 .btn {
@@ -136,7 +139,7 @@ input, textarea {
   flex-direction: column;
   /* width: 15%; */
   flex-basis: 1;
-  height: 300px;
+  height: 100%;
   background-color: var(--dark-red);
   color: var(--off-white);
   padding: 10px;
@@ -180,7 +183,7 @@ input, textarea {
   background: var(--off-white-orange);
   box-shadow: 0 0 2px gray;
   padding: 0;
-  margin-bottom: 10px;
+  margin-bottom: 25px;
 }
 
 
@@ -246,6 +249,10 @@ input, textarea {
   padding: 10px 20px;
 }
 
+.post-footer p {
+  margin: 0;
+}
+
 /* PROFILE PAGE */
 .profile-page {
   display: flex;
@@ -276,6 +283,17 @@ input, textarea {
 .profile-header__avatar .btn {
   font-size: 9px;
   margin: 0;
+}
+
+.profile-header__friend-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: auto;
+}
+
+.profile-header__friend-buttons button {
+  margin-bottom: 10px;
 }
 
 .avatar__profile-img {
