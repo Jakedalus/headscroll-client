@@ -100,6 +100,43 @@ input, textarea {
   margin: auto;
 }
 
+/* ANIMATIONS */
+@keyframes slidedown {
+  from {
+    transform: translateY(-15%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+.slide-down-animation {
+  animation-name: slidedown;
+  animation-duration: .3s;
+  animation-timing-function: cubic-bezier(0.895, 0.03, 0.685, 0.22);
+}
+
+.example-enter {
+  opacity: 0.01;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.example-leave {
+  opacity: 1;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}
+
 /* HOME HERO STYLES */
 .home-hero {
   display: flex;
@@ -222,11 +259,6 @@ input, textarea {
 } */
 
 /* POST ITEM STYLES */
-
-.post-item {
-  width: 500px;
-}
-
 .post-item {
   display: flex;
   flex-direction: column;
@@ -235,6 +267,8 @@ input, textarea {
   box-shadow: 0 0 2px gray;
   padding: 0;
   margin-bottom: 25px;
+  width: 500px;
+  
 }
 
 

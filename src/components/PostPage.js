@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { connect} from 'react-redux';
 import { getPost } from '../store/actions/posts';
 import { fetchFriend } from '../store/actions/friend';
@@ -112,7 +113,15 @@ class PostPage extends Component {
               post={post._id}
             />
             <div className="comment-list">
+            <ReactCSSTransitionGroup
+              transitionName="example"
+              transitionEnterTimeout={500}
+              transitionLeaveTimeout={300}
+            >
+
               {commentList}
+            </ReactCSSTransitionGroup>
+
             </div>
           </div>
         </div>
