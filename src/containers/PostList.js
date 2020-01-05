@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect} from 'react-redux';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { fetchPosts, editPost, removePost } from '../store/actions/posts';
 import PostItem from '../components/PostItem';
 
@@ -46,7 +47,13 @@ class PostList extends Component {
 
       return (
         <div className="post-list">
-          {postList}
+          <ReactCSSTransitionGroup
+            transitionName="new-element"
+            transitionEnterTimeout={500}
+            transitionLeaveTimeout={300}
+          >
+            {postList}
+          </ReactCSSTransitionGroup>
         </div>
       );
     } else {

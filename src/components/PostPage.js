@@ -114,11 +114,10 @@ class PostPage extends Component {
             />
             <div className="comment-list">
             <ReactCSSTransitionGroup
-              transitionName="example"
+              transitionName="new-element"
               transitionEnterTimeout={500}
               transitionLeaveTimeout={300}
             >
-
               {commentList}
             </ReactCSSTransitionGroup>
 

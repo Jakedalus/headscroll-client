@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { postNewPost } from '../store/actions/posts';
+import { postNewPost, fetchPosts } from '../store/actions/posts';
 
 
 class PostForm extends Component {
@@ -17,14 +17,15 @@ class PostForm extends Component {
     });
   };
 
-  handleNewPost = e => {
+  handleNewPost = async e => {
     e.preventDefault();
-    this.props.postNewPost(this.state.post);
+    await this.props.postNewPost(this.state.post);
     this.setState({ post: '' });
-    this.props.history.push({
-      pathname: "/", 
-      state: { prevPath: this.props.history.location.pathname }
-    });
+    await this.props.fetchPosts();
+    // this.props.history.push({
+    //   pathname: "/", 
+    //   state: { prevPath: this.props.history.location.pathname }
+    // });
   }
 
   render() {
@@ -37,15 +38,18 @@ class PostForm extends Component {
               {this.props.errors.message}
             </div>
           )}
-          <label htmlFor="post">Create new post:</label>
-          <textarea 
-            type="text" 
-            id="post"
-            name="post"
-            rows="5"
-            onChange={this.handleChange}
-            value={this.state.post}
-          />
+
+            <label htmlFor="post">Create a new post:</label>
+            <textarea 
+              type="text" 
+              id="post"
+              name="post"
+              rows="5"
+              placeholder={`What's in your head, ${this.props.username}?`}
+              onChange={this.handleChange}
+              value={this.state.post}
+            />
+
           <button className="btn btn-primary" type="submit">
             Submit Post
           </button>
@@ -62,4 +66,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { postNewPost })(PostForm);
+export default connect(mapStateToProps, { postNewPost, fetchPosts })(PostForm);

@@ -31,9 +31,9 @@ class Navbar extends Component {
               <li>
                 <Link to={`/api/search`}>Search</Link>
               </li>
-              <li>
+              {/* <li>
                 <Link to={`/users/${this.props.currentUser.user.id}/posts/new`}>New Post</Link>
-              </li>
+              </li> */}
               <li>
                 <a onClick={this.logout}>Logout</a>
               </li>
