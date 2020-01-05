@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { connect} from 'react-redux';
+import { connect } from 'react-redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { fetchPosts, editPost, removePost } from '../store/actions/posts';
 import PostItem from '../components/PostItem';
+import LoadingAnimation from '../components/LoadingAnimation';
 
 class PostList extends Component {
 
@@ -59,7 +60,7 @@ class PostList extends Component {
     } else {
       return (
         <div>
-          loading scroll...
+          <LoadingAnimation />
         </div>
       )
     } 

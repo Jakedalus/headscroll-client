@@ -11,6 +11,7 @@ import { convertImageDataToUrl } from '../services/utilities';
 import PostItem from '../components/PostItem';
 import CommentForm from '../containers/CommentForm';
 import CommentItem from './CommentItem';
+import LoadingAnimation from './LoadingAnimation';
 
 class PostPage extends Component {
   constructor(props) {
@@ -127,8 +128,8 @@ class PostPage extends Component {
       );
     } else {
       return (
-        <div>
-          loading post...
+        <div className="loading-animation-container">
+          <LoadingAnimation />
         </div>
       )
     }

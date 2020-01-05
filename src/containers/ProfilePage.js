@@ -7,6 +7,7 @@ import { fetchPosts, editPost, removePost } from '../store/actions/posts';
 import { fetchFriend, startAddFriend, startRemoveFriend } from '../store/actions/friend';
 import PostItem from '../components/PostItem';
 import FriendCard from '../components/FriendCard';
+import LoadingAnimation from '../components/LoadingAnimation';
 import DefaultProfileImage from '../images/default-profile-image.png';
 import { convertImageDataToUrl } from '../services/utilities';
 
@@ -280,12 +281,12 @@ class ProfilePage extends Component {
           </div>
 
           
-          <h4>Posts</h4>
+          {(isFriend && postList.length > 0) && <h4>Posts</h4>}
           <div className="profile-page__post-list">
             {postList}
           </div>
           
-          <h4>Friends</h4>
+          {(isFriend && friendList.length > 0) && <h4>Friends</h4>}
           <div className="profile-page__friend_list">
             {friendList}
           </div>
@@ -331,8 +332,8 @@ class ProfilePage extends Component {
       );
     } else {
       return (
-        <div>
-          loading profile...
+        <div className="loading-animation-container">
+          <LoadingAnimation />
         </div>
       )
     }
