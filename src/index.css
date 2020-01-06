@@ -100,6 +100,25 @@ input, textarea {
   margin: auto;
 }
 
+
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--light-grey);
+  color: black;
+  padding: 20px;
+  border-radius: 5px;
+  outline: none;
+}
+
 /* ANIMATIONS */
 @keyframes slidedown {
   from {
@@ -438,24 +457,6 @@ input, textarea {
   margin-left: 0;
 }
 
-.upload-image-modal {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  right: auto;
-  bottom: auto;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
-  background-color: var(--dark-grey);
-  color: var(--off-white);
-  padding: 20px;
-  border-radius: 5px;
-  outline: none;
-}
-
 .upload-image-modal button {
   margin-right: 10px;
 }
@@ -617,6 +618,18 @@ input, textarea {
 .post-form textarea {
   width: 100%;
   font-size: 14px;
+}
+
+/* DELETE CONFIRMATION MODAL */
+.delete-confirmation-modal {
+  display: flex;
+  flex-direction: column;
+}
+
+.delete-confirmation-modal__buttons {
+  display: flex;
+  justify-content: space-around;
+  width: 60%;
 }
 
 /* LOADING ANIMATION */

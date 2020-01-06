@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 import DefaultProfileImage from '../images/default-profile-image.png';
+import DeleteConfirmationModal from './DeleteConfirmationModal';
 import { convertImageDataToUrl } from '../services/utilities';
 
 class PostItem extends Component {
@@ -11,7 +12,8 @@ class PostItem extends Component {
 
     this.state = {
       post: this.props.text,
-      editingPost: false
+      editingPost: false,
+      modalIsOpen: false
     };
   }
 
@@ -31,6 +33,14 @@ class PostItem extends Component {
     this.props.editPost({text: this.state.post});
     this.setState({ editingPost: false });
   };
+
+  handleDeleteButtonClicked = () => {
+    this.setState({ modalIsOpen: true });
+  };
+
+  handleCloseDeleteModal = () => {
+    this.setState({ modalIsOpen: false });
+  }
 
   render () {
 
@@ -68,7 +78,7 @@ class PostItem extends Component {
           <div className="post-item__button-container">
             {isCorrectUser && <a onClick={this.onClickEditButton} className="btn btn-primary">Edit</a>}
             {!isCorrectUser && <a className="btn btn-blank">      </a>}
-            {isCorrectUser && <a onClick={removePost} className="btn btn-danger">Delete</a>}
+            {isCorrectUser && <a onClick={this.handleDeleteButtonClicked} className="btn btn-danger">Delete</a>}
             {!isCorrectUser && <a className="btn btn-blank">      </a>}
           </div>
           
@@ -117,6 +127,13 @@ class PostItem extends Component {
         <div className="post-footer">
           <p><span>{comments.length}</span> Comments</p>
         </div>
+
+        <DeleteConfirmationModal 
+          modalIsOpen={this.state.modalIsOpen} 
+          handleCloseDeleteModal={this.handleCloseDeleteModal}
+          removePost={removePost}
+        />
+
       </div>
     )
   }

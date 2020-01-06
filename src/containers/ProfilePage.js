@@ -297,7 +297,7 @@ class ProfilePage extends Component {
             onRequestClose={this.handleCloseModal}
             // style={customStyles}
             contentLabel="Choose Profile Image Modal"
-            className="upload-image-modal"
+            className="modal upload-image-modal"
           >
             <label htmlFor="profileImage">Choose an Image to Upload</label>
             <input 
@@ -317,7 +317,7 @@ class ProfilePage extends Component {
               Upload Picture
             </button>
             <button 
-              className="btn btn-danger"
+              className="btn btn-secondary"
               onClick={this.handleCloseModal}
             >
               Close
