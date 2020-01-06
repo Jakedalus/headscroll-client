@@ -347,16 +347,16 @@ input, textarea {
   background-color: var(--light-grey);
 }
 
-.post-item__edit-form {
+.edit-form {
   display: flex;
   justify-content: space-between;
 }
 
-.post-item__edit-form textarea {
+.edit-form textarea {
   width: 67%;
 }
 
-.post-item__edit-form button {
+.edit-form button {
   margin-left: 10px;
 }
 

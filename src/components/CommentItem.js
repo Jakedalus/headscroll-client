@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect} from 'react-redux';
 import { editComment, removeComment } from '../store/actions/comments';
 import DefaultProfileImage from '../images/default-profile-image.png';
+import DeleteConfirmationModal from './DeleteConfirmationModal';
 import { convertImageDataToUrl } from '../services/utilities';
 
 class CommentItem extends Component {
@@ -10,7 +11,8 @@ class CommentItem extends Component {
 
     this.state = {
       editingComment: false,
-      comment: this.props.comment.text
+      comment: this.props.comment.text,
+      modalIsOpen: false
     };
   }
 
@@ -37,6 +39,14 @@ class CommentItem extends Component {
     let { id, post_id } = this.props.params;
     this.props.removeComment(id, post_id, this.props.comment._id);
   };
+
+  handleDeleteButtonClicked = () => {
+    this.setState({ modalIsOpen: true });
+  };
+
+  handleCloseDeleteModal = () => {
+    this.setState({ modalIsOpen: false });
+  }
 
   render() {
 
@@ -76,14 +86,21 @@ class CommentItem extends Component {
         {
           this.state.editingComment
           &&
-          <form>
-            <input 
+          <form className="edit-form">
+            <textarea 
               type="text" 
               name="comment" 
               id="comment" 
               value={this.state.comment}
               onChange={this.handleChange}
             />
+            <button 
+              type="button" 
+              onClick={() => this.setState({ editingComment: false })} 
+              className="btn btn-secondary"
+            >
+              Cancel
+            </button>
             <button 
               type="submit" 
               onClick={this.handleEditComment} 
@@ -106,7 +123,7 @@ class CommentItem extends Component {
               Edit
             </a>
             <a 
-              onClick={this.handleRemoveComment} 
+              onClick={this.handleDeleteButtonClicked} 
               className="btn btn-danger"
             >
               Delete
@@ -114,6 +131,13 @@ class CommentItem extends Component {
           </div>
           
         }
+
+        <DeleteConfirmationModal 
+          modalIsOpen={this.state.modalIsOpen} 
+          handleCloseDeleteModal={this.handleCloseDeleteModal}
+          removeItem={this.handleRemoveComment}
+        />
+
       </div>
     )
   }

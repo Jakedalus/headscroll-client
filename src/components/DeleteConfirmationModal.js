@@ -19,7 +19,7 @@ const DeleteConfirmationModal = props => (
       </button>
       <button 
         className="btn btn-danger"
-        onClick={props.removePost}
+        onClick={props.removeItem}
       >
         Delete 
       </button>

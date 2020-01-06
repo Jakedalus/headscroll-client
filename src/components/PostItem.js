@@ -94,7 +94,7 @@ class PostItem extends Component {
           {
             this.state.editingPost 
             && 
-            <form className="post-item__edit-form">
+            <form className="edit-form">
               <textarea 
                 type="text" 
                 name="post" 
@@ -131,7 +131,7 @@ class PostItem extends Component {
         <DeleteConfirmationModal 
           modalIsOpen={this.state.modalIsOpen} 
           handleCloseDeleteModal={this.handleCloseDeleteModal}
-          removePost={removePost}
+          removeItem={removePost}
         />
 
       </div>
