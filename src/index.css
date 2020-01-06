@@ -303,7 +303,7 @@ input, textarea {
 .post-heading__label {
   display: flex;
   flex-direction: row;
-  width: 30%;
+  width: 50%;
 }
 
 .label__info {
@@ -337,8 +337,8 @@ input, textarea {
   padding: 5px;
   margin-right: 7px;
   border-radius: 5px;
-  max-height: 55px;
-  max-width: 55px
+  max-height: 65px;
+  max-width: 65px
 }
 
 .post-item__message-area {
@@ -365,8 +365,9 @@ input, textarea {
   padding: 10px 20px;
 }
 
-.post-footer p {
-  margin: 0;
+.post-footer a {
+  color: black;
+  font-weight: normal;
 }
 
 /* PROFILE PAGE */
@@ -399,6 +400,7 @@ input, textarea {
 .profile-header__avatar .btn {
   font-size: 9px;
   margin: 0;
+  width: 100%;
 }
 
 .profile-header__friend-buttons {

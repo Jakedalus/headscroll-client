@@ -125,7 +125,9 @@ class PostItem extends Component {
         </div>
 
         <div className="post-footer">
-          <p><span>{comments.length}</span> Comments</p>
+          <Link to={`/users/${user_id}/posts/${post_id}`}>
+            <span>{comments.length}</span> Comments
+          </Link>
         </div>
 
         <DeleteConfirmationModal 

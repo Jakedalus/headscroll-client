@@ -29,7 +29,7 @@ class Navbar extends Component {
           ? (
             <ul className="navbar__menu">  
               <li>
-                <Link to={`/api/search`}>Search</Link>
+                <Link to={`/api/search`}>Find Friends</Link>
               </li>
               {/* <li>
                 <Link to={`/users/${this.props.currentUser.user.id}/posts/new`}>New Post</Link>
