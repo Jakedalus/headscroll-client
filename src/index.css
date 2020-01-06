@@ -322,10 +322,23 @@ input, textarea {
   max-width: 55px
 }
 
-.message-area {
+.post-item__message-area {
   min-height: 100px;
   padding: 20px 20px 40px 20px;
   background-color: var(--light-grey);
+}
+
+.post-item__edit-form {
+  display: flex;
+  justify-content: space-between;
+}
+
+.post-item__edit-form textarea {
+  width: 67%;
+}
+
+.post-item__edit-form button {
+  margin-left: 10px;
 }
 
 .post-footer {

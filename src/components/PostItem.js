@@ -25,7 +25,7 @@ class PostItem extends Component {
     });
   };
 
-  handgleEditPost = e => {
+  handleEditPost = e => {
     e.preventDefault();
     console.log('handleEditPost', this.state.post);
     this.props.editPost({text: this.state.post});
@@ -76,7 +76,7 @@ class PostItem extends Component {
 
         </div>
         
-        <div className="message-area">
+        <div className="post-item__message-area">
           {
             !this.state.editingPost 
             && <p>{text}</p>
@@ -84,21 +84,32 @@ class PostItem extends Component {
           {
             this.state.editingPost 
             && 
-            <form>
-              <input 
+            <form className="post-item__edit-form">
+              <textarea 
                 type="text" 
                 name="post" 
                 id="post" 
+                rows="5"
                 value={this.state.post}
                 onChange={this.handleChange}
               />
-              <button 
-                type="submit" 
-                onClick={this.handgleEditPost} 
-                className="btn btn-primary"
-              >
-                Save
-              </button>
+              <div>
+                <button 
+                  type="button" 
+                  onClick={() => this.setState({ editingPost: false })} 
+                  className="btn btn-secondary"
+                >
+                  Cancel
+                </button>
+                <button 
+                  type="submit" 
+                  onClick={this.handleEditPost} 
+                  className="btn btn-primary"
+                >
+                  Save
+                </button>
+              </div>
+              
             </form>
           }
         </div>
