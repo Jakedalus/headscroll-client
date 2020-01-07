@@ -35,7 +35,7 @@ export const startAddFriend = friend => {
       .then(res => {
         console.log('startAddFriend apiCall success:', res);
         return dispatch(addFriend(friend))})
-      .catch(err => dispatch(addError(err)));
+      .catch(err => dispatch(addError(err.message)));
   };
 };
 
@@ -52,7 +52,7 @@ export const startRemoveFriend = friend => {
 
     return apiCall('delete', `/api/users/${friend}/profile`)
       .then(res => dispatch(removeFriend(friend)))
-      .catch(err => dispatch(addError(err)));
+      .catch(err => dispatch(addError(err.message)));
   };
 }
 
@@ -67,6 +67,6 @@ export const searchForFriend = query => {
 
     return apiCall('post', '/api/search', {query})
       .then(res => dispatch(findFriend(res)))
-      .catch(err => dispatch(addError(err)));
+      .catch(err => dispatch(addError(err.message)));
   }
 }

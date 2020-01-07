@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-
-export default class AuthForm extends Component {
+class AuthForm extends Component {
   constructor(props) {
     super(props);
 
@@ -30,10 +30,13 @@ export default class AuthForm extends Component {
     const authType = this.props.signUp ? 'signup' : 'signin';
 
     if (authType === 'signup') {
-      console.log('handleSubmit, file uploaded:', this.fileInput.current.files[0].name);
-
       var formData = new FormData();  // multer on server expecting FormData
-      formData.append(`profileImage`, this.fileInput.current.files[0]);
+
+      if (this.fileInput.current.files.length > 0) {
+        console.log('handleSubmit, file uploaded:', this.fileInput.current.files[0].name);
+        formData.append(`profileImage`, this.fileInput.current.files[0]);
+      }
+      
       formData.append('email', this.state.email);
       formData.append('password', this.state.password);
       formData.append('username', this.state.username);
@@ -134,7 +137,9 @@ export default class AuthForm extends Component {
           }
 
           
- 
+          { 
+            this.props.errors.message !== null && <p>{this.props.errors.message}</p>
+          }
 
           <button type="submit" className="btn btn-primary btn-lg">
             {buttonText}
@@ -145,3 +150,12 @@ export default class AuthForm extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  console.log('AuthForm, mapStateToProps, state:', state);
+  return {
+    errors: state.errors
+  };
+}
+
+export default connect(mapStateToProps)(AuthForm);

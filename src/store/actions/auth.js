@@ -66,7 +66,7 @@ export function getUserData(userData) {
           resolve();
         })
         .catch(err => {
-          dispatch(addError(err));
+          dispatch(addError(err.message));
           reject();
         });
     });
@@ -85,6 +85,6 @@ export function uploadProfileImage(user, profileImage) {
     console.log('uploadProfileImage, profileImage:', profileImage);
     return apiCall('post', `/api/users/${user}/profile/avi`, profileImage)
       .then(res => dispatch(addAvatar(res)))
-      .catch(err => dispatch(addError(err)));
+      .catch(err => dispatch(addError(err.message)));
   };
 };

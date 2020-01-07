@@ -47,7 +47,7 @@ export const getPost = (user_id, post_id) => {
   return dispatch => {
     return apiCall('get', `/api/users/${user_id}/posts/${post_id}`)
       .then(post => dispatch(get(post)))
-      .catch(err => dispatch(addError(err)));
+      .catch(err => dispatch(addError(err.message)));
   }
 }
 
@@ -62,7 +62,7 @@ export const editPost = (user_id, post_id, updates) => {
   return dispatch => {
     return apiCall('put', `/api/users/${user_id}/posts/${post_id}`, updates)
       .then(() => dispatch(edit(post_id, updates)))
-      .catch(err => dispatch(addError(err)));
+      .catch(err => dispatch(addError(err.message)));
   }
 }
 
@@ -75,7 +75,7 @@ export const removePost = (user_id, post_id) => {
   return dispatch => {
     return apiCall('delete', `/api/users/${user_id}/posts/${post_id}`)
       .then(() => dispatch(remove(post_id)))
-      .catch(err => dispatch(addError(err)));
+      .catch(err => dispatch(addError(err.message)));
   }
 }
 
@@ -86,7 +86,7 @@ export const postNewPost = text => {
 
     return apiCall('post', `/api/users/${id}/posts`, {text})
       .then(res => {})
-      .catch(err => dispatch(addError(err)));
+      .catch(err => dispatch(addError(err.message)));
   };
 }
 
