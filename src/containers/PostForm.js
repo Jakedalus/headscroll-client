@@ -33,11 +33,7 @@ class PostForm extends Component {
     return (
       <div className="new-post-page">
         <form className="post-form" onSubmit={this.handleNewPost}>
-          {this.props.errors.message && (
-            <div className="alert alert-danger">
-              {this.props.errors.message}
-            </div>
-          )}
+          
 
             <label htmlFor="post">Create a new post:</label>
             <textarea 
@@ -50,10 +46,20 @@ class PostForm extends Component {
               value={this.state.post}
             />
 
+          {this.props.errors.message && (
+            <div className="alert alert-danger">
+              {this.props.errors.message}
+            </div>
+          )}
+
           <button className="btn btn-primary" type="submit">
             Submit Post
           </button>
+
         </form>
+
+        
+
       </div>
       
     );

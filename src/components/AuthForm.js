@@ -79,8 +79,6 @@ class AuthForm extends Component {
         <form className="auth-form" onSubmit={this.handleSubmit} enctype="multipart/form-data">
           <h2>{heading}</h2>
 
-          {errors.message && <div className="alert alert-danger">{errors.message}</div>}
-
           <div className="auth-form__input">
             <label htmlFor="email">Email</label>
             <input 
@@ -136,16 +134,16 @@ class AuthForm extends Component {
             )
           }
 
-          
-          { 
-            this.props.errors.message !== null && <p>{this.props.errors.message}</p>
-          }
+          {errors.message && <div className="alert alert-danger">{errors.message}</div>}
 
           <button type="submit" className="btn btn-primary btn-lg">
             {buttonText}
           </button>
-
+          
         </form>
+
+        
+
       </div>
     );
   }
