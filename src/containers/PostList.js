@@ -24,10 +24,14 @@ class PostList extends Component {
 
   render() {
 
+    console.log('PostList, props', this.props);
+
+    // debugger;
+
     if (this.state.postsLoaded) {
       const { posts, editPost, removePost, currentUser } = this.props;
 
-      console.log('PostList, props', this.props);
+      
 
       let postList = posts.map(p => (
         <PostItem

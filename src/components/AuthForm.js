@@ -54,13 +54,15 @@ class AuthForm extends Component {
         .catch(() => {
           return;
         });
+    } else {
+      this.props.onAuth(authType, this.state)
+        .then(() => this.props.history.push('/'))
+        .catch(() => {
+          return;
+        });
     }
 
-    this.props.onAuth(authType, this.state)
-      .then(() => this.props.history.push('/'))
-      .catch(() => {
-        return;
-      });
+    
   }
 
   render() {
