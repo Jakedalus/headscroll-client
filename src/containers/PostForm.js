@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { postNewPost, fetchPosts } from '../store/actions/posts';
+import { addError, removeError } from '../store/actions/errors';
 
 
 class PostForm extends Component {
@@ -19,9 +20,15 @@ class PostForm extends Component {
 
   handleNewPost = async e => {
     e.preventDefault();
-    await this.props.postNewPost(this.state.post);
-    this.setState({ post: '' });
-    await this.props.fetchPosts();
+    if (this.state.post === '') {
+      this.props.addError('Your post cannot be empty');
+    } else {
+      await this.props.postNewPost(this.state.post);
+      this.setState({ post: '' });
+      await this.props.fetchPosts();
+      await this.props.removeError();
+    }
+    
     // this.props.history.push({
     //   pathname: "/", 
     //   state: { prevPath: this.props.history.location.pathname }
@@ -72,4 +79,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { postNewPost, fetchPosts })(PostForm);
+export default connect(mapStateToProps, { postNewPost, fetchPosts, addError, removeError })(PostForm);
