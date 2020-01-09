@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { addError, removeError } from '../store/actions/errors';
+import validator from 'validator';
 
 class AuthForm extends Component {
   constructor(props) {
@@ -29,37 +31,52 @@ class AuthForm extends Component {
     e.preventDefault();
     const authType = this.props.signUp ? 'signup' : 'signin';
 
+    
     if (authType === 'signup') {
-      var formData = new FormData();  // multer on server expecting FormData
+      if (this.state.email === '' || this.state.password === '' || this.state.username === '') {
+        this.props.addError('Please include all necessary information');
+      } if (!validator.isEmail(this.state.email)) {
+        this.props.addError('Please include a valid email address');
+      } else {
+        var formData = new FormData();  // multer on server expecting FormData
 
-      if (this.fileInput.current.files.length > 0) {
-        console.log('handleSubmit, file uploaded:', this.fileInput.current.files[0].name);
-        formData.append(`profileImage`, this.fileInput.current.files[0]);
+        if (this.fileInput.current.files.length > 0) {
+          console.log('handleSubmit, file uploaded:', this.fileInput.current.files[0].name);
+          formData.append(`profileImage`, this.fileInput.current.files[0]);
+        }
+        
+        formData.append('email', this.state.email);
+        formData.append('password', this.state.password);
+        formData.append('username', this.state.username);
+        // formData.append('test', 'test');
+
+        // console.log('handleSubmit, formData:', formData, formData.entries());
+        // for (var key of formData.entries()) {
+        //   console.log(key[0] + ', ' + key[1])
+        // }
+
+        console.log('handleSubmit, this.state:', this.state);
+
+        this.props.onAuth(authType, formData)
+          .then(() => this.props.history.push('/'))
+          .catch(() => {
+            return;
+          });
       }
       
-      formData.append('email', this.state.email);
-      formData.append('password', this.state.password);
-      formData.append('username', this.state.username);
-      // formData.append('test', 'test');
-
-      console.log('handleSubmit, formData:', formData, formData.entries());
-      for (var key of formData.entries()) {
-        console.log(key[0] + ', ' + key[1])
-      }
-
-      console.log('handleSubmit, this.state:', this.state);
-
-      this.props.onAuth(authType, formData)
-        .then(() => this.props.history.push('/'))
-        .catch(() => {
-          return;
-        });
     } else {
-      this.props.onAuth(authType, this.state)
-        .then(() => this.props.history.push('/'))
-        .catch(() => {
-          return;
-        });
+      if (this.state.email === '' || this.state.password === '') {
+        this.props.addError('Please include all necessary information');
+      } if (!validator.isEmail(this.state.email)) {
+        this.props.addError('Please include a valid email address');
+      } else {
+        this.props.onAuth(authType, this.state)
+          .then(() => this.props.history.push('/'))
+          .catch(() => {
+            return;
+          });
+      }
+      
     }
 
     
@@ -158,4 +175,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(AuthForm);
+export default connect(mapStateToProps, { addError })(AuthForm);
