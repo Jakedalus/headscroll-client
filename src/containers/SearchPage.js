@@ -63,6 +63,7 @@ class SearchPage extends Component {
                 id={this.props.friend._id}
                 username={this.props.friend.username}
                 email={this.props.friend.email}
+                profileImage={this.props.friend.profileImage}
               />
             }
 
