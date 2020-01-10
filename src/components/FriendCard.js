@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import DefaultProfileImage from '../images/default-profile-image.png';
+import DefaultProfileImage from '../images/head.svg';
 import { convertImageDataToUrl } from '../services/utilities';
 
 const FriendCard = ({ id, profileImage, username, email, friends }) => {

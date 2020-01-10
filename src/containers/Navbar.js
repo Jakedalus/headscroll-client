@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../store/actions/auth';
+import HeadscrollIcon from '../images/head.svg';
 
 class Navbar extends Component {
 
@@ -19,7 +20,9 @@ class Navbar extends Component {
       <nav className="navbar">
         <div className="navbar-header">
           <Link to={{pathname: "/", state: { prevPath: this.props.history.location.pathname }}} className="navbar-brand">
-            Headscroll
+            {/* <img src={HeadscrollIcon} alt="headscroll" className="headscroll-icon"/> */}
+            <div alt="headscroll" class="headscroll-icon"></div>
+            <div className="headscroll-title">Headscroll</div>
           </Link>
         </div>
 

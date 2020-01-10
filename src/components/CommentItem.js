@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect} from 'react-redux';
 import { editComment, removeComment } from '../store/actions/comments';
-import DefaultProfileImage from '../images/default-profile-image.png';
+import DefaultProfileImage from '../images/head.svg';
 import DeleteConfirmationModal from './DeleteConfirmationModal';
 import { convertImageDataToUrl } from '../services/utilities';
 

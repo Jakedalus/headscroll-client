@@ -8,7 +8,7 @@ import { fetchFriend, startAddFriend, startRemoveFriend } from '../store/actions
 import PostItem from '../components/PostItem';
 import FriendCard from '../components/FriendCard';
 import LoadingAnimation from '../components/LoadingAnimation';
-import DefaultProfileImage from '../images/default-profile-image.png';
+import DefaultProfileImage from '../images/head.svg';
 import { convertImageDataToUrl } from '../services/utilities';
 
 Modal.setAppElement('#root');

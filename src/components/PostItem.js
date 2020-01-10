@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
-import DefaultProfileImage from '../images/default-profile-image.png';
+import DefaultProfileImage from '../images/head.svg';
 import DeleteConfirmationModal from './DeleteConfirmationModal';
 import { convertImageDataToUrl } from '../services/utilities';
 
@@ -58,11 +58,14 @@ class PostItem extends Component {
       <div className="post-item">
         <div className="post-heading">
           <div className="post-heading__label">
-            <img 
-              src={avatar}
-              alt={username}
-              className="timeline-image"
-            />
+            <div className="avatar-container">
+              <img 
+                src={avatar}
+                alt={username}
+                className="timeline-image"
+              />
+            </div>
+            
             <div className="label__info">
               <Link to={`/users/${user_id}/profile`}>{username}</Link>
               <Link to={`/users/${user_id}/posts/${post_id}`}>

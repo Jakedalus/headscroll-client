@@ -6,6 +6,7 @@ import jwtDecode from 'jwt-decode';
 
 import Navbar from './Navbar';
 import Main from './Main';
+import Footer from '../components/Footer';
 import { setAuthorizationToken, setCurrentUser } from '../store/actions/auth';
 
 const store = configureStore();
@@ -34,6 +35,7 @@ const App = () => (
       <div className="App">
         <Navbar />
         <Main />
+        <Footer />
       </div>
     </Router>
   </Provider>
