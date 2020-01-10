@@ -419,6 +419,7 @@ input, textarea {
 .edit-form {
   display: flex;
   justify-content: space-between;
+  width: 100%;
 }
 
 .edit-form textarea {
@@ -427,6 +428,7 @@ input, textarea {
 
 .edit-form button {
   margin-left: 10px;
+  margin-right: auto;
 }
 
 .post-footer {

@@ -113,7 +113,7 @@ class CommentItem extends Component {
         
 
         {
-          this.props.currentUser === user._id 
+          this.props.currentUser === user._id && !this.state.editingComment
           && 
           <div className="comment-item__buttons">
             <a 
