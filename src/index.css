@@ -294,7 +294,6 @@ input, textarea {
   flex-direction: column;
   border: none;
   background: var(--off-white-orange);
-  box-shadow: 0 0 2px gray;
   padding: 0;
   margin-bottom: 25px;
   width: 500px;
@@ -373,6 +372,7 @@ input, textarea {
 .post-footer {
   background-color: var(--grey);
   padding: 10px 20px;
+  border-radius: 0 0 5px 5px;
 }
 
 .post-footer a {
@@ -508,9 +508,15 @@ input, textarea {
   margin-bottom: 0;
 }
 
+.post-page .post-item .post-footer {
+  border-radius: 0;
+}
+
 .post-page__footer {
   width: 500px;
+  border-radius: 0 0 5px 5px;
 }
+
 
 .comment-form {
   display: flex;
