@@ -5,7 +5,7 @@
   },
   "proxies": {
     "/api": {
-      "origin": "https://headscroll-server.herokuapp.com"
+      "origin": "https://headscroll-server.herokuapp.com/api"
     }
   }
 }
