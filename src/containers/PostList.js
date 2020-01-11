@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { fetchPosts, editPost, removePost } from '../store/actions/posts';
+import { getUserData } from '../store/actions/auth';
 import PostItem from '../components/PostItem';
 import LoadingAnimation from '../components/LoadingAnimation';
 
@@ -26,11 +27,17 @@ class PostList extends Component {
 
     console.log('PostList, props', this.props);
 
-    // debugger;
-
     if (this.state.postsLoaded) {
       const { posts, editPost, removePost, currentUser } = this.props;
 
+      const timeChange = Date.now() - localStorage.timestamp;
+      const twoMinutesHasPassed = (timeChange / 120000) >= 2;  
+      console.log('$$$ PostList, timeChange, twoMinutesHasPassed:', timeChange, twoMinutesHasPassed);
+      console.log('$$$ PostList, currentUser:', currentUser);
+      if (twoMinutesHasPassed && currentUser.isAuthenticated) {
+        console.log('---> REFRESH USER: twoMinutesHasPassed!! getUserData!!');
+        this.props.getUserData(currentUser.user.id);
+      }
       
 
       let postList = posts.map(p => (
@@ -46,7 +53,7 @@ class PostList extends Component {
           profileImage={p.user.profileImage}
           removePost={removePost.bind(this, p.user._id, p._id)}
           editPost={editPost.bind(this, p.user._id, p._id)}
-          isCorrectUser={currentUser === p.user._id}
+          isCorrectUser={currentUser.user.id === p.user._id}
         />
       ));
 
@@ -74,8 +81,8 @@ class PostList extends Component {
 function mapStateToProps(state) {
   return {
     posts: state.posts,
-    currentUser: state.currentUser.user.id
+    currentUser: state.currentUser
   }
 }
 
-export default connect(mapStateToProps, { fetchPosts, editPost, removePost })(PostList);
+export default connect(mapStateToProps, { getUserData, fetchPosts, editPost, removePost })(PostList);
