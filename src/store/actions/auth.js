@@ -52,7 +52,7 @@ export function getUserData(userData) {
   return dispatch => {
     return new Promise((resolve, reject) => {
       console.log('/actions/auth, getUserData, userData:', userData);
-      return apiCall('get', `/user/${userData}`)
+      return apiCall('get', `/api/user/${userData}`)
         .then(({token, ...user}) => {
           console.log('getUserData, user:', user);
           const profileImage = user.profileImage || {};
