@@ -30,14 +30,14 @@ class PostList extends Component {
     if (this.state.postsLoaded) {
       const { posts, editPost, removePost, currentUser } = this.props;
 
-      const timeChange = Date.now() - localStorage.timestamp;
-      const twoMinutesHasPassed = (timeChange / 120000) >= 2;  
-      console.log('$$$ PostList, timeChange, twoMinutesHasPassed:', timeChange, twoMinutesHasPassed);
-      console.log('$$$ PostList, currentUser:', currentUser);
-      if (twoMinutesHasPassed && currentUser.isAuthenticated) {
-        console.log('---> REFRESH USER: twoMinutesHasPassed!! getUserData!!');
-        this.props.getUserData(currentUser.user.id);
-      }
+      // const timeChange = Date.now() - localStorage.timestamp;
+      // const twoMinutesHasPassed = (timeChange / 120000) >= 2;  
+      // console.log('$$$ PostList, timeChange, twoMinutesHasPassed:', timeChange, twoMinutesHasPassed);
+      // console.log('$$$ PostList, currentUser:', currentUser);
+      // if (twoMinutesHasPassed && currentUser.isAuthenticated) {
+      //   console.log('---> REFRESH USER: twoMinutesHasPassed!! getUserData!!');
+      //   this.props.getUserData(currentUser.user.id);
+      // }
       
 
       let postList = posts.map(p => (
