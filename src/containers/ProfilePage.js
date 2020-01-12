@@ -103,7 +103,7 @@ class ProfilePage extends Component {
     const file = this.fileInput.current.files[0];
     if (file) {
       if (file.size > 1000000) {
-        console.log('File is too large! Maximum size is 1mb');
+        console.log('Image file is too large! Maximum size is 1mb');
         this.setState({ uploadImageError: 'File is too large! Maximum size is 1mb' });
       } else if (file.type === 'image/png' || file.type === 'image/jpeg') {
         console.log('Sending image to backend! file:', file);

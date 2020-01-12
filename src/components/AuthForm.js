@@ -29,45 +29,59 @@ class AuthForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    this.props.removeError();
     const authType = this.props.signUp ? 'signup' : 'signin';
-
     
     if (authType === 'signup') {
       if (this.state.email === '' || this.state.password === '' || this.state.username === '') {
         this.props.addError('Please include all necessary information');
-      } if (!validator.isEmail(this.state.email)) {
+      } else if (!validator.isEmail(this.state.email)) {
         this.props.addError('Please include a valid email address');
       } else {
-        var formData = new FormData();  // multer on server expecting FormData
+        let formData = new FormData();  // multer on server expecting FormData
+
+        let imageTooLarge = false;
 
         if (this.fileInput.current.files.length > 0) {
-          console.log('handleSubmit, file uploaded:', this.fileInput.current.files[0].name);
-          formData.append(`profileImage`, this.fileInput.current.files[0]);
+          console.log('handleSubmit, file uploaded:', this.fileInput.current.files[0]);
+          if (this.fileInput.current.files[0].size > 1000000) {
+            console.log('Image file is too large! Maximum size is 1mb');
+            this.props.addError('Image file is too large! Maximum size is 1mb');
+            imageTooLarge = true;
+          } else {
+            formData.append(`profileImage`, this.fileInput.current.files[0]);
+          }
+          
+        }
+
+        console.log('imageTooLarge', imageTooLarge);
+
+        if (!imageTooLarge) {
+          formData.append('email', this.state.email);
+          formData.append('password', this.state.password);
+          formData.append('username', this.state.username);
+          // formData.append('test', 'test');
+
+          // console.log('handleSubmit, formData:', formData, formData.entries());
+          // for (var key of formData.entries()) {
+          //   console.log(key[0] + ', ' + key[1])
+          // }
+
+          console.log('handleSubmit, this.state:', this.state);
+
+          this.props.onAuth(authType, formData)
+            .then(() => this.props.history.push('/'))
+            .catch(() => {
+              return;
+            });
         }
         
-        formData.append('email', this.state.email);
-        formData.append('password', this.state.password);
-        formData.append('username', this.state.username);
-        // formData.append('test', 'test');
-
-        // console.log('handleSubmit, formData:', formData, formData.entries());
-        // for (var key of formData.entries()) {
-        //   console.log(key[0] + ', ' + key[1])
-        // }
-
-        console.log('handleSubmit, this.state:', this.state);
-
-        this.props.onAuth(authType, formData)
-          .then(() => this.props.history.push('/'))
-          .catch(() => {
-            return;
-          });
       }
       
     } else {
       if (this.state.email === '' || this.state.password === '') {
         this.props.addError('Please include all necessary information');
-      } if (!validator.isEmail(this.state.email)) {
+      } else if (!validator.isEmail(this.state.email)) {
         this.props.addError('Please include a valid email address');
       } else {
         this.props.onAuth(authType, this.state)
