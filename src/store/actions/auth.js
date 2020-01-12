@@ -41,6 +41,7 @@ export function authUser(type, userData) {
           resolve();
         })
         .catch(err => {
+          console.log('authUser, err:', err);
           dispatch(addError(err.message));
           reject();
         });
