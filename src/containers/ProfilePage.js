@@ -102,7 +102,10 @@ class ProfilePage extends Component {
   handleImageUpload = async () => {
     const file = this.fileInput.current.files[0];
     if (file) {
-      if (file.type === 'image/png' || file.type === 'image/jpeg') {
+      if (file.size > 1000000) {
+        console.log('File is too large! Maximum size is 1mb');
+        this.setState({ uploadImageError: 'File is too large! Maximum size is 1mb' });
+      } else if (file.type === 'image/png' || file.type === 'image/jpeg') {
         console.log('Sending image to backend! file:', file);
         var formData = new FormData();
         formData.append(`profileImage`, file);
@@ -112,7 +115,7 @@ class ProfilePage extends Component {
         await this.props.fetchFriend(this.props.friend._id);
         this.setState({ modalIsOpen: false });
       } else {
-        console.log('Select a file first!!!');
+        console.log('Select a valid image file first!!!');
         this.setState({ uploadImageError: 'Please select a valid image file' });
       }
       
