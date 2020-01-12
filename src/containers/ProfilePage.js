@@ -302,32 +302,36 @@ class ProfilePage extends Component {
             contentLabel="Choose Profile Image Modal"
             className="modal upload-image-modal"
           >
-            <label htmlFor="profileImage">Choose an Image to Upload</label>
-            <input 
-              type="file" 
-              className="form-control"
-              name="profileImage" 
-              id="profileImage" 
-              accept="image/*"
-              ref={this.fileInput}
-              onChange={this.handleFileSelect}
-              // className="btn btn-secondary"
-            />
-            <button 
-              className="btn btn-primary"
-              onClick={this.handleImageUpload}
-            >
-              Upload Picture
-            </button>
-            <button 
-              className="btn btn-secondary"
-              onClick={this.handleCloseModal}
-            >
-              Close
-            </button>
+            <div className="upload-image-modal__form">
+              <label htmlFor="profileImage">Choose an Image to Upload</label>
+              <input 
+                type="file" 
+                className="profile-image-input"
+                name="profileImage" 
+                id="profileImage" 
+                accept="image/*"
+                ref={this.fileInput}
+                onChange={this.handleFileSelect}
+                // className="btn btn-secondary"
+              />
+              <div className="upload-image-modal__buttons">
+                <button 
+                  className="btn btn-primary"
+                  onClick={this.handleImageUpload}
+                >
+                  Upload Picture
+                </button>
+                <button 
+                  className="btn btn-secondary"
+                  onClick={this.handleCloseModal}
+                >
+                  Close
+                </button>
+              </div>
+            </div>
             {
               this.state.uploadImageError
-              && <p>{this.state.uploadImageError}</p>
+              && <p className="alert">{this.state.uploadImageError}</p>
             }
           </Modal>
           

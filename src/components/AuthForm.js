@@ -157,7 +157,7 @@ class AuthForm extends Component {
                 <label htmlFor="profileImage">Upload a Profile Image</label>
                 <input 
                   type="file" 
-                  className="form-control"
+                  className="profile-image-input"
                   name="profileImage" 
                   id="profileImage" 
                   accept="image/*"

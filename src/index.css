@@ -134,6 +134,10 @@ input, textarea {
   outline: none;
 }
 
+.profile-image-input {
+  color: black;
+}
+
 .alert {
   background-color: var(--light-grey);
   color: var(--deep-red);
@@ -539,8 +543,26 @@ input, textarea {
   margin-left: 0;
 }
 
+.upload-image-modal {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+}
+
+.upload-image-modal__buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
 .upload-image-modal button {
   margin-right: 10px;
+}
+
+.upload-image-modal__form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 /* FRIEND CARD STYLES */
