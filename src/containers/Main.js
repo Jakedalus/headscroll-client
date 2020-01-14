@@ -24,12 +24,13 @@ const Main = props => {
   
   // console.log('localStorage:', localStorage, jwtDecode(localStorage.jwtToken));
 
-  // check if 2 minutes has passed since last getUserData, call again if it has
+  // check if 0.5 minutes has passed since last getUserData, call again if it has
   // this is mostly to check if someone has friend requested you periodically
   const timeChange = Date.now() - localStorage.timestamp;
   const twoMinutesHasPassed = (timeChange / 120000) >= 2;  
-  if (twoMinutesHasPassed && currentUser.isAuthenticated) {
-    console.log('---> REFRESH USER: twoMinutesHasPassed!! getUserData!!');
+  const thirtySecondsHasPassed = (timeChange / 60000) >= .5;  
+  if (thirtySecondsHasPassed && currentUser.isAuthenticated) {
+    console.log('---> REFRESH USER: twoMinutesHasPassed!! getUserData!!', timeChange, thirtySecondsHasPassed);
     props.getUserData(currentUser.user.id);
   }
 
