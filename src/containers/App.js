@@ -9,7 +9,7 @@ import Main from './Main';
 import Footer from '../components/Footer';
 import { setAuthorizationToken, setCurrentUser } from '../store/actions/auth';
 
-console.log('ROOT App.js', process.env.NODE_ENV);
+// console.log('ROOT App.js', process.env.NODE_ENV);
 if (process.env.NODE_ENV !== 'development') {
   console.log = () => {}
 }
