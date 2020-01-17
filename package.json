@@ -23,9 +23,9 @@
     "transform-remove-console"
   ],
   "scripts": {
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
-    "test": "react-app-rewired test",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -45,7 +45,6 @@
   },
   "devDependencies": {
     "babel-plugin-transform-remove-console": "^6.9.4",
-    "react-app-rewired": "^2.1.5",
     "uglifyjs-webpack-plugin": "^2.2.0"
   }
 }
