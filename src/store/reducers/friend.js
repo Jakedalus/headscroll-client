@@ -11,7 +11,7 @@ const DEFAULT_STATE = {
 };
 
 export default (state = {friend: DEFAULT_STATE}, action) => {
-  console.log('-- reducers/friends:', state, action)
+  // console.log('-- reducers/friends:', state, action)
   let friend =  Object.assign({}, state.friend);
   switch(action.type) {
     case GET_FRIEND:
