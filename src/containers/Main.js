@@ -28,9 +28,10 @@ const Main = props => {
   // this is mostly to check if someone has friend requested you periodically
   const timeChange = Date.now() - localStorage.timestamp;
   const twoMinutesHasPassed = (timeChange / 120000) >= 2;  
+  const oneMinuteHasPassed = (timeChange / 60000) >= 1;  
   const thirtySecondsHasPassed = (timeChange / 60000) >= .5;  
-  if (thirtySecondsHasPassed && currentUser.isAuthenticated) {
-    console.log('---> REFRESH USER: twoMinutesHasPassed!! getUserData!!', timeChange, thirtySecondsHasPassed);
+  if (oneMinuteHasPassed && currentUser.isAuthenticated) {
+    console.log('---> REFRESH USER: oneMinuteHasPassed!! getUserData!!', timeChange, oneMinuteHasPassed);
     props.getUserData(currentUser.user.id);
   }
 
