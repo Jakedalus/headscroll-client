@@ -21,6 +21,7 @@
   "proxy": "http://localhost:5051",
   "scripts": {
     "start": "react-scripts start",
+    "heroku-prebuild": "echo This runs before Heroku installs your dependencies.",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
