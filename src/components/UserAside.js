@@ -28,7 +28,7 @@ const UserAside = props => {
         </div>
         
         <Link to={{pathname: `/users/${id}/profile`}}>{username}</Link>
-        <p>Friends: {friends ? friends.length : 0}</p>
+        {/* <p>Friends: {friends ? friends.length : 0}</p> */}
         {
           requests.length > 0 
           &&
