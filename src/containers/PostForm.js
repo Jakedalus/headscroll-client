@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import sanitizeHtml from 'sanitize-html';
 import { connect } from 'react-redux';
 import { postNewPost, fetchPosts } from '../store/actions/posts';
 import { addError, removeError } from '../store/actions/errors';
@@ -19,6 +20,7 @@ class PostForm extends Component {
   };
 
   handleNewPost = async e => {
+    const cleanText = sanitizeHtml(this.state.post);
     e.preventDefault();
     if (this.state.post === '') {
       this.props.addError('Your post cannot be empty');

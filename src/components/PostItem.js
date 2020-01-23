@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 import Linkify from 'linkifyjs/react';
+import sanitizeHtml from 'sanitize-html';
 import DefaultProfileImage from '../images/head.svg';
 import DeleteConfirmationModal from './DeleteConfirmationModal';
 import { convertImageDataToUrl } from '../services/utilities';
@@ -54,6 +55,10 @@ class PostItem extends Component {
         : DefaultProfileImage;
 
     console.log('PostItem, profileImage, avatar:', profileImage, avatar);
+
+    const cleanText = sanitizeHtml(text);
+
+    console.log('PostItem, cleanText:', cleanText);
 
     return (
       <div className="post-item">
