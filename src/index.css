@@ -489,6 +489,10 @@ and (max-width: 550px) {
   white-space: pre-wrap;
 }
 
+.post-item__text a {
+  color: var(--slate-blue);
+}
+
 .edit-form {
   display: flex;
   justify-content: space-between;

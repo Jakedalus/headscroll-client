@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
+import Linkify from 'linkifyjs/react';
 import DefaultProfileImage from '../images/head.svg';
 import DeleteConfirmationModal from './DeleteConfirmationModal';
 import { convertImageDataToUrl } from '../services/utilities';
@@ -92,7 +93,14 @@ class PostItem extends Component {
         <div className="post-item__message-area">
           {
             !this.state.editingPost 
-            && <p>{text}</p>
+            && 
+            <Linkify
+              tagName="p" 
+              className="post-item__text"
+              // options={options}
+            >
+              {text}
+            </Linkify>
           }
           {
             this.state.editingPost 
