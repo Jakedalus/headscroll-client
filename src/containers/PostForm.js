@@ -36,7 +36,7 @@ class PostForm extends Component {
   }
 
   render() {
-    console.log('PostForm, props', this.props);
+    console.log('PostForm, props, state', this.props, this.state);
     return (
       <div className="new-post-page">
         <form className="post-form" onSubmit={this.handleNewPost}>

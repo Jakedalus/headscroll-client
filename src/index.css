@@ -486,12 +486,14 @@ and (max-width: 550px) {
   min-height: 100px;
   padding: 20px 20px 40px 20px;
   background-color: var(--light-grey);
+  white-space: pre-wrap;
 }
 
 .edit-form {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  white-space: pre-wrap;
 }
 
 .edit-form textarea {
@@ -758,6 +760,7 @@ and (max-width: 550px) {
   display: flex;
   align-items: center;
   width: 70%;
+  white-space: pre-wrap;
 }
 
 .comment-item__username {
