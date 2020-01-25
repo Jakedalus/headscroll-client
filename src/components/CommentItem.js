@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect} from 'react-redux';
 import { editComment, removeComment } from '../store/actions/comments';
 import DefaultProfileImage from '../images/head.svg';
@@ -54,7 +55,7 @@ class CommentItem extends Component {
 
     let { createdAt, text, updatedAt, user, _id } = this.props.comment;
 
-    let { profileImage, username } = user;
+    let { profileImage, username, _id: user_id } = user;
 
     const avatar = profileImage && profileImage.data 
         ? convertImageDataToUrl(profileImage.data) 
@@ -74,7 +75,10 @@ class CommentItem extends Component {
             />
               
             <div className="comment-item__text">
-              <span className="comment-item__username">{username}</span>
+              <Link className="comment-item__username" to={`/users/${user_id}/profile`}>
+                {username}
+              </Link>
+              {/* <span className="comment-item__username">{username}</span> */}
               {text}
             </div>
             

@@ -784,7 +784,7 @@ and (max-width: 550px) {
   white-space: pre-wrap;
 }
 
-.comment-item__username {
+.comment-item .comment-item__username {
   color: var(--dark-red);
   font-weight: bold;
   margin-right: 5px;
