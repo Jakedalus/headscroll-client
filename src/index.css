@@ -762,7 +762,6 @@ and (max-width: 550px) {
 .comment-item {
   display: flex;
   flex-direction: row;
-  align-items: center;
   justify-content: space-between;
   background-color: var(--light-grey);
   padding: 7px 10px;
@@ -780,7 +779,7 @@ and (max-width: 550px) {
 .comment-item__body {
   display: flex;
   align-items: center;
-  /* width: 200px; */
+  width: 100%;
   white-space: pre-wrap;
 }
 
@@ -792,20 +791,28 @@ and (max-width: 550px) {
 
 .comment-item__text {
   align-self: flex-start;
-  width: 250px;
+  width: 85%;
 }
 
 .comment-item__buttons {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  width: 30%;
+  width: 170px;
 }
 
 @media only screen 
 and (max-width: 550px) {
   .comment-item__buttons  {
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
+    align-items: stretch;
+    text-align: center;
+    width: 100px;
+  }
+
+  .comment-item__text {
+    width: 70%;
   }
 }
 
