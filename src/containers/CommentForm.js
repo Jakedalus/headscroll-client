@@ -34,12 +34,13 @@ class CommentForm extends Component {
             {this.props.errors.message}
           </div>
         )}
-        <input 
-          type="text" 
+        <textarea 
           className="comment-form__input"
           name="comment"
           onChange={this.handleChange}
           value={this.state.comment}
+          rows="4"
+          placeholder="Add a comment"
         />
         <button className="btn btn-primary" type="submit">
           Submit Comment

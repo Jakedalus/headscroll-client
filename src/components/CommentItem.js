@@ -94,20 +94,22 @@ class CommentItem extends Component {
               value={this.state.comment}
               onChange={this.handleChange}
             />
-            <button 
-              type="button" 
-              onClick={() => this.setState({ editingComment: false })} 
-              className="btn btn-secondary"
-            >
-              Cancel
-            </button>
-            <button 
-              type="submit" 
-              onClick={this.handleEditComment} 
-              className="btn btn-primary"
-            >
-              Save
-            </button>
+            <div className="edit-form__buttons">
+              <button 
+                type="button" 
+                onClick={() => this.setState({ editingComment: false })} 
+                className="btn btn-secondary"
+              >
+                Cancel
+              </button>
+              <button 
+                type="submit" 
+                onClick={this.handleEditComment} 
+                className="btn btn-primary"
+              >
+                Save
+              </button>
+            </div>
           </form>
         }
         

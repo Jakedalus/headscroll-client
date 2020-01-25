@@ -119,7 +119,7 @@ class PostItem extends Component {
                 value={this.state.post}
                 onChange={this.handleChange}
               />
-              <div>
+              <div className="edit-form__buttons">
                 <button 
                   type="button" 
                   onClick={() => this.setState({ editingPost: false })} 

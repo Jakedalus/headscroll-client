@@ -443,7 +443,7 @@ and (max-width: 550px) {
 .label__info {
   display: flex;
   flex-direction: column;
-  margin-left: 5px;
+  margin-left: 15px;
 }
 
 .post-heading a {
@@ -478,8 +478,10 @@ and (max-width: 550px) {
   padding: 5px;
   margin-right: 7px;
   border-radius: 5px;
-  max-height: 50px;
-  max-width: 50px
+  /* max-height: 50px; */
+  height: 60px;
+  width: 60px;
+  
 }
 
 .post-item__message-area {
@@ -502,6 +504,21 @@ and (max-width: 550px) {
 
 .edit-form textarea {
   width: 67%;
+}
+
+.edit-form__buttons {
+  display: flex;
+}
+
+@media only screen 
+and (max-width: 550px) {
+  .edit-form__buttons {
+    flex-direction: column;
+  }
+
+  .edit-form__buttons button {
+    margin-bottom: 5px;
+  }
 }
 
 .edit-form button {
@@ -734,13 +751,13 @@ and (max-width: 550px) {
 .comment-form {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   margin-bottom: 10px;
 }
 
 .comment-form__input {
   width: 66%;
-  height: 30px;
+  /* height: 30px; */
   margin-right: 10px;
 }
 
@@ -758,6 +775,8 @@ and (max-width: 550px) {
 
 .comment-item .timeline-image {
   align-self: flex-start;
+  height: 40px;
+  width: 40px;
 }
 
 .comment-item__body {
