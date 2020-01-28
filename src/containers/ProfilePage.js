@@ -303,17 +303,20 @@ class ProfilePage extends Component {
             className="modal upload-image-modal"
           >
             <div className="upload-image-modal__form">
-              <label htmlFor="profileImage">Choose an Image to Upload</label>
-              <input 
-                type="file" 
-                className="profile-image-input"
-                name="profileImage" 
-                id="profileImage" 
-                accept="image/*"
-                ref={this.fileInput}
-                onChange={this.handleFileSelect}
-                // className="btn btn-secondary"
-              />
+              <div className="upload-image-modal__input-panel">
+                <label htmlFor="profileImage">Choose an Image to Upload</label>
+                <input 
+                  type="file" 
+                  className="profile-image-input"
+                  name="profileImage" 
+                  id="profileImage" 
+                  accept="image/*"
+                  ref={this.fileInput}
+                  onChange={this.handleFileSelect}
+                  // className="btn btn-secondary"
+                />
+              </div>
+              
               <div className="upload-image-modal__buttons">
                 <button 
                   className="btn btn-primary"
