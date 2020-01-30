@@ -86,9 +86,7 @@ class PostItem extends Component {
 
           <div className="post-item__button-container">
             {isCorrectUser && <a onClick={this.onClickEditButton} className="btn btn-primary">Edit</a>}
-            {!isCorrectUser && <a className="btn btn-blank">      </a>}
             {isCorrectUser && <a onClick={this.handleDeleteButtonClicked} className="btn btn-danger">Delete</a>}
-            {!isCorrectUser && <a className="btn btn-blank">      </a>}
           </div>
           
 
