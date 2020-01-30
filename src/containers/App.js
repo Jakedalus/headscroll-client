@@ -11,7 +11,7 @@ import { setAuthorizationToken, setCurrentUser } from '../store/actions/auth';
 
 // console.log('ROOT App.js', process.env.NODE_ENV);
 if (process.env.NODE_ENV !== 'development') {
-  console.log = () => {}
+  // console.log = () => {};
 }
 
 console.log('console.log:', console.log);
