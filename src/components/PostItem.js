@@ -51,7 +51,7 @@ class PostItem extends Component {
 		);
 
 		let {
-			createdAt,
+			date,
 			profileImage,
 			text,
 			username,
