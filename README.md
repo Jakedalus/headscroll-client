@@ -14,9 +14,9 @@ npm install
 npm start
 ```
 
-Headscroll uses MongoDB as its database; I recommend using Mongo Atlas. Otherwise you will have to setup a mongo instance on your local machine. 
+Headscroll's backend uses MongoDB as its database; I recommend using Mongo Atlas. Otherwise you will have to setup a mongo instance on your local machine. 
 
-The project, both front and back ends, are hosted on Heroku: you'll have to set 'DB_URI_2' in the environment variables on your own copy.
+The project, both front and back ends, are hosted on Heroku: you'll have to set 'DB_URI' in the environment variables on your own copy.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
