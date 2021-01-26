@@ -2,6 +2,30 @@
 
 This is the front-end portion of the Headscroll project, a full-stack social media web app loosely based on Facebook. (Face Book, Head Scroll, eh eh?)
 
+<p>Main Scroll Page</p>
+<img alt="headscroll daedalus scroll" src="https://github.com/Jakedalus/headscroll-client/blob/master/readme_images/daed_scroll.png" width="400">
+<br>
+  
+<p>Searching for friends</p>
+<img alt="headscroll daedalus scroll" src="https://github.com/Jakedalus/headscroll-client/blob/master/readme_images/finding_friend.png" width="400">
+<br>
+
+<p>Sending a friend request</p>
+<img alt="headscroll daedalus scroll" src="https://github.com/Jakedalus/headscroll-client/blob/master/readme_images/add_friend.png" width="400">
+<br>
+
+<p>Thinking about defriending?</p>
+<img alt="headscroll daedalus scroll" src="https://github.com/Jakedalus/headscroll-client/blob/master/readme_images/remove_friend.png" width="400">
+<br>
+
+<p>Daedalus's Friend List</p>
+<img alt="headscroll daedalus scroll" src="https://github.com/Jakedalus/headscroll-client/blob/master/readme_images/friend_list.png" width="400">
+<br>
+
+<p>Various Posts</p>
+<img alt="headscroll daedalus scroll" src="https://github.com/Jakedalus/headscroll-client/blob/master/readme_images/posts.png" width="400">
+
+
 
 ## Installation
 
